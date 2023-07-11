@@ -1,0 +1,17 @@
+.page {
+  color: #fff;
+  max-width: 1280px;
+  margin: 0 auto;
+  /* padding: 0 200px; */
+  padding: 0 16%;
+}
+@media (max-width: 768px){
+  .page{
+
+  }
+}
+@media (max-width: 480px){
+  .page{
+
+  }
+}
