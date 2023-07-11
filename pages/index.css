@@ -1,14 +1,8 @@
 @import url("../vendors/normalize.css");
+@import url("../fonts/Inter/Inter-Web/inter.css");
 @import url("../blocks/globales.css");
 @import url("../blocks/page.css");
-@import url("../blocks/button.css");
-@import url("../blocks/header.css");
-@import url("../blocks/patria.css");
-@import url("../blocks/introduccion.css");
-@import url("../blocks/foto-grid.css");
-@import url("../blocks/places.css");
-@import url("../blocks/visitanos.css");
-@import url("../blocks/footer.css");
+
 
 
 
