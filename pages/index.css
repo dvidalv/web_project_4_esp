@@ -1,9 +1,11 @@
 @import url("../vendors/normalize.css");
 @import url("../fonts/Inter/Inter-Web/inter.css");
 @import url("../blocks/globales.css");
+@import url("../blocks/buttons.css");
 @import url("../blocks/page.css");
 @import url("../blocks/logo.css");
 @import url("../blocks/header.css");
+@import url("../blocks/profile.css");
 @import url("../blocks/content.css");
 
 

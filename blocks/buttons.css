@@ -1,0 +1,21 @@
+.add-button{
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    transition: opacity .3s;
+}
+.add-button:hover{
+    opacity: .6;
+}
+
+.edit-button{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: opacity .3s;
+    background-color: transparent;
+    border: none;
+}
+.edit-button:hover{
+    opacity: .6;
+}
