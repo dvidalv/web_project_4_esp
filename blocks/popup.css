@@ -13,8 +13,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
     background-color: rgba(0, 0, 0, 0.5);
+    display: none;
 }
 .popup_opened{
     display: flex;
@@ -79,5 +79,10 @@
     font-weight: 400;
     height: 50px;
     border-radius: 2px;
+    transition: opacity .3s;
 
+}
+
+.popup__submit:hover{
+    opacity: .6;
 }

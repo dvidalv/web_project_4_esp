@@ -5,8 +5,17 @@
     border-radius: 10px;
     overflow: hidden;
     display: grid;
-    grid-template-rows: 80% 20%;
+    grid-template-rows: 282px 79px;
     position: relative;
+}
+.card__image-container{
+    overflow: hidden;
+
+}
+.card__contenido{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card__trash {
