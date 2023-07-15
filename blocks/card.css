@@ -1,4 +1,4 @@
-.card{
+.card {
     width: 282px;
     height: 361px;
     background-color: #fff;
@@ -8,56 +8,51 @@
     grid-template-rows: 80% 20%;
     position: relative;
 }
-.card__trash{
+
+.card__trash {
     width: 20px;
     height: 20px;
     margin: 18px 15px 0 0;
     cursor: pointer;
 }
 
-/* .card::after{
-    content: "";
-    width: 24px;
-    height: 24px;
-    background-image: url('../imagenes/Trash.svg');
-    background-repeat: no-repeat;
-    display: block;
-    right: 9px;
-    top: 18px;
-    position: absolute;
-} */
 
-.card__title{
+.card__title {
     color: #000;
     display: grid;
     place-items: center;
     font-size: 24px;
     font-weight: 900;
-
 }
-.card__info{
+
+
+.card__info {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
 }
-.card__imagen-corazon{
+
+.card__imagen-corazon {
     color: currentColor;
     width: 21px;
     height: 19px;
     cursor: pointer;
     transition: opacity .3s;
-    
+
 }
-.card__imagen-corazon:hover{
+
+.card__imagen-corazon:hover {
     opacity: .6;
     color: red;
     overflow: hidden;
 }
-.me-gusta{
+
+.me-gusta {
     display: none;
 }
-.card__trash{
+
+.card__trash {
     width: 24px;
     position: absolute;
     top: 0;

@@ -8,6 +8,18 @@
     height: 120px;
     margin-top: 40px;
 }
+.popup__button-cerrar-perfil {
+    position: absolute;
+    top: -44px;
+    right: -44px;
+    transition: opacity .3s;
+    width: 40px;
+    height: 40px;
+}
+.popup__button-cerrar-perfil:hover{
+    opacity: .6;
+}
+
 .profile__data{
     width: 70%;
     display: flex;
