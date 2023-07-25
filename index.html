@@ -16,16 +16,18 @@
         </header>
         <main class="content">
             <section class="profile">
+
                 <section class="popup popup_perfil">
                     <form class="popup__container popup__formPerfil" name="form" id="form">
-                        <img class="popup__button-cerrar-perfil" src="./imagenes/Close Icon.svg" alt="icon cerrar">
+                        <img class="btnCerrar popup__button-cerrar-perfil" src="./imagenes/Close Icon.svg"
+                            alt="icon cerrar">
                         <h2 class="popup__title">Editar Perfil</h2>
                         <input class="popup__input popup__input_nombre" type="text" placeholder="Nombre">
                         <input class="popup__input popup__input_about-me" type="text" placeholder="Acerca de mi">
                         <input class="popup__submit popup__submit_perfil" type="submit" value="Modificar">
                     </form>
-                    
                 </section>
+
                 <div class="profile__data">
                     <div class="profile__avatar">
                         <img class="profile__imagen" src="./imagenes/image.jpg" alt="Jacques Cousteau">
@@ -38,9 +40,7 @@
                                 <img src="./imagenes/Edit Button.svg" alt="edit button">
                             </button>
                         </div>
-
                         <p class="profile__subtitle">Explorador</p>
-
                     </div>
 
                 </div>
@@ -48,106 +48,104 @@
                 <div class="profile__button">
                     <img class="add-button" src="./imagenes/Add Button.svg" alt="icono boton agregar">
                 </div>
+
             </section>
             <section>
+
                 <section class="popup popup_Element">
                     <form class="popup__container popup__formElement">
-                        <img class="popup__button-cerrar-places" src="./imagenes/Close Icon.svg" alt="icon cerrar">
+                        <img class=" btnCerrar popup__button-cerrar-places" src="./imagenes/Close Icon.svg"
+                            alt="icon cerrar">
                         <h2 class="popup__title">Nuevo lugar</h2>
                         <input class="popup__input" type="text" placeholder="Titulo">
                         <input class="popup__input" type="text" placeholder="Enlace a la Imagen">
-                        <input class="popup__submit popup__submit_Element" type="submit" value="Crear">
+                        <input class="popup__submit popup__submit_Element" type="submit" value="Nuevo">
                     </form>
                 </section>
+
                 <ul class="elements">
                     <li class="card">
                         <div class="card__image-container">
-                            <img src="./imagenes/vayy de yosemite.jpg" alt="Valle de Yosemite">
+                            <img class="card__imagen" src="./imagenes/vayy de yosemite.jpg" alt="Valle de Yosemite">
                         </div>
                         <div class="card__contenido">
                             <div class="card__info">
                                 <p class="card__title">Valle de Yosemite</p>
                                 <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__imagen-corazon me-gusta" src="./imagenes/me_gusta_negro.svg"
-                                    alt="icono corazon">
+                                <img class="me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
                             </div>
                         </div>
-                        <img class="card__trash" src="./imagenes/Trash.svg" alt="icon trash">
+                        <i class="fa-solid fa-trash card__trash"></i>
                     </li>
 
                     <li class=" card">
                         <div class="card__image-container">
-                            <img src="./imagenes/lago louise.png" alt="Lago Louise">
+                            <img class="card__imagen" src="./imagenes/lago louise.png" alt="Lago Louise">
                         </div>
                         <div class="card__contenido">
                             <div class="card__info">
                                 <p class="card__title">Lago Louise</p>
                                 <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__imagen-corazon me-gusta" src="./imagenes/me_gusta_negro.svg"
-                                    alt="icono corazon">
+                                <img class="me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
                             </div>
                         </div>
-                        <img class="card__trash" src="./imagenes/Trash.svg" alt="icon trash">
+                        <i class="fa-solid fa-trash card__trash"></i>
                     </li>
 
                     <li class="card">
                         <div class="card__image-container">
-                            <img src="./imagenes/calvas.png" alt="Montañas Calvas">
+                            <img  class="card__imagen"src="./imagenes/calvas.png" alt="Montañas Calvas">
                         </div>
                         <div class="card__contenido">
                             <div class="card__info">
                                 <p class="card__title">Montañas Calvas</p>
                                 <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__imagen-corazon me-gusta" src="./imagenes/me_gusta_negro.svg"
-                                    alt="icono corazon">
+                                <img class="me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
                             </div>
                         </div>
-                        <img class="card__trash" src="./imagenes/Trash.svg" alt="icon trash">
+                        <i class="fa-solid fa-trash card__trash"></i>
                     </li>
 
                     <li class="card">
                         <div class="card__image-container">
-                            <img src="./imagenes/moab.jpg" alt="">
+                            <img class="card__imagen" src="./imagenes/moab.jpg" alt="">
                         </div>
                         <div class="card__contenido">
                             <div class="card__info">
-                                <p class="card__title">Valle de Yosemite</p>
+                                <p class="card__title">Moab, Utah</p>
                                 <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__imagen-corazon me-gusta" src="./imagenes/me_gusta_negro.svg"
-                                    alt="icono corazon">
+                                <img class="me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
                             </div>
                         </div>
-                        <img class="card__trash" src="./imagenes/Trash.svg" alt="icon trash">
+                        <i class="fa-solid fa-trash card__trash"></i>
                     </li>
 
                     <li class="card">
                         <div class="card__image-container">
-                            <img src="./imagenes/moab-2.jpg" alt="">
+                            <img  class="card__imagen"src="./imagenes/karthik-sreenivas-aLMpxpG1wL0-unsplash.jpg" alt="Asheville, NC, USA">
                         </div>
                         <div class="card__contenido">
                             <div class="card__info">
-                                <p class="card__title">Valle de Yosemite</p>
+                                <p class="card__title">Asheville, NC, USA</p>
                                 <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__imagen-corazon me-gusta" src="./imagenes/me_gusta_negro.svg"
-                                    alt="icono corazon">
+                                <img class="me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
                             </div>
                         </div>
-                        <img class="card__trash" src="./imagenes/Trash.svg" alt="icon trash">
+                        <i class="fa-solid fa-trash card__trash"></i>
                     </li>
 
                     <li class="card">
                         <div class="card__image-container">
-                            <img src="./imagenes/moab-2.jpg" alt="">
+                            <img  class="card__imagen"src="./imagenes/iris-papillon-FuxRM_jOFHY-unsplash.jpg" alt="">
                         </div>
                         <div class="card__contenido">
                             <div class="card__info">
-                                <p class="card__title">Valle de Yosemite</p>
+                                <p class="card__title">Big Sur, United States</p>
                                 <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__imagen-corazon me-gusta" src="./imagenes/me_gusta_negro.svg"
-                                    alt="icono corazon">
+                                <img class="me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
                             </div>
                         </div>
-                        <img class="card__trash" src="./imagenes/Trash.svg" alt="icon trash">
+                        <i class="fa-solid fa-trash card__trash"></i>
                     </li>
                 </ul>
             </section>
@@ -156,6 +154,7 @@
 
         </footer>
     </div>
+    <script src="https://kit.fontawesome.com/38456b6928.js" crossorigin="anonymous"></script>
     <script src="./js/js.js"></script>
 </body>
 

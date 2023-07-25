@@ -1,0 +1,16 @@
+
+
+
+
+.btnCerrar_overlay{
+
+	position: absolute;
+    right: 0;
+    top: -35px;
+}
+@media (min-width: 768px){
+    .btnCerrar_overlay{
+        right: -30px;
+        top: -30px;
+    }
+}

@@ -1,0 +1,12 @@
+.profile__contenedor-titulo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+@media (min-width: 768px) {
+ .profile__contenedor-titulo {
+    width: 100%;
+  }
+
+}

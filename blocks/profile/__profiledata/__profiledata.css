@@ -1,0 +1,22 @@
+
+.profile__data {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+@media (min-width: 768px) {
+
+  .profile__data {
+    width: auto;
+    flex-direction: row;
+  }
+}
+@media (min-width: 1280px) {
+  .profile__data {
+    gap: 0;
+  }
+
+}

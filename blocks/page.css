@@ -2,6 +2,17 @@
   color: #fff;
   max-width: 882px;
   margin: 0 auto;
-  padding: 0 min(16%, 200px);
+  padding: 0 min(5%, 200px);
   /* outline: 1px solid red; */
+}
+
+@media (min-width: 1280px){
+  .page{
+    padding: 0 min(16%, 200px);
+  }
+}
+@media (min-width: 768px){
+  .page{
+    padding: 0 min(10%, 200px);
+  }
 }

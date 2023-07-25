@@ -1,0 +1,12 @@
+.edit-button{
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	transition: opacity .3s;
+	background-color: transparent;
+	border: none;
+	flex-shrink: 0;
+}
+.edit-button:hover{
+	opacity: .6;
+}
