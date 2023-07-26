@@ -1,14 +1,13 @@
-.me-gusta {
+.card__me-gusta {
 	color: currentColor;
 	width: 21px;
 	height: 19px;
 	cursor: pointer;
 	transition: opacity .3s;
-}
-.me-gusta {
 	display: none;
 	color:currentColor;
 }
+
 
 .heartOn{
 	display: block;

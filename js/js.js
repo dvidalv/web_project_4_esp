@@ -1,5 +1,5 @@
 const noNeGustan = document.querySelectorAll(".card__imagen-corazon");
-const meGustan = document.querySelectorAll(".me-gusta");
+const meGustan = document.querySelectorAll(".card__me-gusta");
 const trashs = document.querySelectorAll(".card__trash");
 
 
@@ -99,7 +99,7 @@ function selectImagen(e) {
 
   //Creando el boton de cerrar popup
   const btnCerrar = document.createElement("img");
-  btnCerrar.src = "../imagenes/Close Icon.svg";
+  btnCerrar.src = "../imagenes/Close-Icon.svg";
   btnCerrar.classList.add("btnCerrar", "btnCerrar_overlay");
   divTemp.insertAdjacentElement("beforeend", btnCerrar);
 
