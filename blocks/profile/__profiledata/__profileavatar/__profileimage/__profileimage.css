@@ -1,3 +1,10 @@
 .profile__imagen {
   border-radius: 50%;
+  width: 200px;
+}
+
+@media (min-width: 768px){
+  .profile__imagen{
+    width: 120px;
+  }
 }
