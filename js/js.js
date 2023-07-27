@@ -9,14 +9,14 @@ const subtitle = document.querySelector('.profile__subtitle');
 
 const body = document.querySelector('body');
 
-const popup_Element = document.querySelector('.popup_Element');
-const popup_perfil = document.querySelector('.popup_perfil');
+const popupElement = document.querySelector('.popup_Element');
+const popupPerfil = document.querySelector('.popup_perfil');
 
-const edit_button = document.querySelector('.edit-button');
-const popup__button_cerrar_places = document.querySelector(
+const editButton = document.querySelector('.edit-button');
+const editButtonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
-const popup__button_cerrar_perfil = document.querySelector(
+const popupButtonCerrarPerfil = document.querySelector(
   '.popup__button-cerrar-perfil'
 );
 
@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   formPerfil.addEventListener('submit', handleProfileFormSubmit);
   addButton.addEventListener('click', openPopPlaces);
-  edit_button.addEventListener('click', openPopPerfil);
+  editButton.addEventListener('click', openPopPerfil);
 
-  popup__button_cerrar_places.addEventListener('click', closePopPlaces);
-  popup__button_cerrar_perfil.addEventListener('click', closePopPerfil);
+  editButtonPopupButtonCerrarPlaces.addEventListener('click', closePopPlaces);
+  popupButtonCerrarPerfil.addEventListener('click', closePopPerfil);
 
   trashs.forEach((trash) => {
     trash.addEventListener('click', (e) => {
@@ -119,7 +119,7 @@ function selectImagen(e) {
 }
 
 function openPopPerfil() {
-  popup_perfil.classList.toggle('popup_opened');
+  popupPerfil.classList.toggle('popup_opened');
   nombre.value = titulo.textContent;
   aboutMe.value = subtitle.textContent;
 
@@ -127,16 +127,16 @@ function openPopPerfil() {
 }
 
 function openPopPlaces() {
-  popup_Element.classList.toggle('popup_opened');
+  popupElement.classList.toggle('popup_opened');
   body.classList.add('fix');
 }
 
 function closePopPerfil() {
-  popup_perfil.classList.toggle('popup_opened');
+  popupPerfil.classList.toggle('popup_opened');
   body.classList.remove('fix');
 }
 function closePopPlaces() {
-  popup_Element.classList.toggle('popup_opened');
+  popupElement.classList.toggle('popup_opened');
   body.classList.remove('fix');
 }
 
