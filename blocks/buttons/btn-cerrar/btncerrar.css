@@ -1,16 +1,16 @@
-.btnCerrar{
-	transition: opacity .3s;
-	width: 26px;
-	height: 26px;
-	position: absolute;
-	top: -35px;
-	right: 0;
-	transition: opacity .3s;
-	width: 26px;
-	height: 26px;
+.btnCerrar {
+  transition: opacity 0.3s;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: -35px;
+  right: 0;
+  transition: opacity 0.3s;
+  width: 26px;
+  height: 26px;
 }
 
-.btnCerrar:hover{
-	cursor: pointer;
-	opacity: .6;
+.btnCerrar:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }

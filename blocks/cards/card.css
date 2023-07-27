@@ -1,25 +1,10 @@
 .card {
-    width: 282px;
-    height: 361px;
-    background-color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    display: grid;
-    grid-template-rows: 282px 79px;
-    position: relative;
+  width: 282px;
+  height: 361px;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 282px 79px;
+  position: relative;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

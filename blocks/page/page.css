@@ -5,13 +5,13 @@
   padding: 0 min(5%, 200px);
 }
 
-@media (min-width: 1280px){
-  .page{
+@media (min-width: 1280px) {
+  .page {
     padding: 0 min(16%, 200px);
   }
 }
-@media (min-width: 768px){
-  .page{
+@media (min-width: 768px) {
+  .page {
     padding: 0 min(10%, 200px);
   }
 }

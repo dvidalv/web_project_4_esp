@@ -1,4 +1,3 @@
-
 .profile__data {
   width: 200px;
   display: flex;
@@ -8,7 +7,6 @@
   gap: 20px;
 }
 @media (min-width: 768px) {
-
   .profile__data {
     width: auto;
     flex-direction: row;
@@ -18,5 +16,4 @@
   .profile__data {
     gap: 0;
   }
-
 }

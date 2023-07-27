@@ -1,18 +1,16 @@
 .card__me-gusta {
-	color: currentColor;
-	width: 21px;
-	height: 19px;
-	cursor: pointer;
-	transition: opacity .3s;
-	display: none;
-	color:currentColor;
+  color: currentColor;
+  width: 21px;
+  height: 19px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  display: none;
+  color: currentColor;
 }
 
-
-.heartOn{
-	display: block;
+.heartOn {
+  display: block;
 }
-.heartOff{
-	display: none;
+.heartOff {
+  display: none;
 }
-

@@ -5,8 +5,7 @@
   gap: 5px;
 }
 @media (min-width: 768px) {
- .profile__contenedor-titulo {
+  .profile__contenedor-titulo {
     width: 100%;
   }
-
 }

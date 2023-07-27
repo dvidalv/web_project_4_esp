@@ -1,8 +1,8 @@
-.elements{
-    margin: 46px auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 282px);
-    grid-template-rows: repeat(2, 361px);
-    justify-content: center;
-    gap: 15px;
+.elements {
+  margin: 46px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 282px);
+  grid-template-rows: repeat(2, 361px);
+  justify-content: center;
+  gap: 15px;
 }

@@ -1,164 +1,266 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Araound The Unite U.S.</title>
-</head>
-
-<body>
+  </head>
+  <body>
     <div class="page">
-        <header class="header">
-            <img class="logo" src="./imagenes/logo.svg" alt="Logo around the US">
-        </header>
-        <main class="content">
-            <section class="profile">
+      <header class="header">
+        <img class="logo" src="./imagenes/logo.svg" alt="Logo around the US" />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <section class="popup popup_perfil">
+            <form
+              class="popup__container popup__formPerfil"
+              name="form"
+              id="form"
+            >
+              <img
+                class="btnCerrar popup__button-cerrar-perfil"
+                src="./imagenes/Close-Icon.svg"
+                alt="icon cerrar"
+              />
+              <h2 class="popup__title">Editar Perfil</h2>
+              <input
+                class="popup__input popup__input_nombre"
+                type="text"
+                placeholder="Nombre"
+              />
+              <input
+                class="popup__input popup__input_about-me"
+                type="text"
+                placeholder="Acerca de mi"
+              />
+              <input
+                class="popup__submit popup__submit_perfil"
+                type="submit"
+                value="Modificar"
+              />
+            </form>
+          </section>
 
-                <section class="popup popup_perfil">
-                    <form class="popup__container popup__formPerfil" name="form" id="form">
-                        <img class="btnCerrar popup__button-cerrar-perfil" src="./imagenes/Close-Icon.svg"
-                            alt="icon cerrar">
-                        <h2 class="popup__title">Editar Perfil</h2>
-                        <input class="popup__input popup__input_nombre" type="text" placeholder="Nombre">
-                        <input class="popup__input popup__input_about-me" type="text" placeholder="Acerca de mi">
-                        <input class="popup__submit popup__submit_perfil" type="submit" value="Modificar">
-                    </form>
-                </section>
+          <div class="profile__data">
+            <div class="profile__avatar">
+              <img
+                class="profile__imagen"
+                src="./imagenes/image.jpg"
+                alt="Jacques Cousteau"
+              />
+            </div>
 
-                <div class="profile__data">
-                    <div class="profile__avatar">
-                        <img class="profile__imagen" src="./imagenes/image.jpg" alt="Jacques Cousteau">
-                    </div>
+            <div class="profile__info">
+              <div class="profile__contenedor-titulo">
+                <h1 class="profile__title">Jacques Cousteau</h1>
+                <button type="button" class="edit-button">
+                  <img src="./imagenes/Edit-Button.svg" alt="edit button" />
+                </button>
+              </div>
+              <p class="profile__subtitle">Explorador</p>
+            </div>
+          </div>
 
-                    <div class="profile__info">
-                        <div class="profile__contenedor-titulo">
-                            <h1 class="profile__title">Jacques Cousteau</h1>
-                            <button type="button" class="edit-button">
-                                <img src="./imagenes/Edit-Button.svg" alt="edit button">
-                            </button>
-                        </div>
-                        <p class="profile__subtitle">Explorador</p>
-                    </div>
+          <div class="profile__button">
+            <img
+              class="add-button"
+              src="./imagenes/Add-Button.svg"
+              alt="icono boton agregar"
+            />
+          </div>
+        </section>
 
+        <section>
+          <section class="popup popup_Element">
+            <form class="popup__container popup__formElement">
+              <img
+                class="btnCerrar popup__button-cerrar-places"
+                src="./imagenes/Close-Icon.svg"
+                alt="icon cerrar"
+              />
+              <h2 class="popup__title">Nuevo lugar</h2>
+              <input class="popup__input" type="text" placeholder="Titulo" />
+              <input
+                class="popup__input"
+                type="text"
+                placeholder="Enlace a la Imagen"
+              />
+              <input
+                class="popup__submit popup__submit_Element"
+                type="submit"
+                value="Nuevo"
+              />
+            </form>
+          </section>
+
+          <ul class="elements">
+            <li class="card">
+              <div class="card__image-container">
+                <img
+                  class="card__imagen"
+                  src="./imagenes/vayy-de-yosemite.jpg"
+                  alt="Valle de Yosemite"
+                />
+              </div>
+              <div class="card__contenido">
+                <div class="card__info">
+                  <p class="card__title">Valle de Yosemite</p>
+                  <img
+                    class="card__imagen-corazon"
+                    src="./imagenes/me_gusta.svg"
+                    alt="icono corazon"
+                  />
+                  <img
+                    class="card__me-gusta"
+                    src="./imagenes/me_gusta_negro.svg"
+                    alt="icono corazon"
+                  />
                 </div>
+              </div>
+              <i class="fa-solid fa-trash card__trash"></i>
+            </li>
 
-                <div class="profile__button">
-                    <img class="add-button" src="./imagenes/Add-Button.svg" alt="icono boton agregar">
+            <li class="card">
+              <div class="card__image-container">
+                <img
+                  class="card__imagen"
+                  src="./imagenes/lago-louise.png"
+                  alt="Lago Louise"
+                />
+              </div>
+              <div class="card__contenido">
+                <div class="card__info">
+                  <p class="card__title">Lago Louise</p>
+                  <img
+                    class="card__imagen-corazon"
+                    src="./imagenes/me_gusta.svg"
+                    alt="icono corazon"
+                  />
+                  <img
+                    class="card__me-gusta"
+                    src="./imagenes/me_gusta_negro.svg"
+                    alt="icono corazon"
+                  />
                 </div>
+              </div>
+              <i class="fa-solid fa-trash card__trash"></i>
+            </li>
 
-            </section>
+            <li class="card">
+              <div class="card__image-container">
+                <img
+                  class="card__imagen"
+                  src="./imagenes/calvas.png"
+                  alt="Montañas Calvas"
+                />
+              </div>
+              <div class="card__contenido">
+                <div class="card__info">
+                  <p class="card__title">Montañas Calvas</p>
+                  <img
+                    class="card__imagen-corazon"
+                    src="./imagenes/me_gusta.svg"
+                    alt="icono corazon"
+                  />
+                  <img
+                    class="card__me-gusta"
+                    src="./imagenes/me_gusta_negro.svg"
+                    alt="icono corazon"
+                  />
+                </div>
+              </div>
+              <i class="fa-solid fa-trash card__trash"></i>
+            </li>
 
-            <section>
+            <li class="card">
+              <div class="card__image-container">
+                <img
+                  class="card__imagen"
+                  src="./imagenes/moab.jpg"
+                  alt="Moab, Utah"
+                />
+              </div>
+              <div class="card__contenido">
+                <div class="card__info">
+                  <p class="card__title">Moab, Utah</p>
+                  <img
+                    class="card__imagen-corazon"
+                    src="./imagenes/me_gusta.svg"
+                    alt="icono corazon"
+                  />
+                  <img
+                    class="card__me-gusta"
+                    src="./imagenes/me_gusta_negro.svg"
+                    alt="icono corazon"
+                  />
+                </div>
+              </div>
+              <i class="fa-solid fa-trash card__trash"></i>
+            </li>
 
-                <section class="popup popup_Element">
-                    <form class="popup__container popup__formElement">
-                        <img class=" btnCerrar popup__button-cerrar-places" src="./imagenes/Close-Icon.svg"
-                            alt="icon cerrar">
-                        <h2 class="popup__title">Nuevo lugar</h2>
-                        <input class="popup__input" type="text" placeholder="Titulo">
-                        <input class="popup__input" type="text" placeholder="Enlace a la Imagen">
-                        <input class="popup__submit popup__submit_Element" type="submit" value="Nuevo">
-                    </form>
-                </section>
+            <li class="card">
+              <div class="card__image-container">
+                <img
+                  class="card__imagen"
+                  src="./imagenes/karthik-sreenivas-aLMpxpG1wL0-unsplash.jpg"
+                  alt="Asheville, NC, USA"
+                />
+              </div>
+              <div class="card__contenido">
+                <div class="card__info">
+                  <p class="card__title">Asheville, NC, USA</p>
+                  <img
+                    class="card__imagen-corazon"
+                    src="./imagenes/me_gusta.svg"
+                    alt="icono corazon"
+                  />
+                  <img
+                    class="card__me-gusta"
+                    src="./imagenes/me_gusta_negro.svg"
+                    alt="icono corazon"
+                  />
+                </div>
+              </div>
+              <i class="fa-solid fa-trash card__trash"></i>
+            </li>
 
-                <ul class="elements">
-                    <li class="card">
-                        <div class="card__image-container">
-                            <img class="card__imagen" src="./imagenes/vayy-de-yosemite.jpg" alt="Valle de Yosemite">
-                        </div>
-                        <div class="card__contenido">
-                            <div class="card__info">
-                                <p class="card__title">Valle de Yosemite</p>
-                                <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-trash card__trash"></i>
-                    </li>
-
-                    <li class=" card">
-                        <div class="card__image-container">
-                            <img class="card__imagen" src="./imagenes/lago-louise.png" alt="Lago Louise">
-                        </div>
-                        <div class="card__contenido">
-                            <div class="card__info">
-                                <p class="card__title">Lago Louise</p>
-                                <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-trash card__trash"></i>
-                    </li>
-
-                    <li class="card">
-                        <div class="card__image-container">
-                            <img class="card__imagen" src="./imagenes/calvas.png" alt="Montañas Calvas">
-                        </div>
-                        <div class="card__contenido">
-                            <div class="card__info">
-                                <p class="card__title">Montañas Calvas</p>
-                                <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-trash card__trash"></i>
-                    </li>
-
-                    <li class="card">
-                        <div class="card__image-container">
-                            <img class="card__imagen" src="./imagenes/moab.jpg" alt="Moab, Utah">
-                        </div>
-                        <div class="card__contenido">
-                            <div class="card__info">
-                                <p class="card__title">Moab, Utah</p>
-                                <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-trash card__trash"></i>
-                    </li>
-
-                    <li class="card">
-                        <div class="card__image-container">
-                            <img class="card__imagen" src="./imagenes/karthik-sreenivas-aLMpxpG1wL0-unsplash.jpg"
-                                alt="Asheville, NC, USA">
-                        </div>
-                        <div class="card__contenido">
-                            <div class="card__info">
-                                <p class="card__title">Asheville, NC, USA</p>
-                                <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-trash card__trash"></i>
-                    </li>
-
-                    <li class="card">
-                        <div class="card__image-container">
-                            <img class="card__imagen" src="./imagenes/iris-papillon-FuxRM_jOFHY-unsplash.jpg"
-                                alt="Big Sur, United States">
-                        </div>
-                        <div class="card__contenido">
-                            <div class="card__info">
-                                <p class="card__title">Big Sur, United States</p>
-                                <img class="card__imagen-corazon" src="./imagenes/me_gusta.svg" alt="icono corazon">
-                                <img class="card__me-gusta" src="./imagenes/me_gusta_negro.svg" alt="icono corazon">
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-trash card__trash"></i>
-                    </li>
-                </ul>
-            </section>
-        </main>
-        <footer class="footer">
-
-        </footer>
+            <li class="card">
+              <div class="card__image-container">
+                <img
+                  class="card__imagen"
+                  src="./imagenes/iris-papillon-FuxRM_jOFHY-unsplash.jpg"
+                  alt="Big Sur, United States"
+                />
+              </div>
+              <div class="card__contenido">
+                <div class="card__info">
+                  <p class="card__title">Big Sur, United States</p>
+                  <img
+                    class="card__imagen-corazon"
+                    src="./imagenes/me_gusta.svg"
+                    alt="icono corazon"
+                  />
+                  <img
+                    class="card__me-gusta"
+                    src="./imagenes/me_gusta_negro.svg"
+                    alt="icono corazon"
+                  />
+                </div>
+              </div>
+              <i class="fa-solid fa-trash card__trash"></i>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer"></footer>
     </div>
-    <script src="https://kit.fontawesome.com/38456b6928.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/38456b6928.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="./js/js.js"></script>
-</body>
-
+  </body>
 </html>

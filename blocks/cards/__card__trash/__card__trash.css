@@ -1,14 +1,14 @@
 .card__trash {
-	/* width: 24px; */
-	margin: 18px 15px 0 0;
-	cursor: pointer;
-	font-size: 20px;
-	position: absolute;
-	top: 0;
-	right: 0;
-	transition: color ease .8s;
-	-webkit-transition: color ease .8s;
-	-moz-transition: color ease .8s;
-	-ms-transition: color ease .8s;
-	-o-transition: color ease .8s;
+  /* width: 24px; */
+  margin: 18px 15px 0 0;
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: color ease 0.8s;
+  -webkit-transition: color ease 0.8s;
+  -moz-transition: color ease 0.8s;
+  -ms-transition: color ease 0.8s;
+  -o-transition: color ease 0.8s;
 }

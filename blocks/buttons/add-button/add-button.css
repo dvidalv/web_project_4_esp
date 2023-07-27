@@ -1,8 +1,8 @@
-.add-button{
-	height: 50px;
-	cursor: pointer;
-	transition: opacity .3s;
+.add-button {
+  height: 50px;
+  cursor: pointer;
+  transition: opacity 0.3s;
 }
-.add-button:hover{
-	opacity: .6;
+.add-button:hover {
+  opacity: 0.6;
 }

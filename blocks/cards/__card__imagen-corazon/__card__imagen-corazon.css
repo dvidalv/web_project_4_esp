@@ -1,13 +1,13 @@
-.card__imagen-corazon{
-	color: currentColor;
-	width: 21px;
-	height: 19px;
-	cursor: pointer;
-	transition: opacity .3s;
+.card__imagen-corazon {
+  color: currentColor;
+  width: 21px;
+  height: 19px;
+  cursor: pointer;
+  transition: opacity 0.3s;
 }
 
 .card__imagen-corazon:hover {
-	opacity: .6;
-	color: red;
-	overflow: hidden;
+  opacity: 0.6;
+  color: red;
+  overflow: hidden;
 }
