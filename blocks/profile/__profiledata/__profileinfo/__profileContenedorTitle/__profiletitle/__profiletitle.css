@@ -10,7 +10,7 @@
 
 @media (min-width: 768px) {
   .profile__title {
-    width: auto;
+    width: 320px;
     font-size: 34px;
   }
 }
