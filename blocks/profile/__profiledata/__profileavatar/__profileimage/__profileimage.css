@@ -3,8 +3,8 @@
   width: 200px;
 }
 
-@media (min-width: 768px){
-  .profile__imagen{
+@media (min-width: 768px) {
+  .profile__imagen {
     width: 120px;
   }
 }
