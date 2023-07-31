@@ -1,0 +1,16 @@
+.footer {
+  padding: 24px 0;
+}
+.footer__title {
+  color: #fff;
+	text-align: center;
+	font-family: "Inter", Arial, Helvetica, sans-serif;
+	font-style: normal;
+  font-size: 14px;
+  line-height: 1;
+}
+@media (min-width: 768px) {
+  .footer {
+    padding: 24px 0;
+  }
+}
