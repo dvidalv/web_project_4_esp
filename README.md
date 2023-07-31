@@ -17,10 +17,8 @@ Así que, ¿estás listo para embarcarte en esta aventura? Conviértete en un ve
 
 ## _CONSTRUIDO CON:_
 
-- HTML5
-- CSS5
+- HTML
+- CSS
 - JAVASCRIPT
 
-## _¿COMO DESPLEGAR LA PAGINA WEB?_
-
-Para el despliegue de la pagina, debes tener un navegador (o navegadores) instalados en tu dispositivo local, posterior a ello, descargar el archivo ZIP de mi repositorio y una vez almacenado en tu carpeta local, podras abrirlo con el navegador de tu preferencia. O simplemente visitar este "link": https://venerable-salmiakki-ed56d6.netlify.app
+visitar este "link": https://venerable-salmiakki-ed56d6.netlify.app
