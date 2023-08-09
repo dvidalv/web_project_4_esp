@@ -97,36 +97,36 @@
           </section>
 
           <ul class="elements">
-           
-            <template>
-              <li class="card">
-                <div class="card__image-container">
+            
+          </ul>
+
+          <template class="template__card">
+            <li class="card">
+              <div class="card__image-container">
+                <img
+                  class="card__imagen"
+                  src=""
+                  alt=""
+                />
+              </div>
+              <div class="card__contenido">
+                <div class="card__info">
+                  <p class="card__title"></p>
                   <img
-                    class="card__imagen"
-                    src="./imagenes/vayy-de-yosemite.jpg"
-                    alt="Valle de Yosemite"
+                    class="card__imagen-corazon"
+                    src="./imagenes/me_gusta.svg"
+                    alt="icono corazon"
+                  />
+                  <img
+                    class="card__me-gusta"
+                    src="./imagenes/me_gusta_negro.svg"
+                    alt="icono corazon"
                   />
                 </div>
-                <div class="card__contenido">
-                  <div class="card__info">
-                    <p class="card__title">Valle de Yosemite</p>
-                    <img
-                      class="card__imagen-corazon"
-                      src="./imagenes/me_gusta.svg"
-                      alt="icono corazon"
-                    />
-                    <img
-                      class="card__me-gusta"
-                      src="./imagenes/me_gusta_negro.svg"
-                      alt="icono corazon"
-                    />
-                  </div>
-                </div>
-                <i class="fa-solid fa-trash card__trash"></i>
-              </li>
-            </template>
-
-          </ul>
+              </div>
+              <i class="fa-solid fa-trash card__trash"></i>
+            </li>
+          </template>
         </section>
       </main>
     </div>
@@ -138,5 +138,6 @@
       crossorigin="anonymous"
     ></script>
     <script src="./js/js.js"></script>
+    <script src="./js/data/imagenes.js"></script>
   </body>
 </html>

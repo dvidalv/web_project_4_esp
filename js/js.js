@@ -21,6 +21,7 @@ const popupButtonCerrarPerfil = document.querySelector(
 );
 
 document.addEventListener('DOMContentLoaded', () => {
+  cargarImagenes();
   const addButton = document.querySelector('.add-button');
   const trashs = document.querySelectorAll('.card__trash');
   const formPerfil = document.querySelector('.popup__formPerfil');
@@ -54,6 +55,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+function cargarImagenes() {
+  const cardContainer = document.querySelector('.elements');
+  initialCards.forEach((card) => {
+    //AGREGANDO EL TEMPLATE
+    const template = document.querySelector('.template__card').content;
+    const templateElements = template.querySelector('.card').cloneNode(true);
+
+    //AGREGANDO LA IMAGEN
+    const imagen = templateElements.querySelector('.card__imagen')
+    imagen.src = card.link
+    imagen.alt = card.alt
+
+    //AGREGANDO EL TITULO
+    const titulo = templateElements.querySelector('.card__title')
+    titulo.textContent = card.name
+
+    cardContainer.append(templateElements)
+  });
+}
 
 meGusta();
 function meGusta() {
