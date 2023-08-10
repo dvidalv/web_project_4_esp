@@ -113,11 +113,15 @@ function selectImagen(e) {
   btnCerrar.src = '../imagenes/Close-Icon.svg';
   btnCerrar.classList.add('btnCerrar', 'btnCerrar_overlay');
   divTemp.insertAdjacentElement('beforeend', btnCerrar);
+  divTemp.style.animation = 'zoomIn .5s forwards';
 
   //Agragando al boton la funcionalidad de remover el overlay
   //y removiendo la clase de fix al body
   btnCerrar.onclick = () => {
-    overlay.remove();
+    divTemp.style.animation = 'zoomOut .5s forwards';
+    setTimeout(() => {
+      overlay.remove();
+    }, '500');
     body.classList.remove('fix');
   };
 
@@ -132,7 +136,10 @@ function selectImagen(e) {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      overlay.remove();
+      divTemp.style.animation = 'zoomOut .5s forwards';
+      setTimeout(() => {
+        overlay.remove();
+      }, '500');
       body.classList.remove('fix');
     }
   });
@@ -186,12 +193,11 @@ function handlePlacesFormSubmit(e) {
   initialCards.unshift(nuevaImagen);
   iniciarAPP();
   closePopPlaces();
-  return
+  return;
 
   //LIMPIANDO LOS CAMPOS DEL FORMULARIO
   tituloInput.value = '';
   linkImput.value = '';
-
 }
 
 function limpiarHTML() {
