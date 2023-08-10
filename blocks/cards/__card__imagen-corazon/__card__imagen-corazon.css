@@ -1,13 +1,17 @@
 .card__imagen-corazon {
-  color: currentColor;
-  width: 21px;
-  height: 19px;
+  color: black;
+  font-size: 19px;
   cursor: pointer;
-  transition: opacity 0.3s;
+  transition: color .5s;
+  -webkit-transition: color .5s;
+  -moz-transition: color .5s;
+  -ms-transition: color .5s;
+  -o-transition: color .5s;
 }
 
 .card__imagen-corazon:hover {
   opacity: 0.6;
-  color: red;
+  /* color: red; */
   overflow: hidden;
+
 }

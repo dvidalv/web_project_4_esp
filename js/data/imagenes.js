@@ -30,3 +30,5 @@ const initialCards = [
 		alt: 'imagen Lago Louise'
   }
 ];
+
+

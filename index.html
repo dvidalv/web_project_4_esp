@@ -82,9 +82,9 @@
                 alt="icon cerrar"
               />
               <h2 class="popup__title">Nuevo lugar</h2>
-              <input class="popup__input" type="text" placeholder="Titulo" />
+              <input class="popup__input popup__input-titulo" type="text" placeholder="Titulo" />
               <input
-                class="popup__input"
+                class="popup__input popup__input-link"
                 type="text"
                 placeholder="Enlace a la Imagen"
               />
@@ -96,32 +96,17 @@
             </form>
           </section>
 
-          <ul class="elements">
-            
-          </ul>
+          <ul class="elements"></ul>
 
           <template class="template__card">
             <li class="card">
               <div class="card__image-container">
-                <img
-                  class="card__imagen"
-                  src=""
-                  alt=""
-                />
+                <img class="card__imagen" src="" alt="" />
               </div>
               <div class="card__contenido">
                 <div class="card__info">
                   <p class="card__title"></p>
-                  <img
-                    class="card__imagen-corazon"
-                    src="./imagenes/me_gusta.svg"
-                    alt="icono corazon"
-                  />
-                  <img
-                    class="card__me-gusta"
-                    src="./imagenes/me_gusta_negro.svg"
-                    alt="icono corazon"
-                  />
+                  <i class="fa-regular fa-heart card__imagen-corazon"></i>
                 </div>
               </div>
               <i class="fa-solid fa-trash card__trash"></i>
