@@ -1,18 +1,13 @@
+//VARIABLES
+const popupContainar = document.querySelector('.popup__container');
 const cardContainer = document.querySelector('.elements');
-const addButton = document.querySelector('.add-button');
-addButton.addEventListener('click', openPopPlaces);
-
-const nombre = document.querySelector('.popup__input_nombre');
-const aboutMe = document.querySelector('.popup__input_about-me');
 const titulo = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
-
 const body = document.querySelector('body');
-
 const popupElement = document.querySelector('.popup_Element');
 const popupPerfil = document.querySelector('.popup_perfil');
-
 const editButton = document.querySelector('.edit-button');
+const btnNuevaImagen = document.querySelector('.popup__formElement');
 const editButtonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
@@ -27,7 +22,9 @@ function iniciarAPP() {
   const trashs = document.querySelectorAll('.card__trash');
   const btnFormPerfil = document.querySelector('.popup__formPerfil');
   const imagenes = document.querySelectorAll('.card__image-container');
-  const btnNuevaImagen = document.querySelector('.popup__formElement');
+
+  const addButton = document.querySelector('.add-button');
+  addButton.addEventListener('click', openPopPlaces);
 
   imagenes.forEach((imagen) => {
     imagen.addEventListener('click', selectImagen);
@@ -51,7 +48,7 @@ function iniciarAPP() {
           initialCards.splice(i, 1);
         }
       });
-      console.log(initialCards);
+      // console.log(initialCards);
       limpiarHTML();
       iniciarAPP();
     });
@@ -146,14 +143,20 @@ function selectImagen(e) {
 }
 
 function openPopPerfil() {
+  const nombre = document.querySelector('.popup__input_nombre');
+  const aboutMe = document.querySelector('.popup__input_about-me');
   popupPerfil.classList.toggle('popup_opened');
+  popupContainar.style.animation = 'zoomIn .5s forwards';
   nombre.value = titulo.textContent;
   aboutMe.value = subtitle.textContent;
 
   body.classList.add('fix');
 }
 function closePopPerfil() {
-  popupPerfil.classList.toggle('popup_opened');
+  popupContainar.style.animation = 'zoomOut .5s forwards';
+  setTimeout(() => {
+    popupPerfil.classList.toggle('popup_opened');
+  }, '500');
   body.classList.remove('fix');
 }
 function handleProfileFormSubmit(e) {
@@ -170,11 +173,15 @@ function handleProfileFormSubmit(e) {
 }
 
 function openPopPlaces() {
+  btnNuevaImagen.style.animation = 'zoomIn .5s forwards';
   popupElement.classList.toggle('popup_opened');
   body.classList.add('fix');
 }
 function closePopPlaces() {
-  popupElement.classList.toggle('popup_opened');
+  btnNuevaImagen.style.animation = 'zoomOut .5s forwards';
+  setTimeout(() => {
+    popupElement.classList.toggle('popup_opened');
+  }, '500');
   body.classList.remove('fix');
 }
 //AGREGAR UNA NUEVA IMAGEN
@@ -193,7 +200,6 @@ function handlePlacesFormSubmit(e) {
   initialCards.unshift(nuevaImagen);
   iniciarAPP();
   closePopPlaces();
-  return;
 
   //LIMPIANDO LOS CAMPOS DEL FORMULARIO
   tituloInput.value = '';
