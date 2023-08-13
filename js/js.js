@@ -20,7 +20,7 @@ function iniciarAPP() {
   cargarImagenes();
 
   const trashs = document.querySelectorAll('.card__trash');
-  const btnFormPerfil = document.querySelector('.popup__formPerfil');
+  const FormPerfil = document.querySelector('.popup__formPerfil');
   const imagenes = document.querySelectorAll('.card__image-container');
 
   const addButton = document.querySelector('.add-button');
@@ -30,7 +30,7 @@ function iniciarAPP() {
     imagen.addEventListener('click', selectImagen);
   });
 
-  btnFormPerfil.addEventListener('submit', handleProfileFormSubmit);
+  FormPerfil.addEventListener('submit', handleProfileFormSubmit);
   btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
 
   editButton.addEventListener('click', openPopPerfil);
@@ -85,6 +85,7 @@ function cargarImagenes() {
     const meGustan = templateElements.querySelector('.card__imagen-corazon');
     meGustan.onclick = meGusta;
 
+
     cardContainer.append(templateElements);
   });
 }
@@ -92,6 +93,7 @@ function cargarImagenes() {
 // meGusta();
 function meGusta(e) {
   const heart = e.target;
+  // heart.style.animation = 'meGusta 1s';
   heart.classList.toggle('fa-regular');
   heart.classList.toggle('fa-solid');
 }
@@ -110,15 +112,15 @@ function selectImagen(e) {
   btnCerrar.src = '../imagenes/Close-Icon.svg';
   btnCerrar.classList.add('btnCerrar', 'btnCerrar_overlay');
   divTemp.insertAdjacentElement('beforeend', btnCerrar);
-  divTemp.style.animation = 'zoomIn .5s forwards';
+  divTemp.style.animation = 'zoomIn 1s forwards';
 
   //Agragando al boton la funcionalidad de remover el overlay
   //y removiendo la clase de fix al body
   btnCerrar.onclick = () => {
-    divTemp.style.animation = 'zoomOut .5s forwards';
+    divTemp.style.animation = 'zoomOut 1s forwards';
     setTimeout(() => {
       overlay.remove();
-    }, '500');
+    }, '1000');
     body.classList.remove('fix');
   };
 
@@ -133,10 +135,10 @@ function selectImagen(e) {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      divTemp.style.animation = 'zoomOut .5s forwards';
+      divTemp.style.animation = 'zoomOut 1s forwards';
       setTimeout(() => {
         overlay.remove();
-      }, '500');
+      }, '1000');
       body.classList.remove('fix');
     }
   });
@@ -146,17 +148,17 @@ function openPopPerfil() {
   const nombre = document.querySelector('.popup__input_nombre');
   const aboutMe = document.querySelector('.popup__input_about-me');
   popupPerfil.classList.toggle('popup_opened');
-  popupContainar.style.animation = 'zoomIn .5s forwards';
+  popupContainar.style.animation = 'zoomIn 1s forwards';
   nombre.value = titulo.textContent;
   aboutMe.value = subtitle.textContent;
 
   body.classList.add('fix');
 }
 function closePopPerfil() {
-  popupContainar.style.animation = 'zoomOut .5s forwards';
+  popupContainar.style.animation = 'zoomOut 1s forwards';
   setTimeout(() => {
     popupPerfil.classList.toggle('popup_opened');
-  }, '500');
+  }, '1000');
   body.classList.remove('fix');
 }
 function handleProfileFormSubmit(e) {
@@ -173,15 +175,15 @@ function handleProfileFormSubmit(e) {
 }
 
 function openPopPlaces() {
-  btnNuevaImagen.style.animation = 'zoomIn .5s forwards';
+  btnNuevaImagen.style.animation = 'zoomIn 1s forwards';
   popupElement.classList.toggle('popup_opened');
   body.classList.add('fix');
 }
 function closePopPlaces() {
-  btnNuevaImagen.style.animation = 'zoomOut .5s forwards';
+  btnNuevaImagen.style.animation = 'zoomOut 1s forwards';
   setTimeout(() => {
     popupElement.classList.toggle('popup_opened');
-  }, '500');
+  }, '1000');
   body.classList.remove('fix');
 }
 //AGREGAR UNA NUEVA IMAGEN
