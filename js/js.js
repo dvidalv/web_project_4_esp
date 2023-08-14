@@ -93,7 +93,7 @@ function cargarImagenes() {
 // meGusta();
 function meGusta(e) {
   const heart = e.target;
-  // heart.style.animation = 'meGusta 1s';
+  heart.style.animation = 'meGusta .8s 2';
   heart.classList.toggle('fa-regular');
   heart.classList.toggle('fa-solid');
 }

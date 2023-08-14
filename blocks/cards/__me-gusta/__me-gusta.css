@@ -8,7 +8,12 @@
   color: currentColor;
 }
 
-.fa-solid{
+.fa-solid {
   animation: meGusta 1s;
   -webkit-animation: meGusta 1s;
+}
+.fa-regular{
+  animation: noMeGusta .5s;
+  animation-fill-mode:forwards;
+  -webkit-animation: noMeGusta .5s;
 }
