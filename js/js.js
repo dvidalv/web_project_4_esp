@@ -117,7 +117,7 @@ function selectImagen(e) {
   //Agragando al boton la funcionalidad de remover el overlay
   //y removiendo la clase de fix al body
   btnCerrar.onclick = () => {
-    divTemp.style.animation = 'zoomOut 1s forwards';
+    divTemp.style.animation = 'zoomOut .7s forwards';
     setTimeout(() => {
       overlay.remove();
     }, '1000');
@@ -135,7 +135,7 @@ function selectImagen(e) {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      divTemp.style.animation = 'zoomOut 1s forwards';
+      divTemp.style.animation = 'zoomOut .7s forwards';
       setTimeout(() => {
         overlay.remove();
       }, '1000');
@@ -148,14 +148,14 @@ function openPopPerfil() {
   const nombre = document.querySelector('.popup__input_nombre');
   const aboutMe = document.querySelector('.popup__input_about-me');
   popupPerfil.classList.toggle('popup_opened');
-  popupContainar.style.animation = 'zoomIn 1s forwards';
+  popupContainar.style.animation = 'zoomIn .7s forwards';
   nombre.value = titulo.textContent;
   aboutMe.value = subtitle.textContent;
 
   body.classList.add('fix');
 }
 function closePopPerfil() {
-  popupContainar.style.animation = 'zoomOut 1s forwards';
+  popupContainar.style.animation = 'zoomOut .7s forwards';
   setTimeout(() => {
     popupPerfil.classList.toggle('popup_opened');
   }, '1000');
@@ -175,12 +175,12 @@ function handleProfileFormSubmit(e) {
 }
 
 function openPopPlaces() {
-  btnNuevaImagen.style.animation = 'zoomIn 1s forwards';
+  btnNuevaImagen.style.animation = 'zoomIn .7s forwards';
   popupElement.classList.toggle('popup_opened');
   body.classList.add('fix');
 }
 function closePopPlaces() {
-  btnNuevaImagen.style.animation = 'zoomOut 1s forwards';
+  btnNuevaImagen.style.animation = 'zoomOut .7s forwards';
   setTimeout(() => {
     popupElement.classList.toggle('popup_opened');
   }, '1000');
