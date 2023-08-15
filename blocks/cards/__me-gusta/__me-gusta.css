@@ -9,8 +9,8 @@
 }
 
 .fa-solid {
-  animation: meGusta 1s;
-  -webkit-animation: meGusta 1s;
+  animation: meGusta 1s 2;
+  -webkit-animation: meGusta 1s 2;
 }
 .fa-regular{
   animation: noMeGusta .5s;
