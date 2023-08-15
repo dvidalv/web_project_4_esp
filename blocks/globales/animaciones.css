@@ -32,7 +32,7 @@
     -o-transform: scale(0);
 }
 }
-@keyframes meGusta {
+@keyframes megusta {
   0%{
     transform: scale(1);
     -webkit-transform: scale(1);
@@ -48,7 +48,7 @@
     -o-transform: scale(1.2);
 }
 }
-@keyframes noMeGusta {
+@keyframes nomegusta {
   0%{
     color: black;
     opacity: 1;

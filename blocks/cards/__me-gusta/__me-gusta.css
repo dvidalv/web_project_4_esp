@@ -5,15 +5,15 @@
   cursor: pointer;
   transition: opacity 0.3s;
   display: none;
-  color: currentColor;
+  /* color: currentColor; */
 }
 
 .fa-solid {
-  animation: meGusta 1s 2;
-  -webkit-animation: meGusta 1s 2;
+  animation: megusta 1s 2;
+  -webkit-animation: megusta 1s 2;
 }
 .fa-regular{
-  animation: noMeGusta .5s;
+  animation: nomegusta .5s;
   animation-fill-mode:forwards;
-  -webkit-animation: noMeGusta .5s;
+  -webkit-animation: nomegusta .5s;
 }
