@@ -13,8 +13,7 @@
 @media (min-width: 768px) {
   .overlay__divTemp {
     max-width: 75vw;
-    max-height: 75dvh;
-
+    max-height: 75vh;
     margin-top: 80px;
 
 }
