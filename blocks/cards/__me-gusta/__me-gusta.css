@@ -8,9 +8,12 @@
   color: currentColor;
 }
 
-.heartOn {
-  display: block;
+.fa-solid {
+  animation: meGusta 1s 2;
+  -webkit-animation: meGusta 1s 2;
 }
-.heartOff {
-  display: none;
+.fa-regular{
+  animation: noMeGusta .5s;
+  animation-fill-mode:forwards;
+  -webkit-animation: noMeGusta .5s;
 }

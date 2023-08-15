@@ -1,18 +1,13 @@
-const noNeGustan = document.querySelectorAll('.card__imagen-corazon');
-const meGustan = document.querySelectorAll('.card__me-gusta');
-const trashs = document.querySelectorAll('.card__trash');
-
-const nombre = document.querySelector('.popup__input_nombre');
-const aboutMe = document.querySelector('.popup__input_about-me');
+//VARIABLES
+const popupContainar = document.querySelector('.popup__container');
+const cardContainer = document.querySelector('.elements');
 const titulo = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
-
 const body = document.querySelector('body');
-
 const popupElement = document.querySelector('.popup_Element');
 const popupPerfil = document.querySelector('.popup_perfil');
-
 const editButton = document.querySelector('.edit-button');
+const btnNuevaImagen = document.querySelector('.popup__formElement');
 const editButtonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
@@ -20,26 +15,42 @@ const popupButtonCerrarPerfil = document.querySelector(
   '.popup__button-cerrar-perfil'
 );
 
-document.addEventListener('DOMContentLoaded', () => {
-  const addButton = document.querySelector('.add-button');
+document.addEventListener('DOMContentLoaded', iniciarAPP);
+function iniciarAPP() {
+  cargarImagenes();
+
   const trashs = document.querySelectorAll('.card__trash');
-  const formPerfil = document.querySelector('.popup__formPerfil');
+  const FormPerfil = document.querySelector('.popup__formPerfil');
   const imagenes = document.querySelectorAll('.card__image-container');
+
+  const addButton = document.querySelector('.add-button');
+  addButton.addEventListener('click', openPopPlaces);
+
   imagenes.forEach((imagen) => {
     imagen.addEventListener('click', selectImagen);
   });
 
-  formPerfil.addEventListener('submit', handleProfileFormSubmit);
-  addButton.addEventListener('click', openPopPlaces);
+  FormPerfil.addEventListener('submit', handleProfileFormSubmit);
+  btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
+
   editButton.addEventListener('click', openPopPerfil);
 
   editButtonPopupButtonCerrarPlaces.addEventListener('click', closePopPlaces);
   popupButtonCerrarPerfil.addEventListener('click', closePopPerfil);
 
+  //BORRAR IMAGEN
   trashs.forEach((trash) => {
     trash.addEventListener('click', (e) => {
       const element = e.target.parentElement;
-      element.remove();
+      const imagen = element.querySelector('.card__imagen').src;
+      initialCards.forEach((link, i) => {
+        if (imagen === link.link) {
+          initialCards.splice(i, 1);
+        }
+      });
+      // console.log(initialCards);
+      limpiarHTML();
+      iniciarAPP();
     });
   });
 
@@ -53,30 +64,37 @@ document.addEventListener('DOMContentLoaded', () => {
       trash.style.color = 'currentColor';
     });
   });
-});
+}
 
-meGusta();
-function meGusta() {
-  noNeGustan.forEach((noMegusta) => {
-    noMegusta.addEventListener('click', (e) => {
-      const element = e.target;
-      const meGusta = element.nextElementSibling;
-      element.classList.add('heartOff');
-      element.classList.remove('heartOn');
-      meGusta.classList.add('heartOn');
-      meGusta.classList.remove('heartOff');
-    });
+function cargarImagenes() {
+  initialCards.forEach((card) => {
+    //AGREGANDO EL TEMPLATE
+    const template = document.querySelector('.template__card').content;
+    const templateElements = template.querySelector('.card').cloneNode(true);
+
+    //AGREGANDO LA IMAGEN
+    const imagen = templateElements.querySelector('.card__imagen');
+    imagen.src = card.link;
+    imagen.alt = card.alt;
+
+    //AGREGANDO EL TITULO
+    const titulo = templateElements.querySelector('.card__title');
+    titulo.textContent = card.name;
+
+    //APLICANDO FUNSION MEGUSTA
+    const meGustan = templateElements.querySelector('.card__imagen-corazon');
+    meGustan.onclick = meGusta;
+
+
+    cardContainer.append(templateElements);
   });
-  meGustan.forEach((meGusta) => {
-    meGusta.addEventListener('click', (e) => {
-      const element = e.target;
-      const noGusta = element.previousElementSibling;
-      element.classList.add('heartOff');
-      element.classList.remove('heartOn');
-      noGusta.classList.add('heartOn');
-      noGusta.classList.remove('heartOff');
-    });
-  });
+}
+
+// meGusta();
+function meGusta(e) {
+  const heart = e.target;
+  heart.classList.toggle('fa-regular');
+  heart.classList.toggle('fa-solid');
 }
 
 function selectImagen(e) {
@@ -93,11 +111,15 @@ function selectImagen(e) {
   btnCerrar.src = '../imagenes/Close-Icon.svg';
   btnCerrar.classList.add('btnCerrar', 'btnCerrar_overlay');
   divTemp.insertAdjacentElement('beforeend', btnCerrar);
+  divTemp.style.animation = 'zoomIn 1s forwards';
 
   //Agragando al boton la funcionalidad de remover el overlay
   //y removiendo la clase de fix al body
   btnCerrar.onclick = () => {
-    overlay.remove();
+    divTemp.style.animation = 'zoomOut .7s forwards';
+    setTimeout(() => {
+      overlay.remove();
+    }, '1000');
     body.classList.remove('fix');
   };
 
@@ -112,49 +134,81 @@ function selectImagen(e) {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      overlay.remove();
+      divTemp.style.animation = 'zoomOut .7s forwards';
+      setTimeout(() => {
+        overlay.remove();
+      }, '1000');
       body.classList.remove('fix');
     }
   });
 }
 
 function openPopPerfil() {
+  const nombre = document.querySelector('.popup__input_nombre');
+  const aboutMe = document.querySelector('.popup__input_about-me');
   popupPerfil.classList.toggle('popup_opened');
+  popupContainar.style.animation = 'zoomIn .7s forwards';
   nombre.value = titulo.textContent;
   aboutMe.value = subtitle.textContent;
 
   body.classList.add('fix');
 }
-
-function openPopPlaces() {
-  popupElement.classList.toggle('popup_opened');
-  body.classList.add('fix');
-}
-
 function closePopPerfil() {
-  popupPerfil.classList.toggle('popup_opened');
+  popupContainar.style.animation = 'zoomOut .7s forwards';
+  setTimeout(() => {
+    popupPerfil.classList.toggle('popup_opened');
+  }, '1000');
   body.classList.remove('fix');
 }
-function closePopPlaces() {
-  popupElement.classList.toggle('popup_opened');
-  body.classList.remove('fix');
-}
-
 function handleProfileFormSubmit(e) {
   e.preventDefault();
 
   let nameInput = document.querySelector('.popup__input_nombre');
   let jobInput = document.querySelector('.popup__input_about-me');
 
-  // Obtén los valores de cada campo desde la propiedad de valor correspondiente
-  // const titulo = document.querySelector('.profile__title');
-  // const subtitle = document.querySelector('.profile__subtitle');
-
-  // Selecciona los elementos donde se introducirán los valores de los campos
-
   // Inserta nuevos valores utilizando el textContent
   titulo.textContent = nameInput.value;
   subtitle.textContent = jobInput.value;
+
   closePopPerfil();
-  // propiedad del método querySelector()
+}
+
+function openPopPlaces() {
+  btnNuevaImagen.style.animation = 'zoomIn .7s forwards';
+  popupElement.classList.toggle('popup_opened');
+  body.classList.add('fix');
+}
+function closePopPlaces() {
+  btnNuevaImagen.style.animation = 'zoomOut .7s forwards';
+  setTimeout(() => {
+    popupElement.classList.toggle('popup_opened');
+  }, '1000');
+  body.classList.remove('fix');
+}
+//AGREGAR UNA NUEVA IMAGEN
+function handlePlacesFormSubmit(e) {
+  e.preventDefault();
+  limpiarHTML();
+
+  let tituloInput = document.querySelector('.popup__input-titulo');
+  let linkImput = document.querySelector('.popup__input-link');
+
+  // Creamos un objeto con los datos del formulario
+  const nuevaImagen = {
+    name: tituloInput.value,
+    link: linkImput.value,
+  };
+  initialCards.unshift(nuevaImagen);
+  iniciarAPP();
+  closePopPlaces();
+
+  //LIMPIANDO LOS CAMPOS DEL FORMULARIO
+  tituloInput.value = '';
+  linkImput.value = '';
+}
+
+function limpiarHTML() {
+  while (cardContainer.firstChild) {
+    cardContainer.removeChild(cardContainer.firstChild);
+  }
 }

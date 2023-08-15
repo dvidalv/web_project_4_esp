@@ -2,6 +2,7 @@
 @import url('../fonts/Inter/Inter-Web/inter.css');
 @import url('../blocks/animaciones.css');
 @import url('../blocks/globales/globales.css');
+@import url('../blocks/globales/animaciones.css');
 @import url('../blocks/buttons/buttons.css');
 @import url('../blocks/buttons/add-button/add-button.css');
 @import url('../blocks/buttons/edit-button/edit-button.css');
