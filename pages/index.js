@@ -272,12 +272,16 @@ function handlePlacesFormSubmit(e) {
 
   const tituloInput = document.querySelector('.popup__input-titulo');
   const linkImput = document.querySelector('.popup__input-link');
+  const alt = `imagen de  ${tituloInput.value}`;
 
   // Creamos un objeto con los datos del formulario
   const nuevaImagen = {
     name: tituloInput.value,
     link: linkImput.value,
+    alt: alt,
   };
+
+  console.log(nuevaImagen);
   initialCards.unshift(nuevaImagen);
   cargarImagenes();
   init();
