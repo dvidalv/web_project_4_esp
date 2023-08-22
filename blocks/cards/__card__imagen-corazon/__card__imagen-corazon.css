@@ -1,17 +1,33 @@
 .card__imagen-corazon {
-  color: black;
+  /* color: black;
   font-size: 19px;
   cursor: pointer;
   transition: color .5s;
   -webkit-transition: color .5s;
   -moz-transition: color .5s;
   -ms-transition: color .5s;
-  -o-transition: color .5s;
+  -o-transition: color .5s; */
+  width: 20px;
+  
+}
+.card__imagen-corazon_solid{
+  display: none;
 }
 
-.card__imagen-corazon:hover {
+.card__imagen-corazo,.card__imagen-corazon_solid:hover {
   opacity: 0.6;
-  /* color: red; */
-  overflow: hidden;
+  /*color: red;
+  */overflow: hidden;
+  transition: .8s all;
+  -webkit-transition: .8s all;
+  -moz-transition: .8s all;
+  -ms-transition: .8s all;
+  -o-transition: .8s all;
+}
 
+.corazonOff{
+  display: none;
+}
+.corazonOn{
+  display: block;
 }
