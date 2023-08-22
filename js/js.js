@@ -16,6 +16,7 @@ const popupButtonCerrarPerfil = document.querySelector(
   '.popup__button-cerrar-perfil'
 );
 btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
+
 const FormPerfil = document.querySelector('.popup__formPerfil');
 const addButton = document.querySelector('.add-button');
 editButton.addEventListener('click', openPopPerfil);
