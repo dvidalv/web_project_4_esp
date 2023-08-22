@@ -11,32 +11,37 @@ const btnNuevaImagen = document.querySelector('.popup__formElement');
 const editButtonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
+
 const popupButtonCerrarPerfil = document.querySelector(
   '.popup__button-cerrar-perfil'
 );
+btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
 
-document.addEventListener('DOMContentLoaded', iniciarAPP);
-function iniciarAPP() {
-  cargarImagenes();
+const FormPerfil = document.querySelector('.popup__formPerfil');
+const addButton = document.querySelector('.add-button');
+editButton.addEventListener('click', openPopPerfil);
+addButton.addEventListener('click', openPopPlaces);
+popupButtonCerrarPerfil.addEventListener('click', closePopPerfil);
+editButtonPopupButtonCerrarPlaces.addEventListener('click', closePopPlaces);
+FormPerfil.addEventListener('submit', handleProfileFormSubmit);
 
-  const trashs = document.querySelectorAll('.card__trash');
-  const FormPerfil = document.querySelector('.popup__formPerfil');
+cargarImagenes();
+
+//AGREGANDO LA PROPIEDAD DE LIKE AL ARREGLO INICIAL
+initialCards.forEach((element) => {
+  element.like = false;
+});
+
+init();
+
+function init() {
   const imagenes = document.querySelectorAll('.card__image-container');
-
-  const addButton = document.querySelector('.add-button');
-  addButton.addEventListener('click', openPopPlaces);
+  const trashs = document.querySelectorAll('.card__trash');
 
   imagenes.forEach((imagen) => {
     imagen.addEventListener('click', selectImagen);
+    // console.log(imagen)
   });
-
-  FormPerfil.addEventListener('submit', handleProfileFormSubmit);
-  btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
-
-  editButton.addEventListener('click', openPopPerfil);
-
-  editButtonPopupButtonCerrarPlaces.addEventListener('click', closePopPlaces);
-  popupButtonCerrarPerfil.addEventListener('click', closePopPerfil);
 
   //BORRAR IMAGEN
   trashs.forEach((trash) => {
@@ -48,9 +53,10 @@ function iniciarAPP() {
           initialCards.splice(i, 1);
         }
       });
-      // console.log(initialCards);
+      console.log(initialCards);
       limpiarHTML();
-      iniciarAPP();
+      cargarImagenes()
+      init()
     });
   });
 
@@ -67,6 +73,7 @@ function iniciarAPP() {
 }
 
 function cargarImagenes() {
+  // console.log(initialCards)
   initialCards.forEach((card) => {
     //AGREGANDO EL TEMPLATE
     const template = document.querySelector('.template__card').content;
@@ -85,6 +92,10 @@ function cargarImagenes() {
     const meGustan = templateElements.querySelector('.card__imagen-corazon');
     meGustan.onclick = meGusta;
 
+    const like = templateElements.querySelector('.card__imagen-corazon');
+    if (card.like) {
+      like.classList.add('fa-solid');
+    }
 
     cardContainer.append(templateElements);
   });
@@ -93,8 +104,27 @@ function cargarImagenes() {
 // meGusta();
 function meGusta(e) {
   const heart = e.target;
-  heart.classList.toggle('fa-regular');
   heart.classList.toggle('fa-solid');
+  // heart.classList.toggle('fa-regular');
+  const card = e.target.parentElement.parentElement.parentElement;
+  const image = card.querySelector('.card__imagen').src;
+
+  if (heart.classList.contains('fa-solid')) {
+    initialCards.forEach((card) => {
+      if (card.link === image) {
+        card.like = true;
+      }
+    });
+  } else {
+    initialCards.forEach((card) => {
+      if (card.link === image) {
+        card.like = false;
+      }
+    });
+  }
+  limpiarHTML();
+  cargarImagenes();
+  init()
 }
 
 function selectImagen(e) {
