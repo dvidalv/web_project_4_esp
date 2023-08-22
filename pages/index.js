@@ -55,8 +55,8 @@ function init() {
       });
       console.log(initialCards);
       limpiarHTML();
-      cargarImagenes()
-      init()
+      cargarImagenes();
+      init();
     });
   });
 
@@ -73,10 +73,10 @@ function init() {
 }
 
 function cargarImagenes() {
-  // console.log(initialCards)
+  console.log(initialCards);
   initialCards.forEach((card) => {
     //AGREGANDO EL TEMPLATE
-    const template = document.querySelector('.template__card').content;
+    const template = document.querySelector('.template-card').content;
     const templateElements = template.querySelector('.card').cloneNode(true);
 
     //AGREGANDO LA IMAGEN
@@ -90,11 +90,20 @@ function cargarImagenes() {
 
     //APLICANDO FUNSION MEGUSTA
     const meGustan = templateElements.querySelector('.card__imagen-corazon');
+    const moMeGustan = templateElements.querySelector(
+      '.card__imagen-corazon_solid'
+    );
     meGustan.onclick = meGusta;
+    moMeGustan.onclick = noMeGusta;
 
-    const like = templateElements.querySelector('.card__imagen-corazon');
+    const NoLike = templateElements.querySelector('.card__imagen-corazon');
+    const Like = templateElements.querySelector('.card__imagen-corazon_solid');
     if (card.like) {
-      like.classList.add('fa-solid');
+      NoLike.classList.add('corazonOff');
+      Like.classList.add('corazonOn');
+    } else {
+      Like.classList.add('corazonOff');
+      NoLike.classList.add('corazonOn');
     }
 
     cardContainer.append(templateElements);
@@ -104,12 +113,17 @@ function cargarImagenes() {
 // meGusta();
 function meGusta(e) {
   const heart = e.target;
-  heart.classList.toggle('fa-solid');
-  // heart.classList.toggle('fa-regular');
+  const heartSolid = heart.nextElementSibling;
+  heart.classList.add('corazonOff');
+  heart.classList.remove('corazonOn');
+  heartSolid.classList.add('corazonOn');
+  heartSolid.classList.remove('corazonOff');
+
   const card = e.target.parentElement.parentElement.parentElement;
+
   const image = card.querySelector('.card__imagen').src;
 
-  if (heart.classList.contains('fa-solid')) {
+  if (heart.classList.contains('corazonOff')) {
     initialCards.forEach((card) => {
       if (card.link === image) {
         card.like = true;
@@ -122,9 +136,45 @@ function meGusta(e) {
       }
     });
   }
+
   limpiarHTML();
   cargarImagenes();
-  init()
+
+  init();
+}
+// NO meGusta();
+function noMeGusta(e) {
+  const heartSolid = e.target;
+  const heart = heartSolid.previousElementSibling;
+  // heart.classList.toggle('fa-solid');
+  // heart.classList.toggle('fa-regular');
+  heartSolid.classList.add('corazonOff');
+  heartSolid.classList.remove('corazonOn');
+  heart.classList.remove('corazonOff');
+  heart.classList.remove('corazonOn');
+
+  const card = e.target.parentElement.parentElement.parentElement;
+  console.log(card);
+
+  const image = card.querySelector('.card__imagen').src;
+
+  if (heartSolid.classList.contains('corazonOn')) {
+    initialCards.forEach((card) => {
+      if (card.link === image) {
+        card.like = true;
+      }
+    });
+  } else {
+    initialCards.forEach((card) => {
+      if (card.link === image) {
+        card.like = false;
+      }
+    });
+  }
+
+  limpiarHTML();
+  cargarImagenes();
+  init();
 }
 
 function selectImagen(e) {
@@ -193,8 +243,8 @@ function closePopPerfil() {
 function handleProfileFormSubmit(e) {
   e.preventDefault();
 
-  let nameInput = document.querySelector('.popup__input_nombre');
-  let jobInput = document.querySelector('.popup__input_about-me');
+  const nameInput = document.querySelector('.popup__input_nombre');
+  const jobInput = document.querySelector('.popup__input_about-me');
 
   // Inserta nuevos valores utilizando el textContent
   titulo.textContent = nameInput.value;
@@ -220,16 +270,21 @@ function handlePlacesFormSubmit(e) {
   e.preventDefault();
   limpiarHTML();
 
-  let tituloInput = document.querySelector('.popup__input-titulo');
-  let linkImput = document.querySelector('.popup__input-link');
+  const tituloInput = document.querySelector('.popup__input-titulo');
+  const linkImput = document.querySelector('.popup__input-link');
+  const alt = `imagen de  ${tituloInput.value}`;
 
   // Creamos un objeto con los datos del formulario
   const nuevaImagen = {
     name: tituloInput.value,
     link: linkImput.value,
+    alt: alt,
   };
+
+  console.log(nuevaImagen);
   initialCards.unshift(nuevaImagen);
-  iniciarAPP();
+  cargarImagenes();
+  init();
   closePopPlaces();
 
   //LIMPIANDO LOS CAMPOS DEL FORMULARIO
