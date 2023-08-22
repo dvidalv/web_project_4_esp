@@ -73,7 +73,6 @@ function init() {
 }
 
 function cargarImagenes() {
-  console.log(initialCards);
   initialCards.forEach((card) => {
     //AGREGANDO EL TEMPLATE
     const template = document.querySelector('.template-card').content;
@@ -114,33 +113,34 @@ function cargarImagenes() {
 function meGusta(e) {
   const heart = e.target;
   const heartSolid = heart.nextElementSibling;
+  heartSolid.style.animation = 'megusta 1s 2';
   heart.classList.add('corazonOff');
   heart.classList.remove('corazonOn');
   heartSolid.classList.add('corazonOn');
   heartSolid.classList.remove('corazonOff');
+  setTimeout(() => {
+    const card = e.target.parentElement.parentElement.parentElement;
 
-  const card = e.target.parentElement.parentElement.parentElement;
+    const image = card.querySelector('.card__imagen').src;
 
-  const image = card.querySelector('.card__imagen').src;
+    if (heart.classList.contains('corazonOff')) {
+      initialCards.forEach((card) => {
+        if (card.link === image) {
+          card.like = true;
+        }
+      });
+    } else {
+      initialCards.forEach((card) => {
+        if (card.link === image) {
+          card.like = false;
+        }
+      });
+    }
 
-  if (heart.classList.contains('corazonOff')) {
-    initialCards.forEach((card) => {
-      if (card.link === image) {
-        card.like = true;
-      }
-    });
-  } else {
-    initialCards.forEach((card) => {
-      if (card.link === image) {
-        card.like = false;
-      }
-    });
-  }
-
-  limpiarHTML();
-  cargarImagenes();
-
-  init();
+    limpiarHTML();
+    cargarImagenes();
+    init();
+  }, '2000');
 }
 // NO meGusta();
 function noMeGusta(e) {
@@ -154,7 +154,6 @@ function noMeGusta(e) {
   heart.classList.remove('corazonOn');
 
   const card = e.target.parentElement.parentElement.parentElement;
-  console.log(card);
 
   const image = card.querySelector('.card__imagen').src;
 
