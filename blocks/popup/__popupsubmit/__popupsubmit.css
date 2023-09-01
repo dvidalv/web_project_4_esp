@@ -16,3 +16,8 @@
 .popup__submit:hover {
   opacity: 0.6;
 }
+.form__submit_inactive {
+  border-radius: 2px;
+  border: 1px solid #000;
+  opacity: 0.2;
+}

@@ -24,7 +24,7 @@
 }
 
 @media (min-width: 768px) {
-  .popup__container {
+  .popup__form {
     max-width: 430px;
   }
 }

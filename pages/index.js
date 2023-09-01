@@ -1,5 +1,5 @@
 //VARIABLES
-const popupContainar = document.querySelector('.popup__container');
+const popupContainar = document.querySelector('.popup__form');
 const cardContainer = document.querySelector('.elements');
 const titulo = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
@@ -11,6 +11,15 @@ const btnNuevaImagen = document.querySelector('.popup__formElement');
 const editButtonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
+
+objConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+};
 
 const popupButtonCerrarPerfil = document.querySelector(
   '.popup__button-cerrar-perfil'
@@ -223,14 +232,16 @@ function selectImagen(e) {
 }
 
 function openPopPerfil() {
+  const formElement = document.querySelector('.popup_perfil');
   const nombre = document.querySelector('.popup__input_nombre');
   const aboutMe = document.querySelector('.popup__input_about-me');
   popupPerfil.classList.toggle('popup_opened');
   popupContainar.style.animation = 'zoomIn .7s forwards';
   nombre.value = titulo.textContent;
   aboutMe.value = subtitle.textContent;
-
   body.classList.add('fix');
+  
+  enableValidation(objConfig, formElement);
 }
 function closePopPerfil() {
   popupContainar.style.animation = 'zoomOut .7s forwards';
@@ -240,7 +251,7 @@ function closePopPerfil() {
   body.classList.remove('fix');
 }
 function handleProfileFormSubmit(e) {
-  e.preventDefault();
+  // e.preventDefault();
 
   const nameInput = document.querySelector('.popup__input_nombre');
   const jobInput = document.querySelector('.popup__input_about-me');
