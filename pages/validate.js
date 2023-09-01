@@ -9,10 +9,10 @@ const setEventListeners = (
   { inputSelector, submitButtonSelector },
   formElement
 ) => {
-	let spanError = document.querySelectorAll('.form-input-error')
-	if (spanError) {
-		spanError.forEach( error => error.remove())
-	}
+  let spanError = document.querySelectorAll('.form-input-error');
+  if (spanError) {
+    spanError.forEach((error) => error.remove());
+  }
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const submitButton = formElement.querySelector(submitButtonSelector);
   inputList.forEach((inputElement) => {
@@ -62,5 +62,5 @@ const toggleButtonState = (inputList, buttonElement) => {
   }
 };
 const hasInvalidInput = (inputList) => {
-  return inputList.some( inputElement => !inputElement.validity.valid);
+  return inputList.some((inputElement) => !inputElement.validity.valid);
 };

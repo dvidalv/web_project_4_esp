@@ -267,6 +267,7 @@ function openPopPlaces() {
   btnNuevaImagen.style.animation = 'zoomIn .7s forwards';
   popupElement.classList.toggle('popup_opened');
   body.classList.add('fix');
+  enableValidation(objConfig, popupElement);
 }
 function closePopPlaces() {
   btnNuevaImagen.style.animation = 'zoomOut .7s forwards';
@@ -277,7 +278,7 @@ function closePopPlaces() {
 }
 //AGREGAR UNA NUEVA IMAGEN
 function handlePlacesFormSubmit(e) {
-  e.preventDefault();
+  // e.preventDefault();
   limpiarHTML();
 
   const tituloInput = document.querySelector('.popup__input-titulo');
