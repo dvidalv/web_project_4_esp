@@ -15,6 +15,7 @@ const setEventListeners = (
   }
   const inputList = Array.from(formElement.querySelectorAll(inputSelector));
   const submitButton = formElement.querySelector(submitButtonSelector);
+	toggleButtonState(inputList, submitButton);
   inputList.forEach((inputElement) => {
     //Creamos el spanError y lo agregamos al DOM
     const spanErron = document.createElement('span');

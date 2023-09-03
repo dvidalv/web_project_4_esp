@@ -34,6 +34,24 @@ popupButtonCerrarPerfil.addEventListener('click', closePopPerfil);
 editButtonPopupButtonCerrarPlaces.addEventListener('click', closePopPlaces);
 FormPerfil.addEventListener('submit', handleProfileFormSubmit);
 
+document.addEventListener('click', (e) => {
+  cerrarPerfil(e)
+})
+// // Agrega un event listener para escuchar la tecla "Escape" en todo el documento
+// document.addEventListener("keydown", cerrarPopupConEscape);
+// // Función para cerrar el popup cuando se presiona la tecla "Escape"
+// function cerrarPopupConEscape(event) {
+//   if (event.key === "Escape" || event.key === "Esc") {
+//     closePopPerfil()
+//   }
+// }
+
+function cerrarPerfil(e) {
+  if (e.target.classList.contains('popup_perfil')) {
+    closePopPerfil()
+  }
+}
+
 cargarImagenes();
 
 //AGREGANDO LA PROPIEDAD DE LIKE AL ARREGLO INICIAL
@@ -62,7 +80,6 @@ function init() {
           initialCards.splice(i, 1);
         }
       });
-      console.log(initialCards);
       limpiarHTML();
       cargarImagenes();
       init();
@@ -231,8 +248,11 @@ function selectImagen(e) {
   });
 }
 
+
+
 function openPopPerfil() {
   const formElement = document.querySelector('.popup_perfil');
+  document.addEventListener('keydown', closePerfilEventEscap)
   const nombre = document.querySelector('.popup__input_nombre');
   const aboutMe = document.querySelector('.popup__input_about-me');
   popupPerfil.classList.toggle('popup_opened');
@@ -240,8 +260,16 @@ function openPopPerfil() {
   nombre.value = titulo.textContent;
   aboutMe.value = subtitle.textContent;
   body.classList.add('fix');
+  // popupPerfil.onclick = closePopPerfil
   
   enableValidation(objConfig, formElement);
+}
+function closePerfilEventEscap(e) {
+  if (e.key === "Escape" || e.key === "Esc") {
+    document.removeEventListener('keydown', closePerfilEventEscap )
+    closePopPerfil()
+    
+  }
 }
 function closePopPerfil() {
   popupContainar.style.animation = 'zoomOut .7s forwards';
@@ -292,7 +320,6 @@ function handlePlacesFormSubmit(e) {
     alt: alt,
   };
 
-  console.log(nuevaImagen);
   initialCards.unshift(nuevaImagen);
   cargarImagenes();
   init();
@@ -308,3 +335,4 @@ function limpiarHTML() {
     cardContainer.removeChild(cardContainer.firstChild);
   }
 }
+
