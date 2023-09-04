@@ -1,5 +1,5 @@
 //VARIABLES
-const popupContainar = document.querySelector('.popup__form');
+const popup__form = document.querySelector('.popup__form');
 const cardContainer = document.querySelector('.elements');
 const titulo = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
@@ -21,36 +21,14 @@ objConfig = {
   errorClass: 'popup__error_visible',
 };
 
-const popupButtonCerrarPerfil = document.querySelector(
-  '.popup__button-cerrar-perfil'
-);
 btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
 
 const FormPerfil = document.querySelector('.popup__formPerfil');
 const addButton = document.querySelector('.add-button');
 editButton.addEventListener('click', openPopPerfil);
 addButton.addEventListener('click', openPopPlaces);
-popupButtonCerrarPerfil.addEventListener('click', closePopPerfil);
 editButtonPopupButtonCerrarPlaces.addEventListener('click', closePopPlaces);
 FormPerfil.addEventListener('submit', handleProfileFormSubmit);
-
-document.addEventListener('click', (e) => {
-  cerrarPerfil(e)
-})
-// // Agrega un event listener para escuchar la tecla "Escape" en todo el documento
-// document.addEventListener("keydown", cerrarPopupConEscape);
-// // Función para cerrar el popup cuando se presiona la tecla "Escape"
-// function cerrarPopupConEscape(event) {
-//   if (event.key === "Escape" || event.key === "Esc") {
-//     closePopPerfil()
-//   }
-// }
-
-function cerrarPerfil(e) {
-  if (e.target.classList.contains('popup_perfil')) {
-    closePopPerfil()
-  }
-}
 
 cargarImagenes();
 
@@ -172,8 +150,6 @@ function meGusta(e) {
 function noMeGusta(e) {
   const heartSolid = e.target;
   const heart = heartSolid.previousElementSibling;
-  // heart.classList.toggle('fa-solid');
-  // heart.classList.toggle('fa-regular');
   heartSolid.classList.add('corazonOff');
   heartSolid.classList.remove('corazonOn');
   heart.classList.remove('corazonOff');
@@ -237,6 +213,7 @@ function selectImagen(e) {
   //Agrefgando la clase de fix al body
   body.classList.add('fix');
 
+  //Cerrar imagen al precionar la tecla "SCAPE"
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       divTemp.style.animation = 'zoomOut .7s forwards';
@@ -248,35 +225,46 @@ function selectImagen(e) {
   });
 }
 
-
-
-function openPopPerfil() {
+function openPopPerfil(e) {
   const formElement = document.querySelector('.popup_perfil');
-  document.addEventListener('keydown', closePerfilEventEscap)
+
+  const popupButtonCerrarPerfil = formElement.querySelector(
+    '.popup__button-cerrar-perfil'
+  );
+  document.addEventListener('keydown', closePerfilEventEscap);
+  document.addEventListener('click', cerrarPerfil);
   const nombre = document.querySelector('.popup__input_nombre');
   const aboutMe = document.querySelector('.popup__input_about-me');
   popupPerfil.classList.toggle('popup_opened');
-  popupContainar.style.animation = 'zoomIn .7s forwards';
+  popup__form.style.animation = 'zoomIn .7s forwards';
   nombre.value = titulo.textContent;
   aboutMe.value = subtitle.textContent;
   body.classList.add('fix');
-  // popupPerfil.onclick = closePopPerfil
-  
+
   enableValidation(objConfig, formElement);
 }
-function closePerfilEventEscap(e) {
-  if (e.key === "Escape" || e.key === "Esc") {
-    document.removeEventListener('keydown', closePerfilEventEscap )
-    closePopPerfil()
-    
-  }
-}
-function closePopPerfil() {
-  popupContainar.style.animation = 'zoomOut .7s forwards';
+
+function closePopPerfil(e) {
+  popup__form.style.animation = 'zoomOut .7s forwards';
   setTimeout(() => {
     popupPerfil.classList.toggle('popup_opened');
   }, '1000');
   body.classList.remove('fix');
+}
+function closePerfilEventEscap(e) {
+  if (e.key === 'Escape' || e.key === 'Esc') {
+    closePopPerfil();
+    document.removeEventListener('keydown', closePerfilEventEscap);
+  }
+}
+function cerrarPerfil(e) {
+  if (
+    e.target.classList.contains('popup_perfil') ||
+    e.target.classList.contains('popup__button-cerrar-perfil')
+  ) {
+    closePopPerfil();
+    document.removeEventListener('click', cerrarPerfil);
+  }
 }
 function handleProfileFormSubmit(e) {
   // e.preventDefault();
@@ -335,4 +323,3 @@ function limpiarHTML() {
     cardContainer.removeChild(cardContainer.firstChild);
   }
 }
-
