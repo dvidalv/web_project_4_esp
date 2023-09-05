@@ -8,7 +8,7 @@ const popupElement = document.querySelector('.popup_Element');
 const popupPerfil = document.querySelector('.popup_perfil');
 const editButton = document.querySelector('.edit-button');
 const btnNuevaImagen = document.querySelector('.popup__formElement');
-const editButtonPopupButtonCerrarPlaces = document.querySelector(
+const buttonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
 
@@ -21,14 +21,10 @@ objConfig = {
   errorClass: 'popup__error_visible',
 };
 
-btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
-
 const FormPerfil = document.querySelector('.popup__formPerfil');
 const addButton = document.querySelector('.add-button');
 editButton.addEventListener('click', openPopPerfil);
 addButton.addEventListener('click', openPopPlaces);
-editButtonPopupButtonCerrarPlaces.addEventListener('click', closePopPlaces);
-// FormPerfil.addEventListener('submit', handleProfileFormSubmit);
 
 cargarImagenes();
 
@@ -194,26 +190,14 @@ function selectImagen(e) {
   divTemp.insertAdjacentElement('beforeend', btnCerrar);
   divTemp.style.animation = 'zoomIn 1s forwards';
 
-  //Agragando al boton la funcionalidad de remover el overlay
-  //y removiendo la clase de fix al body
-  btnCerrar.onclick = () => {
-    divTemp.style.animation = 'zoomOut .7s forwards';
-    setTimeout(() => {
-      overlay.remove();
-    }, '1000');
-    body.classList.remove('fix');
-  };
-
   //Creando el overlay
   const overlay = document.createElement('div');
   overlay.appendChild(divTemp);
   overlay.classList.add('overlay');
   body.append(overlay);
-
-  //Agrefgando la clase de fix al body
-  body.classList.add('fix');
-
-  //Cerrar imagen al precionar la tecla "SCAPE"
+  overlay.addEventListener('click', (e) => {
+    test(e, divTemp, overlay);
+  });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       divTemp.style.animation = 'zoomOut .7s forwards';
@@ -221,16 +205,42 @@ function selectImagen(e) {
         overlay.remove();
       }, '1000');
       body.classList.remove('fix');
+      document.removeEventListener('keydown',selectImagen)
     }
   });
+
+  //Agrefgando la clase de fix al body
+  body.classList.add('fix');
+
+  btnCerrar.onclick = () => {
+    cerrarImagenGallery(divTemp, overlay);
+  };
+}
+
+function test(e, container, overlay) {
+  if (
+    e.target.classList.contains('btnCerrar') ||
+    e.target.classList.contains('overlay')
+  ) {
+    cerrarImagenGallery(container, overlay);
+  }
+}
+
+function cerrarImagenGallery(container, overlay) {
+  container.style.animation = 'zoomOut .7s forwards';
+  setTimeout(() => {
+    overlay.remove();
+  }, '1000');
+  body.classList.remove('fix');
 }
 
 function openPopPerfil(e) {
+  FormPerfil.addEventListener('submit', handleProfileFormSubmit);
   const formElement = document.querySelector('.popup_perfil');
 
-  const popupButtonCerrarPerfil = formElement.querySelector(
-    '.popup__button-cerrar-perfil'
-  );
+  // const popupButtonCerrarPerfil = formElement.querySelector(
+  //   '.popup__button-cerrar-perfil'
+  // );
   document.addEventListener('keydown', closePerfilEventEscap);
   document.addEventListener('click', cerrarPerfil);
   const nombre = document.querySelector('.popup__input_nombre');
@@ -250,11 +260,12 @@ function closePopPerfil(e) {
     popupPerfil.classList.toggle('popup_opened');
   }, '1000');
   body.classList.remove('fix');
+  document.removeEventListener('keydown', closePerfilEventEscap);
+  document.removeEventListener('click', cerrarPerfil);
 }
 function closePerfilEventEscap(e) {
   if (e.key === 'Escape' || e.key === 'Esc') {
     closePopPerfil();
-    document.removeEventListener('keydown', closePerfilEventEscap);
   }
 }
 function cerrarPerfil(e) {
@@ -263,7 +274,6 @@ function cerrarPerfil(e) {
     e.target.classList.contains('popup__button-cerrar-perfil')
   ) {
     closePopPerfil();
-    document.removeEventListener('click', cerrarPerfil);
   }
 }
 function handleProfileFormSubmit(e) {
@@ -280,10 +290,31 @@ function handleProfileFormSubmit(e) {
 }
 
 function openPopPlaces() {
+  btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
+  document.addEventListener('click', closePopPlacesByClick);
+  document.addEventListener('keydown', closeElementEventEscap);
   btnNuevaImagen.style.animation = 'zoomIn .7s forwards';
   popupElement.classList.toggle('popup_opened');
   body.classList.add('fix');
   enableValidation(objConfig, popupElement);
+}
+function closePopPlacesByClick(e) {
+  if (
+    e.target.classList.contains('btnCerrar') ||
+    e.target.classList.contains('popup_Element')
+  ) {
+    closePopPlaces();
+    document.removeEventListener('click', closePopPlacesByClick);
+    document.removeEventListener('keydown', closeElementEventEscap);
+  }
+  // console.log(e.target)
+}
+function closeElementEventEscap(e) {
+  if (e.key === 'Escape' || e.key === 'Esc') {
+    closePopPlaces(e);
+    document.removeEventListener('keydown', closeElementEventEscap);
+    document.removeEventListener('click', closePopPlacesByClick);
+  }
 }
 function closePopPlaces() {
   btnNuevaImagen.style.animation = 'zoomOut .7s forwards';
