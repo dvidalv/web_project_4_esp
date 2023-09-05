@@ -1,29 +1,32 @@
 //VARIABLES
-const popupContainar = document.querySelector('.popup__container');
+const popup__form = document.querySelector('.popup__form');
 const cardContainer = document.querySelector('.elements');
 const titulo = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
 const body = document.querySelector('body');
 const popupElement = document.querySelector('.popup_Element');
+const divTemp = document.querySelector('.overlay-image__image');
+const overlay = document.querySelector('.overlay-image');
 const popupPerfil = document.querySelector('.popup_perfil');
 const editButton = document.querySelector('.edit-button');
 const btnNuevaImagen = document.querySelector('.popup__formElement');
-const editButtonPopupButtonCerrarPlaces = document.querySelector(
+const buttonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
 
-const popupButtonCerrarPerfil = document.querySelector(
-  '.popup__button-cerrar-perfil'
-);
-btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
+objConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible',
+};
 
 const FormPerfil = document.querySelector('.popup__formPerfil');
 const addButton = document.querySelector('.add-button');
 editButton.addEventListener('click', openPopPerfil);
 addButton.addEventListener('click', openPopPlaces);
-popupButtonCerrarPerfil.addEventListener('click', closePopPerfil);
-editButtonPopupButtonCerrarPlaces.addEventListener('click', closePopPlaces);
-FormPerfil.addEventListener('submit', handleProfileFormSubmit);
 
 cargarImagenes();
 
@@ -53,7 +56,6 @@ function init() {
           initialCards.splice(i, 1);
         }
       });
-      console.log(initialCards);
       limpiarHTML();
       cargarImagenes();
       init();
@@ -146,8 +148,6 @@ function meGusta(e) {
 function noMeGusta(e) {
   const heartSolid = e.target;
   const heart = heartSolid.previousElementSibling;
-  // heart.classList.toggle('fa-solid');
-  // heart.classList.toggle('fa-regular');
   heartSolid.classList.add('corazonOff');
   heartSolid.classList.remove('corazonOn');
   heart.classList.remove('corazonOff');
@@ -178,7 +178,6 @@ function noMeGusta(e) {
 
 function selectImagen(e) {
   //variables
-  const divTemp = document.createElement('div');
   divTemp.classList.add('overlay__divTemp');
   const url = e.target.src;
 
@@ -192,55 +191,85 @@ function selectImagen(e) {
   divTemp.insertAdjacentElement('beforeend', btnCerrar);
   divTemp.style.animation = 'zoomIn 1s forwards';
 
-  //Agragando al boton la funcionalidad de remover el overlay
-  //y removiendo la clase de fix al body
-  btnCerrar.onclick = () => {
-    divTemp.style.animation = 'zoomOut .7s forwards';
-    setTimeout(() => {
-      overlay.remove();
-    }, '1000');
-    body.classList.remove('fix');
-  };
-
   //Creando el overlay
-  const overlay = document.createElement('div');
   overlay.appendChild(divTemp);
   overlay.classList.add('overlay');
   body.append(overlay);
+  overlay.addEventListener('click', closeImageByClick);
+  document.addEventListener('keydown', closeImageByScape);
 
   //Agrefgando la clase de fix al body
   body.classList.add('fix');
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      divTemp.style.animation = 'zoomOut .7s forwards';
-      setTimeout(() => {
-        overlay.remove();
-      }, '1000');
-      body.classList.remove('fix');
-    }
-  });
+}
+const closeImageByScape = (e) => {
+  if (e.key === 'Escape') {
+    cerrarImagenGallery()
+    
+  }
+};
+
+function closeImageByClick(e) {
+  if (
+    e.target.classList.contains('btnCerrar') ||
+    e.target.classList.contains('overlay')
+  ) {
+    cerrarImagenGallery();
+  }
+}
+function cerrarImagenGallery() {
+  divTemp.style.animation = 'zoomOut .7s forwards';
+  setTimeout(() => {
+    overlay.classList.remove('overlay');
+  }, '1000');
+  body.classList.remove('fix');
+  document.removeEventListener('keydown', closeImageByScape);
 }
 
-function openPopPerfil() {
+function openPopPerfil(e) {
+  FormPerfil.addEventListener('submit', handleProfileFormSubmit);
+  const formElement = document.querySelector('.popup_perfil');
+
+  // const popupButtonCerrarPerfil = formElement.querySelector(
+  //   '.popup__button-cerrar-perfil'
+  // );
+  document.addEventListener('keydown', closePerfilEventEscap);
+  document.addEventListener('click', cerrarPerfil);
   const nombre = document.querySelector('.popup__input_nombre');
   const aboutMe = document.querySelector('.popup__input_about-me');
   popupPerfil.classList.toggle('popup_opened');
-  popupContainar.style.animation = 'zoomIn .7s forwards';
+  popup__form.style.animation = 'zoomIn .7s forwards';
   nombre.value = titulo.textContent;
   aboutMe.value = subtitle.textContent;
-
   body.classList.add('fix');
+
+  enableValidation(objConfig, formElement);
 }
-function closePopPerfil() {
-  popupContainar.style.animation = 'zoomOut .7s forwards';
+
+function closePopPerfil(e) {
+  popup__form.style.animation = 'zoomOut .7s forwards';
   setTimeout(() => {
     popupPerfil.classList.toggle('popup_opened');
   }, '1000');
   body.classList.remove('fix');
+  document.removeEventListener('keydown', closePerfilEventEscap);
+  document.removeEventListener('click', cerrarPerfil);
+}
+function closePerfilEventEscap(e) {
+  if (e.key === 'Escape' || e.key === 'Esc') {
+    closePopPerfil();
+  }
+}
+function cerrarPerfil(e) {
+  if (
+    e.target.classList.contains('popup_perfil') ||
+    e.target.classList.contains('popup__button-cerrar-perfil')
+  ) {
+    closePopPerfil();
+  }
 }
 function handleProfileFormSubmit(e) {
-  e.preventDefault();
+  // e.preventDefault();
 
   const nameInput = document.querySelector('.popup__input_nombre');
   const jobInput = document.querySelector('.popup__input_about-me');
@@ -253,9 +282,31 @@ function handleProfileFormSubmit(e) {
 }
 
 function openPopPlaces() {
+  btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
+  document.addEventListener('click', closePopPlacesByClick);
+  document.addEventListener('keydown', closeElementEventEscap);
   btnNuevaImagen.style.animation = 'zoomIn .7s forwards';
   popupElement.classList.toggle('popup_opened');
   body.classList.add('fix');
+  enableValidation(objConfig, popupElement);
+}
+function closePopPlacesByClick(e) {
+  if (
+    e.target.classList.contains('btnCerrar') ||
+    e.target.classList.contains('popup_Element')
+  ) {
+    closePopPlaces();
+    document.removeEventListener('click', closePopPlacesByClick);
+    document.removeEventListener('keydown', closeElementEventEscap);
+  }
+  // console.log(e.target)
+}
+function closeElementEventEscap(e) {
+  if (e.key === 'Escape' || e.key === 'Esc') {
+    closePopPlaces(e);
+    document.removeEventListener('keydown', closeElementEventEscap);
+    document.removeEventListener('click', closePopPlacesByClick);
+  }
 }
 function closePopPlaces() {
   btnNuevaImagen.style.animation = 'zoomOut .7s forwards';
@@ -263,10 +314,12 @@ function closePopPlaces() {
     popupElement.classList.toggle('popup_opened');
   }, '1000');
   body.classList.remove('fix');
+  document.removeEventListener('keydown', closeElementEventEscap);
+  document.removeEventListener('click', closePopPlacesByClick);
 }
 //AGREGAR UNA NUEVA IMAGEN
 function handlePlacesFormSubmit(e) {
-  e.preventDefault();
+  // e.preventDefault();
   limpiarHTML();
 
   const tituloInput = document.querySelector('.popup__input-titulo');
@@ -280,7 +333,6 @@ function handlePlacesFormSubmit(e) {
     alt: alt,
   };
 
-  console.log(nuevaImagen);
   initialCards.unshift(nuevaImagen);
   cargarImagenes();
   init();

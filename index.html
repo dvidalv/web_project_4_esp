@@ -16,9 +16,10 @@
         <section class="profile">
           <section class="popup popup_perfil">
             <form
-              class="popup__container popup__formPerfil"
+              class="popup__form popup__formPerfil"
               name="form"
               id="form"
+              novalidate
             >
               <img
                 class="btnCerrar popup__button-cerrar-perfil"
@@ -27,14 +28,22 @@
               />
               <h2 class="popup__title">Editar Perfil</h2>
               <input
+                id="nombre-input"
                 class="popup__input popup__input_nombre"
                 type="text"
                 placeholder="Nombre"
+                minlength="2"
+                maxlength="40"
+                required
               />
               <input
+                id="aboutMe-input"
                 class="popup__input popup__input_about-me"
                 type="text"
                 placeholder="Acerca de mi"
+                minlength="2"
+                maxlength="200"
+                required
               />
               <input
                 class="popup__submit popup__submit_perfil"
@@ -75,7 +84,7 @@
 
         <section>
           <section class="popup popup_Element">
-            <form class="popup__container popup__formElement">
+            <form class="popup__form popup__formElement" novalidate>
               <img
                 class="btnCerrar popup__button-cerrar-places"
                 src="./imagenes/Close-Icon.svg"
@@ -83,14 +92,20 @@
               />
               <h2 class="popup__title">Nuevo lugar</h2>
               <input
+                id="titulo-input"
                 class="popup__input popup__input-titulo"
                 type="text"
                 placeholder="Titulo"
+                minlength="2"
+                maxlength="30"
+                required
               />
               <input
+                id="url-input"
                 class="popup__input popup__input-link"
-                type="text"
+                type="url"
                 placeholder="Enlace a la Imagen"
+                required
               />
               <input
                 class="popup__submit popup__submit_Element"
@@ -129,6 +144,9 @@
         </section>
       </main>
     </div>
+    <div class="overlay-image">
+      <div class="overlay-image__image"></div>
+    </div>
     <footer class="footer">
       <p class="footer__title">&copy; 2023. David V. Vidal V.</p>
     </footer>
@@ -138,5 +156,6 @@
     ></script>
     <script src="./pages/consts.js"></script>
     <script src="./pages/index.js"></script>
+    <script src="./pages/validate.js"></script>
   </body>
 </html>

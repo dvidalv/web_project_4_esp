@@ -32,6 +32,22 @@
     -o-transform: scale(0);
 }
 }
+@keyframes fadeOut {
+  0%{
+    transform: opacity(1);
+    -webkit-transform: opacity(1);
+    -moz-transform: opacity(1);
+    -ms-transform: opacity(1);
+    -o-transform: opacity(1);
+}
+  100%{
+    transform: opacity(0);
+    -webkit-transform: opacity(0);
+    -moz-transform: opacity(0);
+    -ms-transform: opacity(0);
+    -o-transform: opacity(0);
+}
+}
 @keyframes megusta {
   0%{
     transform: scale(1);
