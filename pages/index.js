@@ -28,7 +28,7 @@ const addButton = document.querySelector('.add-button');
 editButton.addEventListener('click', openPopPerfil);
 addButton.addEventListener('click', openPopPlaces);
 editButtonPopupButtonCerrarPlaces.addEventListener('click', closePopPlaces);
-FormPerfil.addEventListener('submit', handleProfileFormSubmit);
+// FormPerfil.addEventListener('submit', handleProfileFormSubmit);
 
 cargarImagenes();
 
