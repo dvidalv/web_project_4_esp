@@ -5,6 +5,8 @@ const titulo = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
 const body = document.querySelector('body');
 const popupElement = document.querySelector('.popup_Element');
+const divTemp = document.querySelector('.overlay-image__image');
+const overlay = document.querySelector('.overlay-image');
 const popupPerfil = document.querySelector('.popup_perfil');
 const editButton = document.querySelector('.edit-button');
 const btnNuevaImagen = document.querySelector('.popup__formElement');
@@ -176,7 +178,6 @@ function noMeGusta(e) {
 
 function selectImagen(e) {
   //variables
-  const divTemp = document.createElement('div');
   divTemp.classList.add('overlay__divTemp');
   const url = e.target.src;
 
@@ -191,47 +192,38 @@ function selectImagen(e) {
   divTemp.style.animation = 'zoomIn 1s forwards';
 
   //Creando el overlay
-  const overlay = document.createElement('div');
   overlay.appendChild(divTemp);
   overlay.classList.add('overlay');
   body.append(overlay);
-  overlay.addEventListener('click', (e) => {
-    test(e, divTemp, overlay);
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      divTemp.style.animation = 'zoomOut .7s forwards';
-      setTimeout(() => {
-        overlay.remove();
-      }, '1000');
-      body.classList.remove('fix');
-      document.removeEventListener('keydown',selectImagen)
-    }
-  });
+  overlay.addEventListener('click', closeImageByClick);
+  document.addEventListener('keydown', closeImageByScape);
 
   //Agrefgando la clase de fix al body
   body.classList.add('fix');
 
-  btnCerrar.onclick = () => {
-    cerrarImagenGallery(divTemp, overlay);
-  };
 }
+const closeImageByScape = (e) => {
+  if (e.key === 'Escape') {
+    cerrarImagenGallery()
+    
+  }
+};
 
-function test(e, container, overlay) {
+function closeImageByClick(e) {
   if (
     e.target.classList.contains('btnCerrar') ||
     e.target.classList.contains('overlay')
   ) {
-    cerrarImagenGallery(container, overlay);
+    cerrarImagenGallery();
   }
 }
-
-function cerrarImagenGallery(container, overlay) {
-  container.style.animation = 'zoomOut .7s forwards';
+function cerrarImagenGallery() {
+  divTemp.style.animation = 'zoomOut .7s forwards';
   setTimeout(() => {
-    overlay.remove();
+    overlay.classList.remove('overlay');
   }, '1000');
   body.classList.remove('fix');
+  document.removeEventListener('keydown', closeImageByScape);
 }
 
 function openPopPerfil(e) {
@@ -322,6 +314,8 @@ function closePopPlaces() {
     popupElement.classList.toggle('popup_opened');
   }, '1000');
   body.classList.remove('fix');
+  document.removeEventListener('keydown', closeElementEventEscap);
+  document.removeEventListener('click', closePopPlacesByClick);
 }
 //AGREGAR UNA NUEVA IMAGEN
 function handlePlacesFormSubmit(e) {
