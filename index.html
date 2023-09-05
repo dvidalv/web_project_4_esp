@@ -15,7 +15,12 @@
       <main class="content">
         <section class="profile">
           <section class="popup popup_perfil">
-            <form class="popup__form popup__formPerfil" name="form" id="form" novalidate>
+            <form
+              class="popup__form popup__formPerfil"
+              name="form"
+              id="form"
+              novalidate
+            >
               <img
                 class="btnCerrar popup__button-cerrar-perfil"
                 src="./imagenes/Close-Icon.svg"
@@ -87,7 +92,7 @@
               />
               <h2 class="popup__title">Nuevo lugar</h2>
               <input
-              id="titulo-input"
+                id="titulo-input"
                 class="popup__input popup__input-titulo"
                 type="text"
                 placeholder="Titulo"
@@ -96,7 +101,7 @@
                 required
               />
               <input
-              id="url-input"
+                id="url-input"
                 class="popup__input popup__input-link"
                 type="url"
                 placeholder="Enlace a la Imagen"
@@ -139,9 +144,16 @@
         </section>
       </main>
     </div>
+    <div class="overlay-image">
+      <div class="overlay-image__image"></div>
+    </div>
     <footer class="footer">
       <p class="footer__title">&copy; 2023. David V. Vidal V.</p>
     </footer>
+    <script
+      src="https://kit.fontawesome.com/38456b6928.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="./pages/consts.js"></script>
     <script src="./pages/index.js"></script>
     <script src="./pages/validate.js"></script>
