@@ -9,7 +9,7 @@ const setEventListeners = (
   { inputSelector, submitButtonSelector },
   formElement
 ) => {
-  let spanError = document.querySelectorAll('.form-input-error');
+  const spanError = document.querySelectorAll('.form-input-error');
   if (spanError) {
     spanError.forEach((error) => error.remove());
   }
