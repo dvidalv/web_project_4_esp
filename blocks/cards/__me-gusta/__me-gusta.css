@@ -7,6 +7,9 @@
   display: none;
   /* color: currentColor; */
 }
+.card__me-gusta:hover{
+  cursor: pointer;
+}
 
 
 /* .fa-solid {

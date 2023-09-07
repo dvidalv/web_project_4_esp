@@ -1,6 +1,9 @@
 .card__imagen-corazon {
   width: 20px;
 }
+.card__imagen-corazon:hover {
+  cursor: pointer;
+}
 .card__imagen-corazon_solid {
   display: none;
 }
