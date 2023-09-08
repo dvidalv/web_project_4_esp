@@ -1,20 +1,16 @@
 .overlay__divTemp {
-  min-width: 75vw;
-  min-height: 50vh;
-  min-height: 75vh;
-  position: relative;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-
-
+  max-width: 75vw;
+  max-height: 50vh;
+  min-height: 30vh;
+  display: grid;
+  align-items: center;
 }
 
 @media (min-width: 768px) {
   .overlay__divTemp {
     max-width: 75vw;
     max-height: 75vh;
-    margin-top: 80px;
-
-}
+    display: grid;
+    align-items: center;
+  }
 }

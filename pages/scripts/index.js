@@ -5,7 +5,7 @@ const titulo = document.querySelector('.profile__title');
 const subtitle = document.querySelector('.profile__subtitle');
 const body = document.querySelector('body');
 const popupElement = document.querySelector('.popup_Element');
-const divTemp = document.querySelector('.overlay-image__image');
+const divTemp = document.querySelector('.overlay-image__container');
 const overlay = document.querySelector('.overlay-image');
 const popupPerfil = document.querySelector('.popup_perfil');
 const editButton = document.querySelector('.edit-button');
@@ -177,17 +177,21 @@ function noMeGusta(e) {
 }
 
 function selectImagen(e) {
-  //variables
   divTemp.classList.add('overlay__divTemp');
+  const img = document.createElement('img');
   const url = e.target.src;
+  img.src = url;
+  img.alt = e.target.alt;
+  img.classList.add('overlay-image__image');
 
-  //Contenedor de la imagen que se le da click
-  divTemp.style.backgroundImage = `url('${url}')`;
+  //Agregando la imagen al divTemp
+  divTemp.append(img);
 
   //Creando el boton de cerrar popup
   const btnCerrar = document.createElement('img');
   btnCerrar.src = '../imagenes/Close-Icon.svg';
   btnCerrar.classList.add('btnCerrar', 'btnCerrar_overlay');
+  //Insertando el boton cerrar al divTemp
   divTemp.insertAdjacentElement('beforeend', btnCerrar);
   divTemp.style.animation = 'zoomIn 1s forwards';
 
@@ -200,12 +204,10 @@ function selectImagen(e) {
 
   //Agrefgando la clase de fix al body
   body.classList.add('fix');
-
 }
 const closeImageByScape = (e) => {
   if (e.key === 'Escape') {
-    cerrarImagenGallery()
-    
+    cerrarImagenGallery();
   }
 };
 
@@ -218,9 +220,14 @@ function closeImageByClick(e) {
   }
 }
 function cerrarImagenGallery() {
+  const img = divTemp.querySelector('.overlay-image__image');
+  const btn = divTemp.querySelector('.btnCerrar');
+
   divTemp.style.animation = 'zoomOut .7s forwards';
   setTimeout(() => {
     overlay.classList.remove('overlay');
+    img.remove();
+    btn.remove();
   }, '1000');
   body.classList.remove('fix');
   document.removeEventListener('keydown', closeImageByScape);
