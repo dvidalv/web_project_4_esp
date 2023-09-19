@@ -1,3 +1,16 @@
+
+class FormValidator {
+  constructor(objConfig, formElement){
+
+  }
+  validando(){
+    console.log('validando')
+  }
+  
+}
+
+
+
 function enableValidation(objConf, formElement) {
   formElement.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -65,3 +78,5 @@ const toggleButtonState = (inputList, buttonElement) => {
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => !inputElement.validity.valid);
 };
+
+export {enableValidation, FormValidator}
