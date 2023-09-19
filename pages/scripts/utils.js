@@ -1,8 +1,8 @@
 import { initialCards, objConfig } from './consts.js';
-import { FormValidator } from './FormValidator.js.js';
+import { FormValidator } from './FormValidator.js';
+import Card from './Card.js.js';
 import {
   cardContainer,
-  cargarImagenes,
   divTemp,
   overlay,
   body,
@@ -14,7 +14,32 @@ import {
   titulo,
   subtitle,
 } from './index.js';
-import { enableValidation } from './FormValidator.js.js';
+
+function cargarImagenes(arr) {
+  initialCards.forEach((item) => {
+    //Instanciamos una nueva Tarjeta
+    const card = new Card(item, '.template-card');
+    const cardElement = card.generateCard();
+
+    // //APLICANDO FUNSION MEGUSTA
+    cardElement.querySelector('.card__imagen-corazon').onclick = meGusta;
+
+    cardElement.querySelector('.card__imagen-corazon_solid').onclick =
+      noMeGusta;
+
+    const NoLike = cardElement.querySelector('.card__imagen-corazon');
+    const Like = cardElement.querySelector('.card__imagen-corazon_solid');
+    if (item.like) {
+      NoLike.classList.add('corazonOff');
+      Like.classList.add('corazonOn');
+    } else {
+      Like.classList.add('corazonOff');
+      NoLike.classList.add('corazonOn');
+    }
+
+    cardContainer.append(cardElement);
+  });
+}
 function init() {
   const imagenes = document.querySelectorAll('.card__image-container');
   const trashs = document.querySelectorAll('.card__trash');
@@ -92,7 +117,6 @@ function meGusta(e) {
   heartSolid.classList.remove('corazonOff');
   setTimeout(() => {
     const card = e.target.parentElement.parentElement.parentElement;
-    console.log(card);
 
     const image = card.querySelector('.card__imagen').src;
 
@@ -193,10 +217,8 @@ function openPopPerfil(e) {
   aboutMe.value = subtitle.textContent;
   body.classList.add('fix');
 
-  const validation = new FormValidator();
-	validation.validando()
-
-  enableValidation(objConfig, formElement);
+  const validation = new FormValidator(objConfig, formElement);
+  validation.enableValidation();
 }
 
 function closePopPerfil(e) {
@@ -241,7 +263,8 @@ function openPopPlaces() {
   btnNuevaImagen.style.animation = 'zoomIn .7s forwards';
   popupElement.classList.toggle('popup_opened');
   body.classList.add('fix');
-  enableValidation(objConfig, popupElement);
+  const validation = new FormValidator(objConfig, popupElement);
+  validation.enableValidation();
 }
 function closePopPlacesByClick(e) {
   if (
@@ -252,7 +275,6 @@ function closePopPlacesByClick(e) {
     document.removeEventListener('click', closePopPlacesByClick);
     document.removeEventListener('keydown', closeElementEventEscap);
   }
-  // console.log(e.target)
 }
 function closeElementEventEscap(e) {
   if (e.key === 'Escape' || e.key === 'Esc') {
@@ -320,4 +342,5 @@ export {
   closePopPlaces,
   handlePlacesFormSubmit,
   limpiarHTML,
+  cargarImagenes,
 };

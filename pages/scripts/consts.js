@@ -41,4 +41,4 @@ const objConfig = {
 };
 
 // export default initialCards;
-export {initialCards, objConfig} ;
+export { initialCards, objConfig };

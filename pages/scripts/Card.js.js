@@ -8,9 +8,7 @@ class Card {
     this._like = false;
     this._cardSelector = cardSelector;
   }
-  // like() {
-  //   this._like = !this._like;
-  // }
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
