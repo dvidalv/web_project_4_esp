@@ -23,6 +23,4 @@ editButton.addEventListener('click', utils.openPopPerfil);
 addButton.addEventListener('click', utils.openPopPlaces);
 
 utils.cargarImagenes(initialCards);
-
-utils.cargarImagenes();
 utils.init();
