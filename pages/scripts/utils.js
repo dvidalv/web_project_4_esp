@@ -1,6 +1,6 @@
 import { initialCards, objConfig } from './consts.js';
 import { FormValidator } from './FormValidator.js';
-import Card from './Card.js.js';
+import Card from './Card.js';
 import {
   cardContainer,
   divTemp,
