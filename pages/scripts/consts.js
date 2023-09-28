@@ -39,6 +39,38 @@ const objConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
 };
+const popup__form = document.querySelector('.popup__form'); //formulario
+const cardContainer = document.querySelector('.elements'); //contenedor de tarjetas
+const titulo = document.querySelector('.profile__title');
+const subtitle = document.querySelector('.profile__subtitle');
+const body = document.querySelector('body');
+const popupElement = document.querySelector('.popup_Element'); //popup agregar nueva tarjeta
+const divTemp = document.querySelector('.overlay-image__container'); //Div que contiene la imagen
+const overlay = document.querySelector('.overlay-image');
+const popupPerfil = document.querySelector('.popup_perfil');
+const btnNuevaImagen = document.querySelector('.popup__formElement'); //formulario agregar nueva tarjeta
+const FormPerfil = document.querySelector('.popup__formPerfil');
+const editButton = document.querySelector('.edit-button');
+const buttonPopupButtonCerrarPlaces = document.querySelector(
+  '.popup__button-cerrar-places'
+);
+const addButton = document.querySelector('.add-button');
 
-// export default initialCards;
-export { initialCards, objConfig };
+export {
+  initialCards,
+  objConfig,
+  popup__form,
+  cardContainer,
+  titulo,
+  subtitle,
+  body,
+  popupElement,
+  divTemp,
+  overlay,
+  popupPerfil,
+  btnNuevaImagen,
+  FormPerfil,
+  editButton,
+  buttonPopupButtonCerrarPlaces,
+  addButton,
+};

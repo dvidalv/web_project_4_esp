@@ -1,21 +1,22 @@
-import { initialCards, objConfig } from './consts.js';
-import { FormValidator } from './FormValidator.js';
-import Card from './Card.js';
 import {
-  cardContainer,
-  divTemp,
-  overlay,
-  body,
-  btnNuevaImagen,
-  popupElement,
-  popupPerfil,
-  FormPerfil,
+  initialCards,
+  objConfig,
   popup__form,
+  cardContainer,
   titulo,
   subtitle,
-} from './index.js';
+  body,
+  popupElement,
+  divTemp,
+  overlay,
+  popupPerfil,
+  btnNuevaImagen,
+  FormPerfil,
+} from './consts.js';
+import { FormValidator } from './FormValidator.js';
+import Card from './Card.js';
 
-function cargarImagenes(arr) {
+function cargarImagenes() {
   initialCards.forEach((item) => {
     //Instanciamos una nueva Tarjeta
     const card = new Card(item, '.template-card');

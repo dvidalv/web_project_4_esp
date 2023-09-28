@@ -14,7 +14,6 @@ class Card {
       .querySelector(this._cardSelector)
       .content.querySelector('.card')
       .cloneNode(true);
-
     return cardElement;
   }
   generateCard() {

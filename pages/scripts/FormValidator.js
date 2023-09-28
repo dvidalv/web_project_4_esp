@@ -14,7 +14,6 @@ class FormValidator {
   _setEventListeners = ({ inputSelector, submitButtonSelector }) => {
     // console.log(this._objConfig)
     const spanError = document.querySelectorAll('.form-input-error');
-    console.log(this._objConfig);
     if (spanError) {
       spanError.forEach((error) => error.remove());
     }
@@ -57,7 +56,6 @@ class FormValidator {
   };
   _hideInputError = (spanErron, inputElement) => {
     const errorElement = spanErron;
-    // console.log(errorElement)
     inputElement.classList.remove('form__input_type_error');
     errorElement.classList.remove('form__input-error_active');
     errorElement.textContent = '';
