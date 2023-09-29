@@ -17,6 +17,7 @@ import { FormValidator } from './FormValidator.js';
 import Card from './Card.js';
 
 function cargarImagenes() {
+
   initialCards.forEach((item) => {
     //Instanciamos una nueva Tarjeta
     const card = new Card(item, '.template-card');
@@ -40,6 +41,7 @@ function cargarImagenes() {
 
     cardContainer.append(cardElement);
   });
+  init()
 }
 function init() {
   const imagenes = document.querySelectorAll('.card__image-container');

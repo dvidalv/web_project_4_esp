@@ -1,5 +1,3 @@
-import { initialCards } from './consts.js';
-import * as utils from './utils.js';
 class Card {
   constructor(obj, cardSelector) {
     this._name = obj.name;
