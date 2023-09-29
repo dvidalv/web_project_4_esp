@@ -13,11 +13,10 @@ import {
   btnNuevaImagen,
   FormPerfil,
 } from './consts.js';
-import { FormValidator } from './FormValidator.js';
-import Card from './Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Card from '../components/Card.js';
 
-function cargarImagenes() {
-
+function renderElements() {
   initialCards.forEach((item) => {
     //Instanciamos una nueva Tarjeta
     const card = new Card(item, '.template-card');
@@ -41,7 +40,7 @@ function cargarImagenes() {
 
     cardContainer.append(cardElement);
   });
-  init()
+  init();
 }
 function init() {
   const imagenes = document.querySelectorAll('.card__image-container');
@@ -93,7 +92,7 @@ function init() {
         }
       });
       limpiarHTML();
-      cargarImagenes();
+      renderElements();
       init();
     });
   });
@@ -138,7 +137,7 @@ function meGusta(e) {
     }
 
     limpiarHTML();
-    cargarImagenes();
+    renderElements();
     init();
   }, '2000');
 }
@@ -171,7 +170,7 @@ function noMeGusta(e) {
   }
 
   limpiarHTML();
-  cargarImagenes();
+  renderElements();
   init();
 }
 
@@ -312,7 +311,7 @@ function handlePlacesFormSubmit(e) {
   };
 
   initialCards.unshift(nuevaImagen);
-  cargarImagenes();
+  renderElements();
   init();
   closePopPlaces();
 
@@ -345,5 +344,5 @@ export {
   closePopPlaces,
   handlePlacesFormSubmit,
   limpiarHTML,
-  cargarImagenes,
+  renderElements,
 };
