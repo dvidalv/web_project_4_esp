@@ -32,10 +32,10 @@ const initialCards = [
 ];
 
 const objConfig = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inactiveButtonClass: 'popup__button_disabled',
+  formSelector: '.popup__form', //selecciona el formulario
+  inputSelector: '.popup__input', //selecciona los inputs
+  submitButtonSelector: '.popup__submit', //selecciona los submits
+  inactiveButtonClass: 'popup__button_disabled', //inactiva un boton mediata esta case
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
 };
@@ -54,9 +54,14 @@ const editButton = document.querySelector('.edit-button');
 const buttonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
+const userInfo = {
+  nombre: titulo,
+  job: subtitle,
+};
 const addButton = document.querySelector('.add-button');
 
 export {
+  userInfo,
   initialCards,
   objConfig,
   popup__form,
