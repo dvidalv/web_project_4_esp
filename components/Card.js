@@ -1,4 +1,6 @@
 import PopupWithImage from './PopupWithImage.js';
+import { initialCards } from '../utils/consts.js';
+import { meGusta } from '../utils/utils.js';
 class Card {
   constructor({ name, link, alt }, cardSelector) {
     this._name = name;
@@ -21,6 +23,7 @@ class Card {
     this._element.querySelector('.card__imagen').src = this._link;
     this._element.querySelector('.card__imagen').alt = this._alt;
     this._element.querySelector('.card__title').textContent = this._name;
+
     this._element.addEventListener('click', (e) => {
       if (e.target.classList.contains('card__imagen')) {
         const imageInfo = {
@@ -31,6 +34,7 @@ class Card {
         popupImage.open();
       }
     });
+    this._element.querySelector('.card__imagen-corazon').onclick = meGusta;
 
     return this._element;
   }

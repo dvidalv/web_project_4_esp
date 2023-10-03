@@ -13,46 +13,50 @@ import PopupWithForm from '../../components/PopupWithForm.js';
 import PopupWithImage from '../../components/PopupWithImage.js';
 import UserInfo from '../../components/UserInfo.js';
 
-const cardsList = new Section(
-  {
-    data: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, '.template-card');
-      const cardElement = card.generateCard();
-      cardsList.addItem(cardElement);
-    },
-  },
-  cardContainer
-);
-
-editButton.addEventListener('click', () => {
-  const popup = new PopupWithForm(
+window.addEventListener('DOMContentLoaded', app);
+function app() {
+  const cardsList = new Section(
     {
-      data: userInfo,
-      handleFormSubmit: () => {
-        const user = new UserInfo(userInfo);
-        const data = user.getUserInfo();
-        user.setUserInfo(data);
+      data: initialCards,
+      renderer: (item) => {
+        const card = new Card(item, '.template-card');
+        const cardElement = card.generateCard();
+        cardsList.addItem(cardElement);
       },
     },
-    '.popup_perfil'
+    cardContainer
   );
-  popup.open();
-  // popup.getInputData();
-});
-addButton.addEventListener('click', () => {
-  const popup = new PopupWithForm(
-    {
-      data: {},
-      handleFormSubmit: () => {
-        const user = new UserInfo(userInfo);
-        const data = user.getUserInfo();
-        user.setUserInfo(data);
-      },
-    },
-    '.popup_Element'
-  );
-  popup.open();
-});
 
-cardsList.renderItems();
+  editButton.addEventListener('click', () => {
+    const popup = new PopupWithForm(
+      {
+        data: userInfo,
+        handleFormSubmit: () => {
+          const user = new UserInfo(userInfo);
+          const data = user.getUserInfo();
+          user.setUserInfo(data);
+        },
+      },
+      '.popup_perfil'
+    );
+    popup.open();
+    // popup.getInputData();
+  });
+  addButton.addEventListener('click', () => {
+    const popup = new PopupWithForm(
+      {
+        data: {},
+        handleFormSubmit: () => {
+          const user = new UserInfo(userInfo);
+          const data = user.getUserInfo();
+          user.setUserInfo(data);
+        },
+      },
+      '.popup_Element'
+    );
+    popup.open();
+  });
+  document.addEventListener('click', (e) => {});
+
+  cardsList.renderItems();
+}

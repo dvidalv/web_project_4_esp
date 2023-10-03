@@ -42,72 +42,6 @@ function renderElements() {
   });
   init();
 }
-function init() {
-  const imagenes = document.querySelectorAll('.card__image-container');
-  const trashs = document.querySelectorAll('.card__trash');
-
-  imagenes.forEach((imagen) => {
-    imagen.addEventListener('click', selectImagen);
-    // console.log(imagen)
-  });
-
-  function selectImagen(e) {
-    divTemp.classList.add('overlay__divTemp');
-    const img = document.createElement('img');
-    const url = e.target.src;
-    img.src = url;
-    img.alt = e.target.alt;
-    img.classList.add('overlay-image__image');
-
-    //Agregando la imagen al divTemp
-    divTemp.append(img);
-
-    //Creando el boton de cerrar popup
-    const btnCerrar = document.createElement('img');
-    btnCerrar.src = '../imagenes/Close-Icon.svg';
-    btnCerrar.classList.add('btnCerrar', 'btnCerrar_overlay');
-    //Insertando el boton cerrar al divTemp
-    divTemp.insertAdjacentElement('beforeend', btnCerrar);
-    divTemp.style.animation = 'zoomIn 1s forwards';
-
-    //Creando el overlay
-    overlay.appendChild(divTemp);
-    overlay.classList.add('overlay');
-    body.append(overlay);
-    overlay.addEventListener('click', closeImageByClick);
-    document.addEventListener('keydown', closeImageByScape);
-
-    //Agrefgando la clase de fix al body
-    body.classList.add('fix');
-  }
-
-  //BORRAR IMAGEN
-  trashs.forEach((trash) => {
-    trash.addEventListener('click', (e) => {
-      const element = e.target.parentElement;
-      const imagen = element.querySelector('.card__imagen').src;
-      initialCards.forEach((link, i) => {
-        if (imagen === link.link) {
-          initialCards.splice(i, 1);
-        }
-      });
-      limpiarHTML();
-      renderElements();
-      init();
-    });
-  });
-
-  trashs.forEach((trash) => {
-    trash.addEventListener('mouseenter', () => {
-      trash.style.color = 'rgba(255, 255, 255, 0.60)';
-    });
-  });
-  trashs.forEach((trash) => {
-    trash.addEventListener('mouseout', () => {
-      trash.style.color = 'currentColor';
-    });
-  });
-}
 // meGusta();
 function meGusta(e) {
   const heart = e.target;
@@ -140,6 +74,36 @@ function meGusta(e) {
     renderElements();
     init();
   }, '2000');
+}
+function init() {
+  const trashs = document.querySelectorAll('.card__trash');
+
+  //BORRAR IMAGEN
+  trashs.forEach((trash) => {
+    trash.addEventListener('click', (e) => {
+      const element = e.target.parentElement;
+      const imagen = element.querySelector('.card__imagen').src;
+      initialCards.forEach((link, i) => {
+        if (imagen === link.link) {
+          initialCards.splice(i, 1);
+        }
+      });
+      limpiarHTML();
+      renderElements();
+      init();
+    });
+  });
+
+  trashs.forEach((trash) => {
+    trash.addEventListener('mouseenter', () => {
+      trash.style.color = 'rgba(255, 255, 255, 0.60)';
+    });
+  });
+  trashs.forEach((trash) => {
+    trash.addEventListener('mouseout', () => {
+      trash.style.color = 'currentColor';
+    });
+  });
 }
 
 // NO meGusta();
