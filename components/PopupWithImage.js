@@ -37,7 +37,6 @@ class PopupWithImage extends Popup {
     body.classList.add('fix');
   }
   open() {
-    divTemp.innerHTML = '';
     super.open();
     this._selectImagen();
   }

@@ -1,17 +1,18 @@
 import Popup from './Popup.js';
-
+import UserInfo from './UserInfo.js';
 class PopupWithForm extends Popup {
-  constructor({ data, getUser }, popupSelector) {
+  constructor({ data, handleFormSubmit }, popupSelector) {
     super(popupSelector);
-    this.getUser = getUser;
-    this.data = data;
+    this.handleFormSubmit = handleFormSubmit;
+    this.nombre = data.nombre;
+    this.job = data.job;
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
-  _getInputValues(data) {
+  _getInputValues() {
     //recopila datos de todos los campos de entrada.
     // Obtiene los elementos de todos los campos
-    this._inputList = this._popup.querySelectorAll('.form__input');
+    this._inputList = this._popup.querySelectorAll('.popup__input');
 
     // Crea un objeto vacío
     this._formValues = {};
@@ -27,6 +28,23 @@ class PopupWithForm extends Popup {
 
   _handleFormSubmit(e) {
     e.preventDefault();
+    const objValues = this._getInputValues();
+
+    const nombre = document.querySelector(this.nombre);
+    const job = document.querySelector(this.job);
+
+    nombre.textContent = objValues.nombre;
+    job.textContent = objValues.job;
+
+    this._popup.classList.remove('popup_opened');
+  }
+  open() {
+    const titulo = document.querySelector('.popup__input_nombre');
+    titulo.setAttribute('autofocus', true);
+    console.log(titulo);
+    super.open();
+    this.handleFormSubmit();
+    document.querySelector('body').classList.add('fix');
   }
 
   _removeEventListeners() {

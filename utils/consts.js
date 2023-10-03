@@ -41,8 +41,8 @@ const objConfig = {
 };
 const popup__form = document.querySelector('.popup__form'); //formulario
 const cardContainer = document.querySelector('.elements'); //contenedor de tarjetas
-const titulo = document.querySelector('.profile__title');
-const subtitle = document.querySelector('.profile__subtitle');
+const titulo = '.profile__title';
+const subtitle = '.profile__subtitle';
 const body = document.querySelector('body');
 const popupElement = document.querySelector('.popup_Element'); //popup agregar nueva tarjeta
 const divTemp = document.querySelector('.overlay-image__container'); //Div que contiene la imagen
