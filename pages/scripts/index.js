@@ -55,15 +55,4 @@ addButton.addEventListener('click', () => {
   popup.open();
 });
 
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('card__imagen')) {
-    const imageInfo = {
-      src: e.target.src,
-      alt: e.target.alt,
-    };
-    const popupImage = new PopupWithImage(imageInfo, '.overlay-image');
-    popupImage.open();
-  }
-});
-
 cardsList.renderItems();

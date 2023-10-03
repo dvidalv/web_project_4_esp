@@ -41,7 +41,6 @@ class PopupWithForm extends Popup {
   open() {
     const titulo = document.querySelector('.popup__input_nombre');
     titulo.setAttribute('autofocus', true);
-    console.log(titulo);
     super.open();
     this.handleFormSubmit();
     document.querySelector('body').classList.add('fix');
