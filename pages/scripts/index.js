@@ -13,50 +13,57 @@ import PopupWithForm from '../../components/PopupWithForm.js';
 import PopupWithImage from '../../components/PopupWithImage.js';
 import UserInfo from '../../components/UserInfo.js';
 
-window.addEventListener('DOMContentLoaded', app);
-function app() {
-  const cardsList = new Section(
+const cardsList = new Section(
+  {
+    data: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, '.template-card');
+      const cardElement = card.generateCard();
+      cardsList.addItem(cardElement);
+    },
+  },
+  cardContainer
+);
+
+editButton.addEventListener('click', () => {
+  const popup = new PopupWithForm(
     {
-      data: initialCards,
-      renderer: (item) => {
-        const card = new Card(item, '.template-card');
-        const cardElement = card.generateCard();
-        cardsList.addItem(cardElement);
+      data: userInfo,
+      info: () => {
+        const user = new UserInfo(userInfo);
+        const data = user.getUserInfo();
+        user.setUserInfo(data);
+
+        return data;
       },
     },
-    cardContainer
+    '.popup_perfil'
   );
-
-  editButton.addEventListener('click', () => {
-    const popup = new PopupWithForm(
-      {
-        data: userInfo,
-        handleFormSubmit: () => {
-          const user = new UserInfo(userInfo);
-          const data = user.getUserInfo();
-          user.setUserInfo(data);
-        },
+  popup.open();
+});
+addButton.addEventListener('click', () => {
+  const popup = new PopupWithForm(
+    {
+      data: {},
+      addImage: () => {
+        
       },
-      '.popup_perfil'
-    );
-    popup.open();
-    // popup.getInputData();
-  });
-  addButton.addEventListener('click', () => {
-    const popup = new PopupWithForm(
-      {
-        data: {},
-        handleFormSubmit: () => {
-          const user = new UserInfo(userInfo);
-          const data = user.getUserInfo();
-          user.setUserInfo(data);
-        },
-      },
-      '.popup_Element'
-    );
-    popup.open();
-  });
-  document.addEventListener('click', (e) => {});
+    },
+    '.popup_Element'
+  );
+  // newImage.addImage();
+  popup.open();
+});
 
-  cardsList.renderItems();
-}
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('card__imagen')) {
+    const imageInfo = {
+      src: e.target.src,
+      alt: e.target.alt,
+    };
+    const popupImage = new PopupWithImage(imageInfo, '.overlay-image');
+    popupImage.open();
+  }
+});
+
+cardsList.renderItems();

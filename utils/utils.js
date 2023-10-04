@@ -42,129 +42,10 @@ function renderElements() {
   });
   init();
 }
-// meGusta();
-function meGusta(e) {
-  const heart = e.target;
-  const heartSolid = heart.nextElementSibling;
-  heartSolid.style.animation = 'megusta 1s 2';
-  heart.classList.add('corazonOff');
-  heart.classList.remove('corazonOn');
-  heartSolid.classList.add('corazonOn');
-  heartSolid.classList.remove('corazonOff');
-  setTimeout(() => {
-    const card = e.target.parentElement.parentElement.parentElement;
 
-    const image = card.querySelector('.card__imagen').src;
 
-    if (heart.classList.contains('corazonOff')) {
-      initialCards.forEach((card) => {
-        if (card.link === image) {
-          card.like = true;
-        }
-      });
-    } else {
-      initialCards.forEach((card) => {
-        if (card.link === image) {
-          card.like = false;
-        }
-      });
-    }
 
-    limpiarHTML();
-    renderElements();
-    init();
-  }, '2000');
-}
-function init() {
-  const trashs = document.querySelectorAll('.card__trash');
 
-  //BORRAR IMAGEN
-  trashs.forEach((trash) => {
-    trash.addEventListener('click', (e) => {
-      const element = e.target.parentElement;
-      const imagen = element.querySelector('.card__imagen').src;
-      initialCards.forEach((link, i) => {
-        if (imagen === link.link) {
-          initialCards.splice(i, 1);
-        }
-      });
-      limpiarHTML();
-      renderElements();
-      init();
-    });
-  });
-
-  trashs.forEach((trash) => {
-    trash.addEventListener('mouseenter', () => {
-      trash.style.color = 'rgba(255, 255, 255, 0.60)';
-    });
-  });
-  trashs.forEach((trash) => {
-    trash.addEventListener('mouseout', () => {
-      trash.style.color = 'currentColor';
-    });
-  });
-}
-
-// NO meGusta();
-function noMeGusta(e) {
-  const heartSolid = e.target;
-  const heart = heartSolid.previousElementSibling;
-  heartSolid.classList.add('corazonOff');
-  heartSolid.classList.remove('corazonOn');
-  heart.classList.remove('corazonOff');
-  heart.classList.remove('corazonOn');
-
-  const card = e.target.parentElement.parentElement.parentElement;
-
-  const image = card.querySelector('.card__imagen').src;
-
-  if (heartSolid.classList.contains('corazonOn')) {
-    initialCards.forEach((card) => {
-      if (card.link === image) {
-        card.like = true;
-      }
-    });
-  } else {
-    initialCards.forEach((card) => {
-      if (card.link === image) {
-        card.like = false;
-      }
-    });
-  }
-
-  limpiarHTML();
-  renderElements();
-  init();
-}
-
-const closeImageByScape = (e) => {
-  if (e.key === 'Escape') {
-    cerrarImagenGallery();
-  }
-};
-
-function closeImageByClick(e) {
-  if (
-    e.target.classList.contains('btnCerrar') ||
-    e.target.classList.contains('overlay')
-  ) {
-    cerrarImagenGallery();
-  }
-}
-function cerrarImagenGallery() {
-  const img = divTemp.querySelector('.overlay-image__image');
-  const btn = divTemp.querySelector('.btnCerrar');
-
-  divTemp.style.animation = 'zoomOut .7s forwards';
-  setTimeout(() => {
-    overlay.classList.remove('overlay');
-    img.remove();
-    btn.remove();
-  }, '1000');
-  body.classList.remove('fix');
-  document.removeEventListener('keydown', closeImageByScape);
-}
 
 function openPopPerfil(e) {
   FormPerfil.addEventListener('submit', handleProfileFormSubmit);
@@ -291,12 +172,6 @@ function limpiarHTML() {
 }
 
 export {
-  init,
-  meGusta,
-  noMeGusta,
-  closeImageByScape,
-  closeImageByClick,
-  cerrarImagenGallery,
   openPopPerfil,
   closePopPerfil,
   closePerfilEventEscap,

@@ -1,4 +1,4 @@
-import { init } from '../utils/utils.js';
+
 class Section {
   constructor({ data, renderer }, containerSelector) {
     this._initialArray = data;
@@ -19,7 +19,7 @@ class Section {
       //Iteramos los datos
       this._renderer(item); //ejecutamos el callback, pasandole un objeto del array
     });
-    init();
+
   }
 }
 export default Section;

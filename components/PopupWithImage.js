@@ -1,9 +1,9 @@
 import Popup from './Popup.js';
 import { divTemp, overlay, body } from '../utils/consts.js';
-import { closeImageByClick, closeImageByScape } from '../utils/utils.js';
+// import { closeImageByClick } from '../utils/utils.js';
 
 class PopupWithImage extends Popup {
-  constructor({ src, alt }, popupSelector) {
+  constructor({ src, alt, overlay }, popupSelector) {
     super(popupSelector);
     this._src = src;
     this._alt = alt;
@@ -30,16 +30,65 @@ class PopupWithImage extends Popup {
     overlay.appendChild(divTemp);
     overlay.classList.add('overlay');
     body.append(overlay);
-    overlay.addEventListener('click', closeImageByClick);
-    document.addEventListener('keydown', closeImageByScape);
+    // overlay.addEventListener('click', closeImageByClick);
+    document.addEventListener('keydown', this._closeImageByScape);
 
     //Agrefgando la clase de fix al body
     body.classList.add('fix');
   }
+
+  _closeImageByClick = (e) => {
+    if (
+      e.target.classList.contains('btnCerrar') ||
+      e.target.classList.contains('overlay')
+    ) {
+      this._cerrarImagenGallery();
+    }
+  };
+
+  _closeImageByScape = (e) => {
+    if (e.key === 'Escape') {
+      this._cerrarImagenGallery();
+    }
+  };
+
+  _cerrarImagenGallery() {
+    const img = divTemp.querySelector('.overlay-image__image');
+    const btn = divTemp.querySelector('.btnCerrar');
+
+    divTemp.style.animation = 'zoomOut .7s forwards';
+    setTimeout(() => {
+      overlay.classList.remove('overlay');
+      img.remove();
+      btn.remove();
+    }, '1000');
+    body.classList.remove('fix');
+    document.removeEventListener('keydown', this._closeImageByScape);
+    this.closePopup()
+  }
+
+
+  _setEventListeners() {
+    super._setEventListeners()
+    document.addEventListener('click', this._closeImageByClick);
+  }
+  _removeEventListeners = () =>{
+    super._removeEventListeners()
+  }
   open() {
     super.open();
+    this._setEventListeners();
     this._selectImagen();
+  }
+  closePopup() {
+    super.closePopup();
+
   }
 }
 
 export default PopupWithImage;
+
+// const closeImageByScape = (e) => {
+//   if (e.key === 'Escape') {
+//     cerrarImagenGallery();
+//   }
