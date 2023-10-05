@@ -42,17 +42,8 @@ editButton.addEventListener('click', () => {
   popup.open();
 });
 addButton.addEventListener('click', () => {
-  const popup = new PopupWithForm(
-    {
-      data: {},
-      addImage: () => {
-        
-      },
-    },
-    '.popup_Element'
-  );
-  // newImage.addImage();
-  popup.open();
+  const newImage = new Popup('.popup_Element');
+  newImage.open()
 });
 
 document.addEventListener('click', (e) => {

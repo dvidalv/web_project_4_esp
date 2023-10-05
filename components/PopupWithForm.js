@@ -9,22 +9,7 @@ class PopupWithForm extends Popup {
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
-  _getInputValues() {
-    //recopila datos de todos los campos de entrada.
-    // Obtiene los elementos de todos los campos
-    this._inputList = this._popup.querySelectorAll('.popup__input');
-
-    // Crea un objeto vacío
-    this._formValues = {};
-
-    // Agrega los valores de los campos a este objeto
-    this._inputList.forEach((input) => {
-      this._formValues[input.name] = input.value;
-    });
-
-    // Devuelve el objeto values
-    return this._formValues;
-  }
+ 
 
   _handleFormSubmit(e) {
     e.preventDefault();

@@ -156,8 +156,8 @@ function handlePlacesFormSubmit(e) {
   };
 
   initialCards.unshift(nuevaImagen);
-  renderElements();
-  init();
+  // renderElements();
+  // init();
   closePopPlaces();
 
   //LIMPIANDO LOS CAMPOS DEL FORMULARIO
