@@ -1,53 +1,45 @@
 import Popup from './Popup.js';
 import UserInfo from './UserInfo.js';
+
 class PopupWithForm extends Popup {
-  constructor({ data, info }, popupSelector) {
+  constructor({ getObget }, popupSelector) {
     super(popupSelector);
-    this._info = info;
-    this._nombre = data.nombre;
-    this._job = data.job;
+    this.getObget = getObget;
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
 
- 
-
-  _handleFormSubmit(e) {
+  _handleFormSubmit = (e) => {
     e.preventDefault();
-    const objValues = this._getInputValues();
 
-
-    const nombre = document.querySelector(this._nombre);
-    const job = document.querySelector(this._job);
-
-    nombre.textContent = objValues.nombre;
-    job.textContent = objValues.job;
-
+    this._close();
     this._popup.classList.remove('popup_opened');
+  };
+
+  _setEventListeners() {
+    //Modifica el método padre
+    super._setEventListeners();
+    this._popup.addEventListener('submit', this._handleFormSubmit);
   }
+
   open() {
     super.open();
-    // this._handleFormSubmit();
     this._setEventListeners();
     document.querySelector('body').classList.add('fix');
-    this._info();
+  }
+
+  _close() {
+    super._close();
+    const newObj = this._getInputValues(); //get Data
+    console.log(newObj)
+    this.getObget(newObj); //ejecutamos el callback y le pasamos data
+    const form = this._popup.firstElementChild;
+    form.reset();
+    document.querySelector('body').classList.remove('fix');
   }
 
   _removeEventListeners() {
     super._removeEventListeners();
     this._popup.removeEventListener('submit', this._handleFormSubmit);
-  }
-
-  _setEventListeners() {
-    //Modifica el método padre
-    super._setEventListeners();
-    this._popup.addEventListener('submit', (e) => {
-      this._handleFormSubmit(e);
-    });
-  }
-  addImage(){
-    this._getPopup();
-    this._popup.classList.add('popup_opened');
-    console.log(this._popup)
   }
 }
 

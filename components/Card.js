@@ -2,10 +2,10 @@ import PopupWithImage from './PopupWithImage.js';
 import { initialCards } from '../utils/consts.js';
 // import { meGusta } from '../utils/utils.js';
 class Card {
-  constructor({ name, link, alt }, cardSelector) {
+  constructor({ name, link }, cardSelector) {
     this._name = name;
     this._link = link;
-    this._alt = alt;
+    this._alt = name;
     this._like = false;
     this._cardSelector = cardSelector;
   }
@@ -66,8 +66,6 @@ class Card {
     this._element.querySelector('.card__title').textContent = this._name;
 
     this._listeners()
-
-   
     return this._element;
   }
 }

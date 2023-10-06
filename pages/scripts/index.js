@@ -25,25 +25,44 @@ const cardsList = new Section(
   cardContainer
 );
 
-editButton.addEventListener('click', () => {
-  const popup = new PopupWithForm(
-    {
-      data: userInfo,
-      info: () => {
-        const user = new UserInfo(userInfo);
-        const data = user.getUserInfo();
-        user.setUserInfo(data);
-
-        return data;
-      },
+const popup = new PopupWithForm(
+  {
+    handleFormSubmit: () => {
+      const user = new UserInfo(userInfo);
+      const data = user.getUserInfo();
+      user.setUserInfo();
+      return data;
     },
-    '.popup_perfil'
-  );
+  },
+  '.popup_perfil'
+);
+editButton.addEventListener('click', () => {
   popup.open();
 });
+
+const newImage = new PopupWithForm(
+  {
+    getObget: (obj) => {
+      const {link, name} = obj
+      const newCard = {
+        name,
+        link,
+        alt: name,
+        linke: false
+      };
+      initialCards.unshift(newCard);
+      cardsList.renderItems();
+
+    
+    },
+  },
+  '.popup_Element'
+);
 addButton.addEventListener('click', () => {
-  const newImage = new Popup('.popup_Element');
-  newImage.open()
+
+  // initialCards.unshift(getObget())
+
+  newImage.open();
 });
 
 document.addEventListener('click', (e) => {
@@ -58,3 +77,4 @@ document.addEventListener('click', (e) => {
 });
 
 cardsList.renderItems();
+export { popup };

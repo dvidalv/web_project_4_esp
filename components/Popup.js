@@ -8,7 +8,7 @@ class Popup {
 
   _handleEscClose(e) {
     if (e.key === 'Escape' || e.key === 'Esc') {
-      this.closePopup();
+      this._close();
     }
   }
 
@@ -17,12 +17,11 @@ class Popup {
       e.target.classList.contains('popup') ||
       e.target.classList.contains('btnCerrar')
     ) {
-      this.closePopup();
+      this._close();
     }
   }
   _handleFormSubmit(e) {
     e.preventDefault();
-    console.log('papa')
   }
 
   _getPopup() {
@@ -33,13 +32,12 @@ class Popup {
   _setEventListeners() {
     document.addEventListener('keydown', this._handleEscClose);
     this._popup.addEventListener('click', this._handleOutsideClick);
-    this._popup.addEventListener('submit', () => {
-      _handleFormSubmit(e)
-    })
+    this._popup.addEventListener('submit', this._handleFormSubmit);
   }
   _removeEventListeners() {
     document.removeEventListener('keydown', this._handleEscClose);
     this._popup.removeEventListener('click', this._handleOutsideClick);
+    this._popup.removeEventListener('submit', this._handleFormSubmit);
   }
 
   open() {
@@ -48,10 +46,11 @@ class Popup {
     this._setEventListeners();
   }
 
-  closePopup() {
+  _close() {
     this._popup.classList.remove('popup_opened');
     this._removeEventListeners();
   }
+
   _getInputValues() {
     //recopila datos de todos los campos de entrada.
     // Obtiene los elementos de todos los campos
