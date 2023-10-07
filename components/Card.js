@@ -2,15 +2,17 @@ import PopupWithImage from './PopupWithImage.js';
 import { initialCards } from '../utils/consts.js';
 // import { meGusta } from '../utils/utils.js';
 class Card {
-  constructor({ name, link }, cardSelector) {
+  constructor({ name, link, like }, cardSelector) {
     this._name = name;
     this._link = link;
     this._alt = name;
-    this._like = false;
+    this._like = like
     this._cardSelector = cardSelector;
     this.likeCard = this.likeCard.bind(this);
     this.disLikeCard = this.disLikeCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
+    this._heart = document.querySelector('.card__imagen-corazon')
+    this._heart_solid = document.querySelector('.card__imagen-corazon_solid')
   }
   likeCard(e) {
     const heart = e.target;
@@ -20,6 +22,21 @@ class Card {
     heart.classList.remove('corazonOn');
     heartSolid.classList.add('corazonOn');
     heartSolid.classList.remove('corazonOff');
+    
+    if (heart.classList.contains('corazonOff')) {
+      initialCards.forEach((card) => {
+        if (card.link === this._link) {
+          card.like = true;
+        }
+      });
+    } else {
+      initialCards.forEach((card) => {
+        if (card.link === this._link) {
+          card.like = false;
+        }
+      });
+    }
+
   }
   disLikeCard(e) {
     const heartSolid = e.target;
@@ -28,6 +45,27 @@ class Card {
     heartSolid.classList.remove('corazonOn');
     heart.classList.remove('corazonOff');
     heart.classList.remove('corazonOn');
+
+    if (heart.classList.contains('corazonOn')) {
+      this._like = true
+    } else {
+      this._like = false
+    }
+
+    if (heartSolid.classList.contains('corazonOn')) {
+      initialCards.forEach((card) => {
+        if (card.link === this._link) {
+          card.like = true;
+        }
+      });
+    } else {
+      initialCards.forEach((card) => {
+        if (card.link === this._link) {
+          card.like = false;
+        }
+      });
+    }
+
   }
   deleteCard(e) {
     const card = e.target.parentElement;

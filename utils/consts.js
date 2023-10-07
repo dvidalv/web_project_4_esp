@@ -3,31 +3,37 @@ const initialCards = [
     name: 'Valle de Yosemite',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg',
     alt: 'imagen Valle de Yosenite',
+    like: true
   },
   {
     name: 'Lago Louise',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg',
     alt: 'imagen Lago Louise',
+    like: false
   },
   {
     name: 'Montañas Calvas',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg',
     alt: 'imagen Montañas calvas',
+    like: false
   },
   {
     name: 'Latemar',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg',
     alt: 'imagen Latemar',
+    like: false
   },
   {
     name: 'Parque Nacional de la Vanoise',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg',
     alt: 'imagen Parque Nacional de la Vanouse',
+    like: false
   },
   {
     name: 'Lago di Braies',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg',
     alt: 'imagen Lago Louise',
+    like: false
   },
 ];
 

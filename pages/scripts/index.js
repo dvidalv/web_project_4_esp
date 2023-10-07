@@ -46,25 +46,17 @@ editButton.addEventListener('click', () => {
 
   // form.enableValidation();
 });
-// '.popup_Element'
 
-const newImage = new PopupWithForm((obj) => {
-  console.log(obj)
+const newPlace = new PopupWithForm((obj) => {
   const { link, name } = obj;
-  const newCard = {
-    name,
-    link,
-    alt: name,
-    linke: false,
-  };
-  initialCards.unshift(newCard);
-  cardsList.renderItems();
+
+  const newCard = new Card({ name, link, like: false }, '.template-card');
+
+  cardContainer.prepend(newCard.generateCard());
 }, '.popup_Element');
 
 addButton.addEventListener('click', () => {
-  // initialCards.unshift(getObget())
-
-  newImage.open();
+  newPlace.open();
 });
 
 document.addEventListener('click', (e) => {
