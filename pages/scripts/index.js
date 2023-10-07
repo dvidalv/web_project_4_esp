@@ -3,7 +3,9 @@ import {
   editButton,
   addButton,
   cardContainer,
-  userInfo,
+  userSelectors,
+  title,
+  subtitle,
 } from '../../utils/consts.js';
 import * as utils from '../../utils/utils.js';
 import Section from '../../components/Section.js';
@@ -24,42 +26,42 @@ const cardsList = new Section(
   },
   cardContainer
 );
+const userInfo = new UserInfo(userSelectors);
 
-const popup = new PopupWithForm(
-  {
-    handleFormSubmit: () => {
-      const user = new UserInfo(userInfo);
-      const data = user.getUserInfo();
-      user.setUserInfo();
-      return data;
-    },
-  },
-  '.popup_perfil'
-);
+const popupProfile = new PopupWithForm((data) => {
+  userInfo.setUserInfo(data);
+}, '.popup_perfil');
+
 editButton.addEventListener('click', () => {
-  popup.open();
+  //abre form profile
+  const { _inputTitle, _inputStittle } = userInfo;
+  const { nombre, job } = userInfo.getUserInfo();
+
+  _inputTitle.value = nombre;
+  _inputStittle.value = job;
+
+  popupProfile.open();
+
+  // const form = new FormValidator(popupFormSelectorsToValidate, '.popup');
+
+  // form.enableValidation();
 });
+// '.popup_Element'
 
-const newImage = new PopupWithForm(
-  {
-    getObget: (obj) => {
-      const {link, name} = obj
-      const newCard = {
-        name,
-        link,
-        alt: name,
-        linke: false
-      };
-      initialCards.unshift(newCard);
-      cardsList.renderItems();
+const newImage = new PopupWithForm((obj) => {
+  console.log(obj)
+  const { link, name } = obj;
+  const newCard = {
+    name,
+    link,
+    alt: name,
+    linke: false,
+  };
+  initialCards.unshift(newCard);
+  cardsList.renderItems();
+}, '.popup_Element');
 
-    
-    },
-  },
-  '.popup_Element'
-);
 addButton.addEventListener('click', () => {
-
   // initialCards.unshift(getObget())
 
   newImage.open();
@@ -77,4 +79,3 @@ document.addEventListener('click', (e) => {
 });
 
 cardsList.renderItems();
-export { popup };

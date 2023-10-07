@@ -3,7 +3,7 @@ import {
   objConfig,
   popup__form,
   cardContainer,
-  titulo,
+  title,
   subtitle,
   body,
   popupElement,
@@ -42,10 +42,6 @@ function renderElements() {
   });
   init();
 }
-
-
-
-
 
 function openPopPerfil(e) {
   FormPerfil.addEventListener('submit', handleProfileFormSubmit);
@@ -145,13 +141,13 @@ function handlePlacesFormSubmit(e) {
   limpiarHTML();
 
   const tituloInput = document.querySelector('.popup__input-titulo');
-  const linkImput = document.querySelector('.popup__input-link');
+  const linkinput = document.querySelector('.popup__input-link');
   const alt = `imagen de  ${tituloInput.value}`;
 
   // Creamos un objeto con los datos del formulario
   const nuevaImagen = {
     name: tituloInput.value,
-    link: linkImput.value,
+    link: linkinput.value,
     alt: alt,
   };
 
@@ -162,7 +158,7 @@ function handlePlacesFormSubmit(e) {
 
   //LIMPIANDO LOS CAMPOS DEL FORMULARIO
   tituloInput.value = '';
-  linkImput.value = '';
+  linkinput.value = '';
 }
 
 function limpiarHTML() {

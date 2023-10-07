@@ -8,6 +8,9 @@ class Card {
     this._alt = name;
     this._like = false;
     this._cardSelector = cardSelector;
+    this.likeCard = this.likeCard.bind(this);
+    this.disLikeCard = this.disLikeCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
   likeCard(e) {
     const heart = e.target;
@@ -28,7 +31,12 @@ class Card {
   }
   deleteCard(e) {
     const card = e.target.parentElement;
-    card.remove();
+    card.style.animation = 'zoomOut .3s 2';
+    setTimeout(() => {
+          card.remove();
+    this._removeListeners();
+    }, `300`);
+
   }
 
   _getTemplate() {
@@ -39,24 +47,35 @@ class Card {
     return cardElement;
   }
 
-  _listeners(){
-    this.likeHeart = this._element
-    .querySelector('.card__imagen-corazon')
-    .addEventListener('click', this.likeCard);
-
-  this.disLikeHeart = this._element
-    .querySelector('.card__imagen-corazon_solid')
-    .addEventListener('click', this.disLikeCard);
-
-  this._trash = this._element.querySelector('.card__trash');
-  this._trash.addEventListener('click', this.deleteCard);
-
-  this._trash.addEventListener('mouseenter', () => {
-    this._trash.style.color = 'rgba(255, 255, 255, 0.60)';
-  });
-  this._trash.addEventListener('mouseout', () => {
-    this._trash.style.color = 'currentColor';
-  });
+  _listeners() {
+    const likeHeartElement = this._element.querySelector('.card__imagen-corazon');
+    const disLikeHeartElement = this._element.querySelector('.card__imagen-corazon_solid');
+    const trashElement = this._element.querySelector('.card__trash');
+  
+    if (likeHeartElement) {
+      this.likeHeart = likeHeartElement.addEventListener('click', this.likeCard);
+    }
+  
+    if (disLikeHeartElement) {
+      this.disLikeHeart = disLikeHeartElement.addEventListener('click', this.disLikeCard);
+    }
+  
+    if (trashElement) {
+      this._trash = trashElement;
+      this._trash.addEventListener('click', this.deleteCard);
+  
+      this._trash.addEventListener('mouseenter', () => {
+        this._trash.style.color = 'rgba(255, 255, 255, 0.60)';
+      });
+      this._trash.addEventListener('mouseout', () => {
+        this._trash.style.color = 'currentColor';
+      });
+    }
+  }
+  _removeListeners() {
+    this._element.querySelector('.card__imagen-corazon').removeEventListener('click', this.likeCard);
+    this._element.querySelector('.card__imagen-corazon_solid').removeEventListener('click', this.disLikeCard);
+    this._trash.removeEventListener('click', this.deleteCard);
   }
 
   generateCard() {
@@ -65,7 +84,7 @@ class Card {
     this._element.querySelector('.card__imagen').alt = this._alt;
     this._element.querySelector('.card__title').textContent = this._name;
 
-    this._listeners()
+    this._listeners();
     return this._element;
   }
 }

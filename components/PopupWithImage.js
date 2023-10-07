@@ -3,7 +3,7 @@ import { divTemp, overlay, body } from '../utils/consts.js';
 // import { closeImageByClick } from '../utils/utils.js';
 
 class PopupWithImage extends Popup {
-  constructor({ src, alt, overlay }, popupSelector) {
+  constructor({ src, alt }, popupSelector) {
     super(popupSelector);
     this._src = src;
     this._alt = alt;
@@ -64,25 +64,19 @@ class PopupWithImage extends Popup {
     }, '1000');
     body.classList.remove('fix');
     document.removeEventListener('keydown', this._closeImageByScape);
-    this.closePopup()
+    this.close();
   }
-
 
   _setEventListeners() {
-    super._setEventListeners()
+    super._setEventListeners();
     document.addEventListener('click', this._closeImageByClick);
   }
-  _removeEventListeners = () =>{
-    super._removeEventListeners()
-  }
+  _removeEventListeners = () => {
+    super._removeEventListeners();
+  };
   open() {
     super.open();
-    this._setEventListeners();
     this._selectImagen();
-  }
-  closePopup() {
-    super.closePopup();
-
   }
 }
 

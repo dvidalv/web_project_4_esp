@@ -41,7 +41,7 @@ const objConfig = {
 };
 const popup__form = document.querySelector('.popup__form'); //formulario
 const cardContainer = document.querySelector('.elements'); //contenedor de tarjetas
-const titulo = '.profile__title';
+const title = '.profile__title';
 const subtitle = '.profile__subtitle';
 const body = document.querySelector('body');
 const popupElement = document.querySelector('.popup_Element'); //popup agregar nueva tarjeta
@@ -54,19 +54,19 @@ const editButton = document.querySelector('.edit-button');
 const buttonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
-const userInfo = {
-  nombre: titulo,
+const userSelectors = {
+  nombre: title,
   job: subtitle,
 };
 const addButton = document.querySelector('.add-button');
 
 export {
-  userInfo,
+  userSelectors,
   initialCards,
   objConfig,
   popup__form,
   cardContainer,
-  titulo,
+  title,
   subtitle,
   body,
   popupElement,
