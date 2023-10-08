@@ -10,7 +10,7 @@ import {
   divTemp,
   overlay,
   popupPerfil,
-  btnNuevaImagen,
+  popupAddImage,
   FormPerfil,
 } from './consts.js';
 import FormValidator from '../components/FormValidator.js';
@@ -100,10 +100,10 @@ function handleProfileFormSubmit(e) {
 }
 
 function openPopPlaces() {
-  btnNuevaImagen.addEventListener('submit', handlePlacesFormSubmit);
+  popupAddImage.addEventListener('submit', handlePlacesFormSubmit);
   document.addEventListener('click', closePopPlacesByClick);
   document.addEventListener('keydown', closeElementEventEscap);
-  btnNuevaImagen.style.animation = 'zoomIn .7s forwards';
+  popupAddImage.style.animation = 'zoomIn .7s forwards';
   popupElement.classList.toggle('popup_opened');
   body.classList.add('fix');
   const validation = new FormValidator(objConfig, popupElement);
@@ -127,7 +127,7 @@ function closeElementEventEscap(e) {
   }
 }
 function closePopPlaces() {
-  btnNuevaImagen.style.animation = 'zoomOut .7s forwards';
+  popupAddImage.style.animation = 'zoomOut .7s forwards';
   setTimeout(() => {
     popupElement.classList.toggle('popup_opened');
   }, '1000');

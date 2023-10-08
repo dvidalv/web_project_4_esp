@@ -4,8 +4,9 @@ import {
   addButton,
   cardContainer,
   userSelectors,
-  title,
-  subtitle,
+  objConfig,
+  popup__form,
+  popupAddImage,
 } from '../../utils/consts.js';
 import * as utils from '../../utils/utils.js';
 import Section from '../../components/Section.js';
@@ -14,6 +15,7 @@ import Popup from '../../components/Popup.js';
 import PopupWithForm from '../../components/PopupWithForm.js';
 import PopupWithImage from '../../components/PopupWithImage.js';
 import UserInfo from '../../components/UserInfo.js';
+import FormValidator from '../../components/FormValidator.js';
 
 const cardsList = new Section(
   {
@@ -42,9 +44,8 @@ editButton.addEventListener('click', () => {
 
   popupProfile.open();
 
-  // const form = new FormValidator(popupFormSelectorsToValidate, '.popup');
-
-  // form.enableValidation();
+  const validate = new FormValidator(objConfig, popup__form);
+  validate.enableValidation();
 });
 
 const newPlace = new PopupWithForm((obj) => {
@@ -58,6 +59,8 @@ const newPlace = new PopupWithForm((obj) => {
 
 addButton.addEventListener('click', () => {
   newPlace.open();
+  const validate = new FormValidator(objConfig, popupAddImage);
+  validate.enableValidation();
 });
 
 document.addEventListener('click', (e) => {

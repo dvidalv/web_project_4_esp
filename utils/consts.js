@@ -3,37 +3,37 @@ const initialCards = [
     name: 'Valle de Yosemite',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg',
     alt: 'imagen Valle de Yosenite',
-    like: false
+    like: false,
   },
   {
     name: 'Lago Louise',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg',
     alt: 'imagen Lago Louise',
-    like: false
+    like: false,
   },
   {
     name: 'Montañas Calvas',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg',
     alt: 'imagen Montañas calvas',
-    like: false
+    like: false,
   },
   {
     name: 'Latemar',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg',
     alt: 'imagen Latemar',
-    like: false
+    like: false,
   },
   {
     name: 'Parque Nacional de la Vanoise',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg',
     alt: 'imagen Parque Nacional de la Vanouse',
-    like: false
+    like: false,
   },
   {
     name: 'Lago di Braies',
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg',
     alt: 'imagen Lago Louise',
-    like: false
+    like: false,
   },
 ];
 
@@ -54,7 +54,7 @@ const popupElement = document.querySelector('.popup_Element'); //popup agregar n
 const divTemp = document.querySelector('.overlay-image__container'); //Div que contiene la imagen
 const overlay = document.querySelector('.overlay-image');
 const popupPerfil = document.querySelector('.popup_perfil');
-const btnNuevaImagen = document.querySelector('.popup__formElement'); //formulario agregar nueva tarjeta
+const popupAddImage = document.querySelector('.popup__formElement'); //formulario agregar nueva tarjeta
 const FormPerfil = document.querySelector('.popup__formPerfil');
 const editButton = document.querySelector('.edit-button');
 const buttonPopupButtonCerrarPlaces = document.querySelector(
@@ -79,7 +79,7 @@ export {
   divTemp,
   overlay,
   popupPerfil,
-  btnNuevaImagen,
+  popupAddImage,
   FormPerfil,
   editButton,
   buttonPopupButtonCerrarPlaces,
