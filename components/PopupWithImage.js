@@ -1,7 +1,5 @@
 import Popup from './Popup.js';
 import { divTemp, overlay, body } from '../utils/consts.js';
-// import { closeImageByClick } from '../utils/utils.js';
-
 class PopupWithImage extends Popup {
   constructor({ src, alt }, popupSelector) {
     super(popupSelector);

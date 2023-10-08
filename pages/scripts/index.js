@@ -8,7 +8,6 @@ import {
   popup__form,
   popupAddImage,
 } from '../../utils/consts.js';
-import * as utils from '../../utils/utils.js';
 import Section from '../../components/Section.js';
 import Card from '../../components/Card.js';
 import Popup from '../../components/Popup.js';

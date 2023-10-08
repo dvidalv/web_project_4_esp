@@ -1,6 +1,5 @@
 import PopupWithImage from './PopupWithImage.js';
 import { initialCards } from '../utils/consts.js';
-// import { meGusta } from '../utils/utils.js';
 class Card {
   constructor({ name, link, like }, cardSelector) {
     this._name = name;
