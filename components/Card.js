@@ -14,6 +14,14 @@ class Card {
     this._heart = document.querySelector('.card__imagen-corazon')
     this._heart_solid = document.querySelector('.card__imagen-corazon_solid')
   }
+  updateCardLikeStatus(isLiked) {
+    initialCards.forEach((card) => {
+      if (card.link === this._link) {
+        card.like = isLiked;
+      }
+    });
+  }
+
   likeCard(e) {
     const heart = e.target;
     const heartSolid = heart.nextElementSibling;
@@ -22,22 +30,10 @@ class Card {
     heart.classList.remove('corazonOn');
     heartSolid.classList.add('corazonOn');
     heartSolid.classList.remove('corazonOff');
-    
-    if (heart.classList.contains('corazonOff')) {
-      initialCards.forEach((card) => {
-        if (card.link === this._link) {
-          card.like = true;
-        }
-      });
-    } else {
-      initialCards.forEach((card) => {
-        if (card.link === this._link) {
-          card.like = false;
-        }
-      });
-    }
 
+    this.updateCardLikeStatus(heart.classList.contains('corazonOff'));
   }
+
   disLikeCard(e) {
     const heartSolid = e.target;
     const heart = heartSolid.previousElementSibling;
@@ -46,27 +42,11 @@ class Card {
     heart.classList.remove('corazonOff');
     heart.classList.remove('corazonOn');
 
-    if (heart.classList.contains('corazonOn')) {
-      this._like = true
-    } else {
-      this._like = false
-    }
+    this._like = heart.classList.contains('corazonOn');
 
-    if (heartSolid.classList.contains('corazonOn')) {
-      initialCards.forEach((card) => {
-        if (card.link === this._link) {
-          card.like = true;
-        }
-      });
-    } else {
-      initialCards.forEach((card) => {
-        if (card.link === this._link) {
-          card.like = false;
-        }
-      });
-    }
-
+    this.updateCardLikeStatus(heartSolid.classList.contains('corazonOn'));
   }
+  
   deleteCard(e) {
     const card = e.target.parentElement;
     card.style.animation = 'zoomOut .3s 2';

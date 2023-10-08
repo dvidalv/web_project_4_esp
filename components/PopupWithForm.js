@@ -54,9 +54,7 @@ class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    const newObj = this._getInputValues(); //get Data
-
-    //this.getObget(newObj); //ejecutamos el callback y le pasamos data
+    const newObj = this._getInputValues(); //
     const form = this._popup.firstElementChild;
     form.reset();
     document.querySelector('body').classList.remove('fix');

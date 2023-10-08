@@ -53,6 +53,7 @@ const newPlace = new PopupWithForm((obj) => {
   const newCard = new Card({ name, link, like: false }, '.template-card');
 
   cardContainer.prepend(newCard.generateCard());
+  console.log(initialCards)
 }, '.popup_Element');
 
 addButton.addEventListener('click', () => {
