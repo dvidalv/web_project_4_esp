@@ -1,6 +1,6 @@
 import "./styles/index.css";
-import './vendors/normalize.css';
-import'./fonts/Inter/inter.css';
+import '../vendors/normalize.css';
+import'../fonts/Inter/inter.css';
 import'./styles/blocks/globales/globales.css';
 import'./styles/blocks/globales/animaciones.css';
 import'./styles/blocks/buttons/buttons.css';
@@ -47,14 +47,14 @@ import {
   objConfig,
   popup__form,
   popupAddImage,
-} from './utils/consts.js';
-import Section from './components/Section.js';
-import Card from './components/Card.js';
-import Popup from './components/Popup.js';
-import PopupWithForm from './components/PopupWithForm.js';
-import PopupWithImage from './components/PopupWithImage.js';
-import UserInfo from './components/UserInfo.js';
-import FormValidator from './components/FormValidator.js';
+} from '../utils/consts.js';
+import Section from '../components/Section.js';
+import Card from '../components/Card.js';
+import Popup from '../components/Popup.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
+import FormValidator from '../components/FormValidator.js';
 
 const cardsList = new Section(
   {
