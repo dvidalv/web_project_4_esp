@@ -1,40 +1,43 @@
 import Popup from './Popup.js';
 import { divTemp, overlay, body } from '../utils/consts.js';
 import btn from '../images/Close-icon.svg';
+
+const OVERLAY_DIV_TEMP_CLASS = 'overlay__divTemp';
+const OVERLAY_IMAGE_CLASS = 'overlay-image__image';
+const BTN_CERRAR_CLASSES = ['btnCerrar', 'btnCerrar_overlay'];
+const OVERLAY_CLASS = 'overlay';
+const FIX_CLASS = 'fix';
+
 class PopupWithImage extends Popup {
   constructor({ src, alt }, popupSelector) {
     super(popupSelector);
     this._src = src;
     this._alt = alt;
   }
-  _selectImagen() {
-   
-    divTemp.classList.add('overlay__divTemp');
+  _createImageElement(src, alt, classes) {
     const img = document.createElement('img');
-    img.src = this._src;
-    img.alt = this._alt;
-    img.classList.add('overlay-image__image');
+    img.src = src;
+    img.alt = alt;
+    img.classList.add(...classes);
+    return img;
+  }
 
-    //Agregando la imagen al divTemp
+  _selectImagen() {
+    divTemp.classList.add(OVERLAY_DIV_TEMP_CLASS);
+
+    const img = this._createImageElement(this._src, this._alt, [OVERLAY_IMAGE_CLASS]);
     divTemp.append(img);
 
-    //Creando el boton de cerrar popup
-    const btnCerrar = document.createElement('img');
-    btnCerrar.src = btn;
-    btnCerrar.classList.add('btnCerrar', 'btnCerrar_overlay');
-    //Insertando el boton cerrar al divTemp
+    const btnCerrar = this._createImageElement(btn, '', BTN_CERRAR_CLASSES);
     divTemp.insertAdjacentElement('beforeend', btnCerrar);
+
     divTemp.style.animation = 'zoomIn 1s forwards';
 
-    //Creando el overlay
     overlay.appendChild(divTemp);
-    overlay.classList.add('overlay');
+    overlay.classList.add(OVERLAY_CLASS);
     body.append(overlay);
-    // overlay.addEventListener('click', closeImageByClick);
-    document.addEventListener('keydown', this._closeImageByScape);
 
-    //Agrefgando la clase de fix al body
-    body.classList.add('fix');
+    body.classList.add(FIX_CLASS);
   }
 
   _closeImageByClick = (e) => {
@@ -70,7 +73,9 @@ class PopupWithImage extends Popup {
   _setEventListeners() {
     super._setEventListeners();
     document.addEventListener('click', this._closeImageByClick);
+    document.addEventListener('keydown', this._closeImageByScape);
   }
+  
   _removeEventListeners = () => {
     super._removeEventListeners();
   };
