@@ -1,5 +1,6 @@
 import Popup from './Popup.js';
 import { divTemp, overlay, body } from '../utils/consts.js';
+import btn from '../images/Close-icon.svg';
 class PopupWithImage extends Popup {
   constructor({ src, alt }, popupSelector) {
     super(popupSelector);
@@ -7,6 +8,7 @@ class PopupWithImage extends Popup {
     this._alt = alt;
   }
   _selectImagen() {
+   
     divTemp.classList.add('overlay__divTemp');
     const img = document.createElement('img');
     img.src = this._src;
@@ -18,7 +20,7 @@ class PopupWithImage extends Popup {
 
     //Creando el boton de cerrar popup
     const btnCerrar = document.createElement('img');
-    btnCerrar.src = '../imagenes/Close-Icon.svg';
+    btnCerrar.src = btn;
     btnCerrar.classList.add('btnCerrar', 'btnCerrar_overlay');
     //Insertando el boton cerrar al divTemp
     divTemp.insertAdjacentElement('beforeend', btnCerrar);
