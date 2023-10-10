@@ -14,6 +14,7 @@ class Popup {
       this.close();
     }
   }
+  
 
   _handleOutsideClick(e) {
     if (
@@ -61,6 +62,7 @@ class Popup {
       this._popup.classList.remove('popup_opened');
     }, 1000); // Ajusta el tiempo de espera según la duración de la animación en CSS
   }
+ 
 }
 
 export default Popup;

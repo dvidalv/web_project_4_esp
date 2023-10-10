@@ -18,8 +18,12 @@
   animation: zoomIn 0.5s ease-in-out;
 }
 .popup-cierre {
-  transition: opacity 0.5s ease;
+  transition: opacity 1s ease;
   opacity: 0;
+  -webkit-transition: opacity 1s ease;
+  -moz-transition: opacity 1s ease;
+  -ms-transition: opacity 1s ease;
+  -o-transition: opacity 1s ease;
 }
 
 @keyframes zoomIn {

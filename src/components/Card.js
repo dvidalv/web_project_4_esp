@@ -48,11 +48,11 @@ class Card {
 
   deleteCard(e) {
     const card = e.target.parentElement;
-    card.style.animation = 'zoomOut .3s 2';
+    card.classList.add('popup-cierre')
     setTimeout(() => {
       card.remove();
       this._removeListeners();
-    }, `300`);
+    }, `1000`);
   }
 
   _getTemplate() {
@@ -117,6 +117,7 @@ class Card {
     this._listeners();
     return this._element;
   }
+
 }
 
 export default Card;
