@@ -4,6 +4,7 @@
   min-height: 30vh;
   display: grid;
   align-items: center;
+
 }
 
 @media (min-width: 768px) {

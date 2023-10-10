@@ -26,6 +26,7 @@ class PopupWithForm extends Popup {
 
   _newValues() {
     this._submitCallback(this._getInputValues());
+    console.log(this._getInputValues())
   }
 
   _handleFormSubmit = (e) => {
@@ -54,12 +55,9 @@ class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    const newObj = this._getInputValues(); //
-    const form = this._popup.firstElementChild;
-    form.reset();
+    this._form.reset();
     document.querySelector('body').classList.remove('fix');
-
-    this._removeEventListeners();
+    this._setEventListeners();
   }
 
 

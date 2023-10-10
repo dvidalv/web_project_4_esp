@@ -29,6 +29,9 @@ class Popup {
 
   _getPopup() {
     this._popup = document.querySelector(this._popupSelector);
+    // this._popup.animation = 'zoomOut 1s 2';
+    
+    
     return this._popup;
   }
 
@@ -43,12 +46,20 @@ class Popup {
 
   open() {
     this._popup.classList.add('popup_opened');
+    this._popup.classList.add('popup-animation');
     this._setEventListeners();
+    
   }
 
   close() {
-    this._popup.classList.remove('popup_opened');
+    this._popup.classList.add('popup-cierre');
     this._removeEventListeners();
+  
+    // Espera a que termine la animación antes de eliminar la clase y ocultar el popup
+    setTimeout(() => {
+      this._popup.classList.remove('popup-cierre');
+      this._popup.classList.remove('popup_opened');
+    }, 1000); // Ajusta el tiempo de espera según la duración de la animación en CSS
   }
 }
 

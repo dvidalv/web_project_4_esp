@@ -1,5 +1,5 @@
-import "./styles/index.css";
 import '../vendors/normalize.css';
+import "./styles/index.css";
 import'../fonts/Inter/inter.css';
 import'./styles/blocks/globales/globales.css';
 import'./styles/blocks/globales/animaciones.css';
@@ -36,6 +36,7 @@ import'./styles/blocks/cards/__me-gusta/__me-gusta.css';
 import'./styles/blocks/cards/__card__trash/__card__trash.css';
 import'./styles/blocks/overlay/overlay.css';
 import'./styles/blocks/overlay/__overlay__divTemp/__overlaydivtemp.css';
+import'./styles/blocks/overlay/__overlay__divTemp/__overlay-image__image.css';
 import'./styles/blocks/footer/footer.css';
 
 import {
@@ -93,7 +94,6 @@ const newPlace = new PopupWithForm((obj) => {
   const newCard = new Card({ name, link, like: false }, '.template-card');
 
   cardContainer.prepend(newCard.generateCard());
-  console.log(initialCards)
 }, '.popup_Element');
 
 addButton.addEventListener('click', () => {
