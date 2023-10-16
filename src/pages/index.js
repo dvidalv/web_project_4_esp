@@ -18,8 +18,12 @@ import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
 
-// const conect = new Api();
-// const cards = conect.getInitialCards();
+const conect = new Api();
+const cards = conect.getInitialCards();
+console.log(cards)
+
+
+
 
 const cardsList = new Section(
   {

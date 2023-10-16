@@ -54,10 +54,10 @@ class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    this._form.reset();
     document.querySelector('body').classList.remove('fix');
     this._setEventListeners();
     this._removeEventListeners();
+    this._form.reset();
   }
 }
 

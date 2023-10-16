@@ -1,31 +1,37 @@
+import { initialCards } from "../utils/consts";
+
 class Api {
   constructor() {
-    this.url = 'https://mesto.nomoreparties.co./v1/${this.groupId}/';
+    // this.url = 'https://mesto.nomoreparties.co./v1/${this.groupId}/';
+    this.url = 'https://652d53bdf9afa8ef4b2744ce.mockapi.io';
     this.token = '8c8c8c8c8c8c8c8c8c8c8c8c8c8c8c8';
     this.groupId = 'group-1';
   }
 
   getInitialCards() {
-    return fetch(`${this.url}cards`, {
-      headers: {
-        authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
-      },
+    // return fetch(`${this.url}cards`, {
+    //   headers: {
+    //     authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+    //   },
+    // })
+    return fetch(`${this.url}/cards`)
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        // si el servidor devuelve un error, rechaza el promise
-        return Promise.reject(`Error: ${res.status}`);
-      })
-      .catch((err) => {
-        const errorElement = document.createElement('p');
-        errorElement.textContent = `Error: ${err}`;
-        document.querySelector('.popup__formPerfil').appendChild(errorElement);
-      });
+    .then((result) => {
+      return result;
+    })
+    .catch((err) => {
+      const errorElement = document.createElement('p');
+      errorElement.textContent = `Error: ${err}`;
+      document.querySelector('.popup__formPerfil').appendChild(errorElement);
+    });
   }
   getUserInfo() {
-    return fetch(`${this.url}users/me`, {
+    return fetch(`${this.url}/users`, {
       method: 'GET',
       headers: {
         authorization: this.token,
