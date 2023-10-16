@@ -10,12 +10,15 @@
   <body>
     <div class="page">
       <header class="header">
-        <img class="logo" src="<%=require('../src/images/logo.svg')%>" alt="Logo around the US" />
+        <img
+          class="logo"
+          src="<%=require('../src/images/logo.svg')%>"
+          alt="Logo around the US"
+        />
       </header>
       <main class="content">
         <section class="profile">
           <section class="popup popup_perfil">
-
             <form
               class="popup__form popup__formPerfil"
               name="form"
@@ -55,6 +58,29 @@
               />
             </form>
           </section>
+          <section class="popup popup_update-perfil">
+            <form class="popup__form popup__form-update-perfil" novalidate>
+              <img
+                class="btnCerrar popup__button-cerrar-update-perfil"
+                src="<%=require('../src/images/Close-Icon.svg')%>"
+                alt="icon cerrar"
+              />
+              <h2 class="popup__title">Cambiar foto de perfil</h2>
+              <input
+                id="url-input"
+                class="popup__input popup__input-link"
+                type="url"
+                placeholder="Enlace a la Imagen"
+                required
+                name="link"
+              />
+              <input
+                class="popup__submit popup__submit_update-perfil"
+                type="submit"
+                value="Guardar"
+              />
+            </form>
+          </section>
 
           <div class="profile__data">
             <div class="profile__avatar">
@@ -63,13 +89,23 @@
                 src="<%=require('../src/images/profile.jpg')%>"
                 alt="Jacques Cousteau"
               />
+              <div class="profile__overlay">
+                <img
+                  class="profile__edit-icon"
+                  src="<%=require('../src/images/editPerfil.svg')%>"
+                  alt="icon edit"
+                />
+              </div>
             </div>
 
             <div class="profile__info">
               <div class="profile__contenedor-titulo">
                 <h1 class="profile__title">Jacques Cousteau</h1>
                 <button type="button" class="edit-button">
-                  <img src="<%=require('../src/images/Edit-Button.svg')%>" alt="edit button" />
+                  <img
+                    src="<%=require('../src/images/Edit-Button.svg')%>"
+                    alt="edit button"
+                  />
                 </button>
               </div>
               <p class="profile__subtitle">Explorador</p>
@@ -145,6 +181,22 @@
               <i class="fa-solid fa-trash card__trash"></i>
             </li>
           </template>
+
+          <section class="popup popup_delete-card">
+            <form name="delete-card" class="popup__form popup__formDeleteCard">
+              <img
+                class="btnCerrar popup__button-cerrar-places"
+                src="<%=require('../src/images/Close-Icon.svg')%>"
+                alt="icon cerrar"
+              />
+              <h2 class="popup__title">Estas seguro?</h2>
+              <input
+                class="popup__submit popup__submit_deleteCard"
+                type="submit"
+                value="Si"
+              />
+            </form>
+          </section>
         </section>
       </main>
     </div>

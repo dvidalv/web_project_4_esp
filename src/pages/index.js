@@ -1,45 +1,6 @@
-import '../vendors/normalize.css';
-import "./styles/index.css";
-import'../fonts/Inter/inter.css';
-import'./styles/blocks/globales/globales.css';
-import'./styles/blocks/globales/animaciones.css';
-import'./styles/blocks/buttons/buttons.css';
-import'./styles/blocks/buttons/add-button/add-button.css';
-import'./styles/blocks/buttons/edit-button/edit-button.css';
-import'./styles/blocks/buttons/btn-cerrar/btncerrar.css';
-import'./styles/blocks/page/page.css';
-import'./styles/blocks/content/content.css';
-import'./styles/blocks/header/__logo/logo.css';
-import'./styles/blocks/header/header.css';
-import'./styles/blocks/profile/profile.css';
-import'./styles/blocks/popup/popup.css';
-import'./styles/blocks/popup/__popcontainer/__popupcontatiner.css';
-import'./styles/blocks/popup/__popuptitle/__popuptitle.css';
-import'./styles/blocks/popup/__popupinput/__popupinput.css';
-import'./styles/blocks/popup/__popupsubmit/__popupsubmit.css';
-import'./styles/blocks/profile/__profiledata/__profiledata.css';
-import'./styles/blocks/profile/__profiledata/__profileinfo/__profiloSubtitle/__profiloSubtitle.css';
-import'./styles/blocks/profile/__profiledata/__profileavatar/__profileavatar.css';
-import'./styles/blocks/profile/__profiledata/__profileavatar/__profileimage/__profileimage.css';
-import'./styles/blocks/profile/__profiledata/__profileinfo/__profileinfo.css';
-import'./styles/blocks/profile/__profiledata/__profileinfo/__profileContenedorTitle/__profileContenedorTitle.css';
-import'./styles/blocks/profile/__profiledata/__profileinfo/__profileContenedorTitle/__profiletitle/__profiletitle.css';
-import'./styles/blocks/elements/elements.css';
-import'./styles/blocks/cards/card.css';
-import'./styles/blocks/cards/__card__image-container/__card__image-container.css';
-import'./styles/blocks/cards/__card__imagen/__card__imagen.css';
-import'./styles/blocks/cards/__card__contenido/__card__contenido.css';
-import'./styles/blocks/cards/__card__info/__card__info.css';
-import'./styles/blocks/cards/__card__title/__card__title.css';
-import'./styles/blocks/cards/__card__imagen-corazon/__card__imagen-corazon.css';
-import'./styles/blocks/cards/__me-gusta/__me-gusta.css';
-import'./styles/blocks/cards/__card__trash/__card__trash.css';
-import'./styles/blocks/overlay/overlay.css';
-import'./styles/blocks/overlay/__overlay__divTemp/__overlaydivtemp.css';
-import'./styles/blocks/overlay/__overlay__divTemp/__overlay-image__image.css';
-import'./styles/blocks/footer/footer.css';
-
+import './styles/index.css';
 import {
+  btnUpdateAvatar,
   initialCards,
   editButton,
   addButton,
@@ -51,11 +12,14 @@ import {
 } from '../utils/consts.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
-import Popup from '../components/Popup.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
+import Api from '../components/Api.js';
+
+// const conect = new Api();
+// const cards = conect.getInitialCards();
 
 const cardsList = new Section(
   {
@@ -113,9 +77,17 @@ document.addEventListener('click', (e) => {
   }
 });
 
+const deleteCard = new PopupWithForm(() => {}, '.popup_delete-card');
+
+const updatePerfil = new PopupWithForm(() => {}, '.popup_update-perfil');
+
+document.addEventListener('click', (e) => {
+  if (e.target.classList.contains('card__trash')) {
+    deleteCard.open();
+  }
+});
+btnUpdateAvatar.addEventListener('click', () => {
+  updatePerfil.open();
+});
+
 cardsList.renderItems();
-
-
-
-
-

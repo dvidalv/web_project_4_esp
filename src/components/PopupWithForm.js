@@ -26,12 +26,11 @@ class PopupWithForm extends Popup {
 
   _newValues() {
     this._submitCallback(this._getInputValues());
-    console.log(this._getInputValues())
   }
 
   _handleFormSubmit = (e) => {
     e.preventDefault();
-    this._newValues()
+    this._newValues();
     this.close();
     this._popup.classList.remove('popup_opened');
   };
@@ -42,7 +41,7 @@ class PopupWithForm extends Popup {
     this._popup.addEventListener('click', this._handleOutsideClick);
     this._popup.addEventListener('submit', this._handleFormSubmit);
   }
-  
+
   _removeEventListeners() {
     super._removeEventListeners();
     this._popup.removeEventListener('submit', this._handleFormSubmit);
@@ -58,9 +57,8 @@ class PopupWithForm extends Popup {
     this._form.reset();
     document.querySelector('body').classList.remove('fix');
     this._setEventListeners();
+    this._removeEventListeners();
   }
-
-
 }
 
 export default PopupWithForm;

@@ -12,6 +12,7 @@ class Card {
     this.deleteCard = this.deleteCard.bind(this);
     this._heart = document.querySelector('.card__imagen-corazon');
     this._heart_solid = document.querySelector('.card__imagen-corazon_solid');
+    // this._trash = document.querySelector('.card__trash');
   }
   updateCardLikeStatus(isLiked) {
     initialCards.forEach((card) => {
@@ -47,12 +48,13 @@ class Card {
   }
 
   deleteCard(e) {
-    const card = e.target.parentElement;
-    card.classList.add('popup-cierre')
-    setTimeout(() => {
-      card.remove();
-      this._removeListeners();
-    }, `1000`);
+    // const card = e.target.parentElement;
+    // card.classList.add('popup-cierre');
+    // setTimeout(() => {
+    //   card.remove();
+    //   this._removeListeners();
+    // }, `1000`);
+    console.log('borrando');
   }
 
   _getTemplate() {
@@ -70,7 +72,6 @@ class Card {
     const disLikeHeartElement = this._element.querySelector(
       '.card__imagen-corazon_solid'
     );
-    const trashElement = this._element.querySelector('.card__trash');
 
     if (likeHeartElement) {
       this.likeHeart = likeHeartElement.addEventListener(
@@ -86,6 +87,7 @@ class Card {
       );
     }
 
+    const trashElement = this._element.querySelector('.card__trash');
     if (trashElement) {
       this._trash = trashElement;
       this._trash.addEventListener('click', this.deleteCard);
@@ -117,7 +119,6 @@ class Card {
     this._listeners();
     return this._element;
   }
-
 }
 
 export default Card;

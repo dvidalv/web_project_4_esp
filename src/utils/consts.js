@@ -45,6 +45,7 @@ const objConfig = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
 };
+const btnUpdateAvatar = document.querySelector('.profile__edit-icon');
 const popup__form = document.querySelector('.popup__form'); //formulario
 const cardContainer = document.querySelector('.elements'); //contenedor de tarjetas
 const title = '.profile__title';
@@ -67,6 +68,7 @@ const userSelectors = {
 const addButton = document.querySelector('.add-button');
 
 export {
+  btnUpdateAvatar,
   userSelectors,
   initialCards,
   objConfig,
