@@ -1,7 +1,6 @@
 import './styles/index.css';
 import {
   btnUpdateAvatar,
-  initialCards,
   editButton,
   addButton,
   cardContainer,
@@ -9,6 +8,7 @@ import {
   objConfig,
   popup__form,
   popupAddImage,
+  initialCards,
 } from '../utils/consts.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
@@ -18,24 +18,22 @@ import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
 
-const conect = new Api();
-const cards = conect.getInitialCards();
-console.log(cards)
-
-
-
-
-const cardsList = new Section(
-  {
-    data: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, '.template-card');
-      const cardElement = card.generateCard();
-      cardsList.addItem(cardElement);
+const api = new Api();
+api.getInitialCards().then((data) => {
+  const cardsList = new Section(
+    {
+      data: data,
+      renderer: (item) => {
+        const card = new Card(item, '.template-card');
+        const cardElement = card.generateCard();
+        cardsList.addItem(cardElement);
+      },
     },
-  },
-  cardContainer
-);
+    cardContainer
+  );
+  cardsList.renderItems();
+});
+
 const userInfo = new UserInfo(userSelectors);
 
 const popupProfile = new PopupWithForm((data) => {
@@ -93,5 +91,3 @@ document.addEventListener('click', (e) => {
 btnUpdateAvatar.addEventListener('click', () => {
   updatePerfil.open();
 });
-
-cardsList.renderItems();

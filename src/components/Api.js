@@ -1,4 +1,3 @@
-import { initialCards } from "../utils/consts";
 
 class Api {
   constructor() {

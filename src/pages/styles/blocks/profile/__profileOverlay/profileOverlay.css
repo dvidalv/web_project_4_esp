@@ -37,34 +37,10 @@
 }
 
 .profile__overlay:hover .profile__edit-icon {
-	transition: opacity 1s;
-	-webkit-transition: opacity 1s;
-	-moz-transition: opacity 1s;
-	-ms-transition: opacity 1s;
-	-o-transition: opacity 1s;
-	opacity: 1;
-}
-.profile__edit-icon{
-	transition: all .5s;
-	-webkit-transition: transform 0.5s;
-	-moz-transition: transform 0.5s;
-	-ms-transition: transform 0.5s;
-	-o-transition: transform 0.5s;
-  transition: transform 0.5s;
-  -webkit-transition: transform 0.5s;
-  -moz-transition: transform 0.5s;
-  -ms-transition: transform 0.5s;
-  -o-transition: transform 0.5s;
-}
-.profile__edit-icon:hover {
-  transform: scale(1.2);
-  -webkit-transform: scale(1.2);
-  -moz-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  -o-transform: scale(1.2);
-  transition: transform 0.5s;
-  -webkit-transition: transform 0.5s;
-  -moz-transition: transform 0.5s;
-  -ms-transition: transform 0.5s;
-  -o-transition: transform 0.5s;
+  transition: opacity scale 1s;
+  -webkit-transition: opacity scale 1s;
+  -moz-transition: opacity scale 1s;
+  -ms-transition: opacity scale 1s;
+  -o-transition: opacity scale 1s;
+  opacity: 1;
 }
