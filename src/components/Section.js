@@ -13,12 +13,13 @@ class Section {
 
   }
 
+
   renderItems() {
     this._clear(); // limpiamos el contenedor de tarjetas antes de imprimirlas
     this._initialArray.forEach((item) => {
       //Iteramos los datos
-
       this._renderer(item); //ejecutamos el callback, pasandole un objeto del array
+      
     });
 
   }

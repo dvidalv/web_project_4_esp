@@ -31,6 +31,7 @@
 @import './blocks/cards/__card__imagen/__card__imagen.css';
 @import './blocks/cards/__card__contenido/__card__contenido.css';
 @import './blocks/cards/__card__info/__card__info.css';
+@import './blocks/cards/__card__like-counter/card__like-counter.css';
 @import './blocks/cards/__card__title/__card__title.css';
 @import './blocks/cards/__card__imagen-corazon/__card__imagen-corazon.css';
 @import './blocks/cards/__me-gusta/__me-gusta.css';

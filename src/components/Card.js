@@ -12,7 +12,7 @@ class Card {
     this.deleteCard = this.deleteCard.bind(this);
     this._heart = document.querySelector('.card__imagen-corazon');
     this._heart_solid = document.querySelector('.card__imagen-corazon_solid');
-    // this._trash = document.querySelector('.card__trash');
+    this._trash = document.querySelector('.card__trash');
   }
   updateCardLikeStatus(isLiked) {
     initialCards.forEach((card) => {
@@ -115,10 +115,8 @@ class Card {
     this._element.querySelector('.card__imagen').src = this._link;
     this._element.querySelector('.card__imagen').alt = this._alt;
     this._element.querySelector('.card__title').textContent = this._name;
-
     this._listeners();
     return this._element;
   }
 }
-
 export default Card;

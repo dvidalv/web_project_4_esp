@@ -8,9 +8,4 @@
   grid-template-rows: 282px 79px;
   position: relative;
 }
-.card__like-counter{
-  /* background-color: red; */
-  color: black;
-  align-self: flex-end;
-  margin-right: 5px;
-}
+

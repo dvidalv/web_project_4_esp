@@ -49,7 +49,6 @@ class Popup {
 
   close() {
     this._popup.classList.add('popup-cierre');
-
     // Espera a que termine la animación antes de eliminar la clase y ocultar el popup
     setTimeout(() => {
       this._popup.classList.remove('popup-cierre');
