@@ -30,14 +30,14 @@ class Api {
     return await this.fetchData(`${this._url}${resouce}`);
   }
 
- async patchUserInfo(resouce, data) {
+  async patchUserInfo(resouce, data) {
     return await this.fetchData(`${this._url}${resouce}`, 'PATCH', data);
   }
   async addCard(resouce, data) {
     return await this.fetchData(`${this._url}${resouce}`, 'POST', data);
   }
 
-
+  // TODO: Not working already.
   async delete(id) {
     const result = await fetch(this._url + id, {
       method: 'DELETE',

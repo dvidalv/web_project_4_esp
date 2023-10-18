@@ -1,11 +1,12 @@
 import PopupWithImage from './PopupWithImage.js';
 import { initialCards } from '../utils/consts.js';
 class Card {
-  constructor({ name, link, like }, cardSelector) {
+  constructor({ name, link, like, display }, cardSelector) {
     this._name = name;
     this._link = link;
     this._alt = name;
     this._like = like;
+    this._display = display ? true : false;
     this._cardSelector = cardSelector;
     this.likeCard = this.likeCard.bind(this);
     this.disLikeCard = this.disLikeCard.bind(this);
@@ -62,6 +63,8 @@ class Card {
       .querySelector(this._cardSelector)
       .content.querySelector('.card')
       .cloneNode(true);
+
+    console.log('cardElement', cardElement);
     return cardElement;
   }
 

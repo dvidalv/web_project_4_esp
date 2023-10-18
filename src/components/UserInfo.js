@@ -2,7 +2,7 @@ class UserInfo {
   constructor({ nombre, job }) {
     this._nombre = document.querySelector(nombre);
     this._job = document.querySelector(job);
-    this._inputTitle  = document.querySelector('.popup__input_nombre');
+    this._inputTitle = document.querySelector('.popup__input_nombre');
     this._inputStittle = document.querySelector('.popup__input_about-me');
     this._avatar = document.querySelector('.profile__imagen');
   }
@@ -16,8 +16,8 @@ class UserInfo {
   updateAvatar(avatar) {
     this._avatar.src = avatar;
   }
-  
-  setUserInfo({name, about, _id}) {
+
+  setUserInfo({ name, about, _id }) {
     this._nombre.textContent = name;
     this._job.textContent = about;
     this._id = _id;

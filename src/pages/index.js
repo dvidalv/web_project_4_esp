@@ -26,32 +26,50 @@ const api = new Api();
 const userInfo = new UserInfo(userSelectors);
 
 //Buscamos el usuario en la base de datos
-api.getUserInfo('users/me')
-  .then((user) => {
+api.getUserInfo('users/me').then((user) => {
   userInfo.setUserInfo(user);
-  console.log(`My id ${userInfo._id}`)
 });
 
 //Buscamos las tarjetas en la base de datos
 api
   .getInitialCards('cards')
   .then((data) => {
+    // Obtener tus cartas
     data.forEach((element) => {
       //Marcamos las cartas que pertenecen al usuario
-      const { owner: { _id } } = element;
-      if (userInfo._id === _id) {
-        userInfo._id === _id? element.display = true : element.display  = false;
-      }
+      const {
+        owner: { _id },
+      } = element;
+
+      // Evaluando el id del usuario contra el id de la carta
+      // Si coinciden, entonces, cambias el display (mostrarlo) a true, y si no a false
+      console.log('userInfo._id', userInfo._id);
+      console.log('_id', _id);
+      console.log('userInfo._id === _id', userInfo._id === _id);
+      console.log('------');
+      '67aefc9409f192892ca19ed6' === _id
+        ? (element.display = true)
+        : (element.display = false);
     });
+    console.log('data', data);
     return data;
   })
   .then((cards) => {
+    console.log('cards', cards);
+
+    // Agregar clase al "trash bin"
+
+    // Generar las cartas en la interfaz
     const cardsList = new Section(
       {
         data: cards,
         renderer: (item) => {
+          console.log('item', item);
+          console.log('item', item.display);
           const card = new Card(item, '.template-card');
+          console.log('card', card);
           const cardElement = card.generateCard();
+          console.log('cardElement', cardElement);
           cardsList.addItem(cardElement);
         },
       },
