@@ -26,13 +26,14 @@ const api = new Api();
 const userInfo = new UserInfo(userSelectors);
 
 //Buscamos el usuario en la base de datos
-api.getUserInfo('users/me').then((user) => {
-  userInfo.setUserInfo(user);
-});
-
-//Buscamos las tarjetas en la base de datos
 api
-  .getInitialCards('cards')
+  .getUserInfo('users/me')
+  .then((user) => {
+    userInfo.setUserInfo(user);
+
+    return api.getInitialCards('cards');
+    //Buscamos las tarjetas en la base de datos
+  })
   .then((data) => {
     // Obtener tus cartas
     data.forEach((element) => {
@@ -47,7 +48,7 @@ api
       console.log('_id', _id);
       console.log('userInfo._id === _id', userInfo._id === _id);
       console.log('------');
-      '67aefc9409f192892ca19ed6' === _id
+      userInfo._id === _id
         ? (element.display = true)
         : (element.display = false);
     });
@@ -67,7 +68,7 @@ api
           console.log('item', item);
           console.log('item', item.display);
           const card = new Card(item, '.template-card');
-          console.log('card', card);
+          console.log('card', card._display);
           const cardElement = card.generateCard();
           console.log('cardElement', cardElement);
           cardsList.addItem(cardElement);

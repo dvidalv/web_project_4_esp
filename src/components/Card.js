@@ -114,6 +114,7 @@ class Card {
   }
 
   generateCard() {
+    console.log(this._display);
     this._element = this._getTemplate();
     this._element.querySelector('.card__imagen').src = this._link;
     this._element.querySelector('.card__imagen').alt = this._alt;
