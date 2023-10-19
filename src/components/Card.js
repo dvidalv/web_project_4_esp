@@ -6,15 +6,15 @@ class Card {
     this._link = link;
     this._alt = name;
     this._like = like;
-    this._display = display ? true : false;
+    this._display = display;
     this._cardSelector = cardSelector;
     this.likeCard = this.likeCard.bind(this);
     this.disLikeCard = this.disLikeCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
     this._heart = document.querySelector('.card__imagen-corazon');
     this._heart_solid = document.querySelector('.card__imagen-corazon_solid');
-    this._trash = document.querySelector('.card__trash');
   }
+
   updateCardLikeStatus(isLiked) {
     initialCards.forEach((card) => {
       if (card.link === this._link) {
@@ -64,7 +64,7 @@ class Card {
       .content.querySelector('.card')
       .cloneNode(true);
 
-    console.log('cardElement', cardElement);
+    /* console.log('cardElement', cardElement); */
     return cardElement;
   }
 
@@ -113,13 +113,14 @@ class Card {
     this._trash.removeEventListener('click', this.deleteCard);
   }
 
-  generateCard() {
-    console.log(this._display);
+  generateCard(display) {
+    this._display = display;
     this._element = this._getTemplate();
     this._element.querySelector('.card__imagen').src = this._link;
     this._element.querySelector('.card__imagen').alt = this._alt;
     this._element.querySelector('.card__title').textContent = this._name;
     this._listeners();
+    this._trash.style.display = this._display ? 'block' : 'none';
     return this._element;
   }
 }

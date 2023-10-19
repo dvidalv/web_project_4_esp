@@ -25,59 +25,22 @@ const api = new Api();
 //Instanciamos la clase User
 const userInfo = new UserInfo(userSelectors);
 
-//Buscamos el usuario en la base de datos
-api
-  .getUserInfo('users/me')
-  .then((user) => {
-    userInfo.setUserInfo(user);
+const user = await api.getUserInfo('users/me')
+userInfo.setUserInfo(user);
 
-    return api.getInitialCards('cards');
-    //Buscamos las tarjetas en la base de datos
-  })
-  .then((data) => {
-    // Obtener tus cartas
-    data.forEach((element) => {
-      //Marcamos las cartas que pertenecen al usuario
-      const {
-        owner: { _id },
-      } = element;
-
-      // Evaluando el id del usuario contra el id de la carta
-      // Si coinciden, entonces, cambias el display (mostrarlo) a true, y si no a false
-      console.log('userInfo._id', userInfo._id);
-      console.log('_id', _id);
-      console.log('userInfo._id === _id', userInfo._id === _id);
-      console.log('------');
-      userInfo._id === _id
-        ? (element.display = true)
-        : (element.display = false);
-    });
-    console.log('data', data);
-    return data;
-  })
-  .then((cards) => {
-    console.log('cards', cards);
-
-    // Agregar clase al "trash bin"
-
-    // Generar las cartas en la interfaz
-    const cardsList = new Section(
-      {
-        data: cards,
-        renderer: (item) => {
-          console.log('item', item);
-          console.log('item', item.display);
-          const card = new Card(item, '.template-card');
-          console.log('card', card._display);
-          const cardElement = card.generateCard();
-          console.log('cardElement', cardElement);
-          cardsList.addItem(cardElement);
-        },
-      },
-      cardContainer
-    );
-    cardsList.renderItems();
-  });
+const cards = await api.getInitialCards('cards');
+const cardsList = new Section(
+  {
+    data: cards,
+    renderer: (item) => {
+      const card = new Card(item, '.template-card');
+      const cardElement = card.generateCard(item.owner._id === userInfo._id);
+      cardsList.addItem(cardElement);
+    },
+  },
+  cardContainer
+);
+cardsList.renderItems();
 
 const popupProfile = new PopupWithForm((datos) => {
   api.patchUserInfo('users/me', datos);
@@ -129,7 +92,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-const deleteCard = new PopupWithForm(() => {}, '.popup_delete-card');
+const deleteCard = new PopupWithForm(() => { }, '.popup_delete-card');
 
 api.getUserAvatar('users/me').then((avatar) => {
   userInfo.updateAvatar(avatar.avatar);
