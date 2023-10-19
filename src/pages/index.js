@@ -25,40 +25,22 @@ const api = new Api();
 //Instanciamos la clase User
 const userInfo = new UserInfo(userSelectors);
 
-//Buscamos el usuario en la base de datos
-api.getUserInfo('users/me')
-  .then((user) => {
-  userInfo.setUserInfo(user);
-  console.log(`My id ${userInfo._id}`)
-});
+const user = await api.getUserInfo('users/me')
+userInfo.setUserInfo(user);
 
-//Buscamos las tarjetas en la base de datos
-api
-  .getInitialCards('cards')
-  .then((data) => {
-    data.forEach((element) => {
-      //Marcamos las cartas que pertenecen al usuario
-      const { owner: { _id } } = element;
-      if (userInfo._id === _id) {
-        userInfo._id === _id? element.display = true : element.display  = false;
-      }
-    });
-    return data;
-  })
-  .then((cards) => {
-    const cardsList = new Section(
-      {
-        data: cards,
-        renderer: (item) => {
-          const card = new Card(item, '.template-card');
-          const cardElement = card.generateCard();
-          cardsList.addItem(cardElement);
-        },
-      },
-      cardContainer
-    );
-    cardsList.renderItems();
-  });
+const cards = await api.getInitialCards('cards');
+const cardsList = new Section(
+  {
+    data: cards,
+    renderer: (item) => {
+      const card = new Card(item, '.template-card');
+      const cardElement = card.generateCard(item.owner._id === userInfo._id);
+      cardsList.addItem(cardElement);
+    },
+  },
+  cardContainer
+);
+cardsList.renderItems();
 
 const popupProfile = new PopupWithForm((datos) => {
   api.patchUserInfo('users/me', datos);
@@ -110,7 +92,7 @@ document.addEventListener('click', (e) => {
   }
 });
 
-const deleteCard = new PopupWithForm(() => {}, '.popup_delete-card');
+const deleteCard = new PopupWithForm(() => { }, '.popup_delete-card');
 
 api.getUserAvatar('users/me').then((avatar) => {
   userInfo.updateAvatar(avatar.avatar);
