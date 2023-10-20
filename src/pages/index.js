@@ -18,9 +18,17 @@ import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
 
+//Instanciamos la clase Api
+const api = new Api();
+
+export const popupDeleteCard = new PopupWithForm(async (inputValues,deleteCallback,cardId) => {
+
+  await api.deleteCard('cards/' + cardId)
+  deleteCallback()
+
+}, '.popup_delete-card');
+
 try {
-  //Instanciamos la clase Api
-  const api = new Api();
 
   //Instanciamos la clase User
   const userInfo = new UserInfo(userSelectors);
@@ -68,16 +76,15 @@ try {
     validate.enableValidation();
   });
 
-  const newPlace = new PopupWithForm((obj) => {
-    api.addCard('cards', obj);
+  const newPlace = new PopupWithForm(async (obj) => {
+    await api.addCard('cards', obj);
 
     const { link, name } = obj;
 
     const newCard = new Card({ name, link, like: false }, '.template-card');
 
-    cardContainer.prepend(newCard.generateCard());
-    //llamar las cartas de nuevo
-    cardsList.renderItems();
+    cardsList.addItem(newCard.generateCard(), 'prepend');
+
   }, '.popup_Element');
 
   addButton.addEventListener('click', () => {
@@ -115,22 +122,16 @@ try {
 
   let card_Id;
   let cardToErase;
-  const popupDeleteCard = new PopupWithForm(() => {
-    api.deleteCard('cards/' + card_Id)
-    .then(() => {
-      cardsList.renderItems()
-    })
-    .catch((err) => console.log(err));
-  }, '.popup_delete-card');
+  
 
-  document.addEventListener('click', (e) => {
+  /* document.addEventListener('click', (e) => {
     if (e.target.classList.contains('card__trash')) {
       card_Id = e.target.parentElement.dataset.id;
       cardToErase = e.target.parentElement;
 
-      popupDeleteCard.open();
+      popupDeleteCard.open(cardToErase);
     }
-  });
+  }); */
 } catch (error) {
   console.log(error);
 }

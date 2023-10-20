@@ -13,10 +13,12 @@ class Api {
       },
       body: JSON.stringify(data),
     });
+
     if (result.ok) {
-      return result.json();
+      return await result.json();
     }
-    return Promise.reject(`Error: ${result.status}`);
+    
+    return await Promise.reject(`Error: ${result.status}`);
   }
 
   async getInitialCards(resouce) {
@@ -37,7 +39,7 @@ class Api {
     return await this.fetchData(`${this._url}${resouce}`, 'POST', data);
   }
 
-async deleteCard(resouce, card_Id) {
+  async deleteCard(resouce, card_Id) {
     return await this.fetchData(`${this._url}${resouce}`, 'DELETE');
   }
 

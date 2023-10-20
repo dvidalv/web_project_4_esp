@@ -1,5 +1,6 @@
 import PopupWithImage from './PopupWithImage.js';
 import { initialCards } from '../utils/consts.js';
+import { popupDeleteCard } from '../pages/index.js';
 class Card {
   constructor({ name, link, like, display, _id }, cardSelector) {
     this._name = name;
@@ -11,7 +12,7 @@ class Card {
     this._cardSelector = cardSelector;
     this.likeCard = this.likeCard.bind(this);
     this.disLikeCard = this.disLikeCard.bind(this);
-    // this.deleteCard = this.deleteCard.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
     this._heart = document.querySelector('.card__imagen-corazon');
     this._heart_solid = document.querySelector('.card__imagen-corazon_solid');
   }
@@ -49,15 +50,9 @@ class Card {
     this.updateCardLikeStatus(heartSolid.classList.contains('corazonOn'));
   }
 
-  // deleteCard(e) {
-  //   // const card = e.target.parentElement;
-  //   // card.classList.add('popup-cierre');
-  //   // setTimeout(() => {
-  //   //   card.remove();
-  //   //   this._removeListeners();
-  //   // }, `1000`);
-  //   console.log('borrando');
-  // }
+  deleteCard() {
+    this._element.remove();
+  }
 
   _getTemplate() {
     const cardElement = document
@@ -102,6 +97,13 @@ class Card {
       this._trash.addEventListener('mouseout', () => {
         this._trash.style.color = 'currentColor';
       });
+
+      this._trash.addEventListener('click', () => {
+        //primero open del popup
+        popupDeleteCard.open(this.deleteCard, this._id)
+        //luego delete
+        //this.deleteCard()
+      })
     }
   }
   _removeListeners() {

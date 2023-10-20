@@ -25,7 +25,7 @@ class PopupWithForm extends Popup {
   }
 
   _newValues() {
-    this._submitCallback(this._getInputValues());
+    this._submitCallback(this._getInputValues(), this._deleteCallback, this._cardId);
   }
 
   _handleFormSubmit = (e) => {
@@ -47,9 +47,16 @@ class PopupWithForm extends Popup {
     this._popup.removeEventListener('submit', this._handleFormSubmit);
   }
 
-  open() {
+  open(deleteCallback, cardId) {
     super.open();
     document.querySelector('body').classList.add('fix');
+    if(deleteCallback){
+      this._deleteCallback = deleteCallback;
+    }
+
+    if(cardId){
+      this._cardId = cardId;
+    }
   }
 
   close() {

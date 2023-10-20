@@ -8,9 +8,8 @@ class Section {
     this._container.innerHTML = '';
   }
 
-  addItem(element) {
-    this._container.append(element);
-
+  addItem(element,orientation = 'append') {
+    this._container[orientation](element)
   }
 
 
