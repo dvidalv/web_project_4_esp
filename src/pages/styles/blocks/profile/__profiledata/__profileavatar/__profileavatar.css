@@ -5,6 +5,7 @@
   flex-shrink: 1;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 @media (min-width: 768px) {
   .profile__avatar {

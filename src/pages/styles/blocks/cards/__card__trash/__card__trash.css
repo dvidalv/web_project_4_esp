@@ -1,4 +1,6 @@
 .card__trash {
+  /* opacity:0; */
+  /* z-index: -1; */
   /* width: 24px; */
   margin: 18px 15px 0 0;
   cursor: pointer;
@@ -12,3 +14,7 @@
   -ms-transition: color ease 0.8s;
   -o-transition: color ease 0.8s;
 }
+/* .card__trash_visible{ */
+  /* opacity: 1; */
+  /* z-index: 0; */
+/* } */

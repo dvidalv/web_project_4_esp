@@ -1,46 +1,6 @@
-import '../vendors/normalize.css';
-import "./styles/index.css";
-import'../fonts/Inter/inter.css';
-import'./styles/blocks/globales/globales.css';
-import'./styles/blocks/globales/animaciones.css';
-import'./styles/blocks/buttons/buttons.css';
-import'./styles/blocks/buttons/add-button/add-button.css';
-import'./styles/blocks/buttons/edit-button/edit-button.css';
-import'./styles/blocks/buttons/btn-cerrar/btncerrar.css';
-import'./styles/blocks/page/page.css';
-import'./styles/blocks/content/content.css';
-import'./styles/blocks/header/__logo/logo.css';
-import'./styles/blocks/header/header.css';
-import'./styles/blocks/profile/profile.css';
-import'./styles/blocks/popup/popup.css';
-import'./styles/blocks/popup/__popcontainer/__popupcontatiner.css';
-import'./styles/blocks/popup/__popuptitle/__popuptitle.css';
-import'./styles/blocks/popup/__popupinput/__popupinput.css';
-import'./styles/blocks/popup/__popupsubmit/__popupsubmit.css';
-import'./styles/blocks/profile/__profiledata/__profiledata.css';
-import'./styles/blocks/profile/__profiledata/__profileinfo/__profiloSubtitle/__profiloSubtitle.css';
-import'./styles/blocks/profile/__profiledata/__profileavatar/__profileavatar.css';
-import'./styles/blocks/profile/__profiledata/__profileavatar/__profileimage/__profileimage.css';
-import'./styles/blocks/profile/__profiledata/__profileinfo/__profileinfo.css';
-import'./styles/blocks/profile/__profiledata/__profileinfo/__profileContenedorTitle/__profileContenedorTitle.css';
-import'./styles/blocks/profile/__profiledata/__profileinfo/__profileContenedorTitle/__profiletitle/__profiletitle.css';
-import'./styles/blocks/elements/elements.css';
-import'./styles/blocks/cards/card.css';
-import'./styles/blocks/cards/__card__image-container/__card__image-container.css';
-import'./styles/blocks/cards/__card__imagen/__card__imagen.css';
-import'./styles/blocks/cards/__card__contenido/__card__contenido.css';
-import'./styles/blocks/cards/__card__info/__card__info.css';
-import'./styles/blocks/cards/__card__title/__card__title.css';
-import'./styles/blocks/cards/__card__imagen-corazon/__card__imagen-corazon.css';
-import'./styles/blocks/cards/__me-gusta/__me-gusta.css';
-import'./styles/blocks/cards/__card__trash/__card__trash.css';
-import'./styles/blocks/overlay/overlay.css';
-import'./styles/blocks/overlay/__overlay__divTemp/__overlaydivtemp.css';
-import'./styles/blocks/overlay/__overlay__divTemp/__overlay-image__image.css';
-import'./styles/blocks/footer/footer.css';
-
+import './styles/index.css';
 import {
-  initialCards,
+  btnUpdateAvatar,
   editButton,
   addButton,
   cardContainer,
@@ -48,74 +8,130 @@ import {
   objConfig,
   popup__form,
   popupAddImage,
+  eraseBtn,
 } from '../utils/consts.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
-import Popup from '../components/Popup.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
+import Api from '../components/Api.js';
 
-const cardsList = new Section(
-  {
-    data: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, '.template-card');
-      const cardElement = card.generateCard();
-      cardsList.addItem(cardElement);
+//Instanciamos la clase Api
+const api = new Api();
+
+export const popupDeleteCard = new PopupWithForm(async (inputValues,deleteCallback,cardId) => {
+
+  await api.deleteCard('cards/' + cardId)
+  deleteCallback()
+
+}, '.popup_delete-card');
+
+try {
+
+  //Instanciamos la clase User
+  const userInfo = new UserInfo(userSelectors);
+
+  const user = await api.getUserInfo('users/me');
+  userInfo.setUserInfo(user);
+
+  const cards = await api.getInitialCards('cards');
+  // console.log(cards);
+  const cardsList = new Section(
+    {
+      data: cards,
+      renderer: (item) => {
+        // console.log(item);
+        const card = new Card(item, '.template-card');
+        const cardElement = card.generateCard(item.owner._id === userInfo._id);
+        cardsList.addItem(cardElement);
+      },
     },
-  },
-  cardContainer
-);
-const userInfo = new UserInfo(userSelectors);
+    cardContainer
+  );
 
-const popupProfile = new PopupWithForm((data) => {
-  userInfo.setUserInfo(data);
-}, '.popup_perfil');
+  cardsList.renderItems();
 
-editButton.addEventListener('click', () => {
-  //abre form profile
-  const { _inputTitle, _inputStittle } = userInfo;
-  const { nombre, job } = userInfo.getUserInfo();
+  const popupProfile = new PopupWithForm((datos) => {
+    api.patchUserInfo('users/me', datos);
+    // api.getUserInfo()
+    userInfo.setUserInfo(datos);
+  }, '.popup_perfil');
 
-  _inputTitle.value = nombre;
-  _inputStittle.value = job;
+  editButton.addEventListener('click', () => {
+    //Selecciona los valores del formulario
+    const { _inputTitle, _inputStittle } = userInfo;
 
-  popupProfile.open();
+    //Selecciona los valores del usuario
+    const { nombre, job } = userInfo.getUserInfo();
 
-  const validate = new FormValidator(objConfig, popup__form);
-  validate.enableValidation();
-});
+    _inputTitle.value = nombre;
+    _inputStittle.value = job;
 
-const newPlace = new PopupWithForm((obj) => {
-  const { link, name } = obj;
+    //abre form profile
+    popupProfile.open();
 
-  const newCard = new Card({ name, link, like: false }, '.template-card');
+    const validate = new FormValidator(objConfig, popup__form);
+    validate.enableValidation();
+  });
 
-  cardContainer.prepend(newCard.generateCard());
-}, '.popup_Element');
+  const newPlace = new PopupWithForm(async (obj) => {
+    await api.addCard('cards', obj);
 
-addButton.addEventListener('click', () => {
-  newPlace.open();
-  const validate = new FormValidator(objConfig, popupAddImage);
-  validate.enableValidation();
-});
+    const { link, name } = obj;
 
-document.addEventListener('click', (e) => {
-  if (e.target.classList.contains('card__imagen')) {
-    const imageInfo = {
-      src: e.target.src,
-      alt: e.target.alt,
-    };
-    const popupImage = new PopupWithImage(imageInfo, '.overlay-image');
-    popupImage.open();
-  }
-});
+    const newCard = new Card({ name, link, like: false }, '.template-card');
 
-cardsList.renderItems();
+    cardsList.addItem(newCard.generateCard(), 'prepend');
 
+  }, '.popup_Element');
 
+  addButton.addEventListener('click', () => {
+    newPlace.open();
+    const validate = new FormValidator(objConfig, popupAddImage);
+    validate.enableValidation();
+  });
 
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('card__imagen')) {
+      const imageInfo = {
+        src: e.target.src,
+        alt: e.target.alt,
+      };
+      const popupImage = new PopupWithImage(imageInfo, '.overlay-image');
+      popupImage.open();
+    }
+  });
 
+  api.getUserAvatar('users/me').then((avatar) => {
+    userInfo.updateAvatar(avatar.avatar);
+  });
 
+  const updatePerfil = new PopupWithForm(async ({ link }) => {
+    // éste método Recibe un objeto con la propiedad de avatar
+    const data = await api.patchUserInfo('users/me/avatar', { avatar: link });
+
+    // Actualizar la imagen del usuario en la interfaz
+    userInfo.updateAvatar(data.avatar);
+    updatePerfil.close();
+  }, '.popup_update-perfil');
+  btnUpdateAvatar.addEventListener('click', (e) => {
+    updatePerfil.open();
+  });
+
+  let card_Id;
+  let cardToErase;
+  
+
+  /* document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('card__trash')) {
+      card_Id = e.target.parentElement.dataset.id;
+      cardToErase = e.target.parentElement;
+
+      popupDeleteCard.open(cardToErase);
+    }
+  }); */
+} catch (error) {
+  console.log(error);
+}

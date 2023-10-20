@@ -1,0 +1,5 @@
+.card__like-counter{
+  color: black;
+  align-self: flex-end;
+  margin-right: 5px;
+}

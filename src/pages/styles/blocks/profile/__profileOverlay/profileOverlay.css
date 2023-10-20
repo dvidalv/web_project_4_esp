@@ -1,0 +1,46 @@
+.profile__overlay {
+  display: grid;
+  place-items: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  transition: background-color .5s;
+  -webkit-transition: background-color .5s;
+  -moz-transition: background-color .5s;
+  -ms-transition: background-color .5s;
+  -o-transition: background-color .5s;
+}
+@media (min-width: 768px){
+	.profile__overlay{
+		width: 120px;
+		height: 120px;
+	}
+}
+@media (min-width: 1280px){
+	.profile__overlay{
+    height: 127.5px;
+    padding: 0 22px;
+    margin-left: 22px;
+	}
+}
+
+.profile__overlay:hover {
+	background-color: rgba(0, 0, 0, 0.476);
+
+}
+
+.profile__overlay:hover .profile__edit-icon {
+  transition: opacity scale 1s;
+  -webkit-transition: opacity scale 1s;
+  -moz-transition: opacity scale 1s;
+  -ms-transition: opacity scale 1s;
+  -o-transition: opacity scale 1s;
+  opacity: 1;
+}

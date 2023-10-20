@@ -1,5 +1,5 @@
 .popup__submit {
-  margin: 48px auto 0;
+  /* margin: 48px auto 0; */
   display: block;
   width: 95%;
   border: none;
@@ -11,6 +11,9 @@
   height: 50px;
   border-radius: 2px;
   transition: opacity 0.3s;
+}
+.popup__submit_update-perfil {
+  margin-top: 48px;
 }
 
 .popup__submit:hover {
