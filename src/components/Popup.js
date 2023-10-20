@@ -7,6 +7,7 @@ class Popup {
     this._popup = document.querySelector(this._popupSelector);
     this._form = this._popup.firstElementChild;
     this.BtnClose = this._popup.querySelector('.btnCerrar');
+    this._eraseBtn = this
   }
 
   _handleEscClose(e) {
@@ -14,6 +15,7 @@ class Popup {
       this.close();
     }
   }
+
 
   _handleOutsideClick(e) {
     if (

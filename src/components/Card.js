@@ -1,16 +1,17 @@
 import PopupWithImage from './PopupWithImage.js';
 import { initialCards } from '../utils/consts.js';
 class Card {
-  constructor({ name, link, like, display }, cardSelector) {
+  constructor({ name, link, like, display, _id }, cardSelector) {
     this._name = name;
     this._link = link;
     this._alt = name;
     this._like = like;
+    this._id = _id;
     this._display = display;
     this._cardSelector = cardSelector;
     this.likeCard = this.likeCard.bind(this);
     this.disLikeCard = this.disLikeCard.bind(this);
-    this.deleteCard = this.deleteCard.bind(this);
+    // this.deleteCard = this.deleteCard.bind(this);
     this._heart = document.querySelector('.card__imagen-corazon');
     this._heart_solid = document.querySelector('.card__imagen-corazon_solid');
   }
@@ -48,15 +49,15 @@ class Card {
     this.updateCardLikeStatus(heartSolid.classList.contains('corazonOn'));
   }
 
-  deleteCard(e) {
-    // const card = e.target.parentElement;
-    // card.classList.add('popup-cierre');
-    // setTimeout(() => {
-    //   card.remove();
-    //   this._removeListeners();
-    // }, `1000`);
-    console.log('borrando');
-  }
+  // deleteCard(e) {
+  //   // const card = e.target.parentElement;
+  //   // card.classList.add('popup-cierre');
+  //   // setTimeout(() => {
+  //   //   card.remove();
+  //   //   this._removeListeners();
+  //   // }, `1000`);
+  //   console.log('borrando');
+  // }
 
   _getTemplate() {
     const cardElement = document
@@ -93,7 +94,7 @@ class Card {
     const trashElement = this._element.querySelector('.card__trash');
     if (trashElement) {
       this._trash = trashElement;
-      this._trash.addEventListener('click', this.deleteCard);
+      // this._trash.addEventListener('click', this.deleteCard);
 
       this._trash.addEventListener('mouseenter', () => {
         this._trash.style.color = 'rgba(255, 255, 255, 0.60)';
@@ -110,7 +111,7 @@ class Card {
     this._element
       .querySelector('.card__imagen-corazon_solid')
       .removeEventListener('click', this.disLikeCard);
-    this._trash.removeEventListener('click', this.deleteCard);
+    // this._trash.removeEventListener('click', this.deleteCard);
   }
 
   generateCard(display) {
@@ -121,6 +122,7 @@ class Card {
     this._element.querySelector('.card__title').textContent = this._name;
     this._listeners();
     this._trash.style.display = this._display ? 'block' : 'none';
+    this._element.dataset.id = this._id;
     return this._element;
   }
 }

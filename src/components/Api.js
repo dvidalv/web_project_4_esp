@@ -37,15 +37,9 @@ class Api {
     return await this.fetchData(`${this._url}${resouce}`, 'POST', data);
   }
 
-  // TODO: Not working already.
-  async delete(id) {
-    const result = await fetch(this._url + id, {
-      method: 'DELETE',
-    });
-    if (result.ok) {
-      return result.json();
-    }
-    return Promise.reject(`Error: ${result.status}`);
+async deleteCard(resouce, card_Id) {
+    return await this.fetchData(`${this._url}${resouce}`, 'DELETE');
   }
+
 }
 export default Api;

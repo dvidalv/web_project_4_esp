@@ -46,6 +46,7 @@ const objConfig = {
   errorClass: 'popup__error_visible',
 };
 const btnUpdateAvatar = document.querySelector('.profile__edit-icon');
+const eraseBtn = document.querySelectorAll('.card__trash')
 const popup__form = document.querySelector('.popup__form'); //formulario
 const cardContainer = document.querySelector('.elements'); //contenedor de tarjetas
 const title = '.profile__title';
@@ -86,4 +87,5 @@ export {
   editButton,
   buttonPopupButtonCerrarPlaces,
   addButton,
+  eraseBtn,
 };
