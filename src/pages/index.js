@@ -21,7 +21,7 @@ import Api from '../components/Api.js';
   let cardToErase;
 //Instanciamos la clase Api
 const api = new Api();
-export const popupDeleteCard = new PopupWithForm(async (inputValues,deleteCallback,cardId) => {
+export const popupDeleteCard = new PopupWithForm(async (inputValues, deleteCallback, cardId) => {
 
   await api.deleteCard('cards/' + cardId)
   deleteCallback()
@@ -119,6 +119,10 @@ try {
   btnUpdateAvatar.addEventListener('click', (e) => {
     updatePerfil.open();
   });
+
+  let card_Id;
+  let cardToErase;
+  
 
   /* document.addEventListener('click', (e) => {
     if (e.target.classList.contains('card__trash')) {

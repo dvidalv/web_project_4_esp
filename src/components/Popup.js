@@ -16,7 +16,6 @@ class Popup {
     }
   }
 
-
   _handleOutsideClick(e) {
     if (
       e.target.classList.contains('popup') ||
@@ -44,18 +43,18 @@ class Popup {
   }
 
   open() {
-    this._popup.classList.add('popup_opened');
-    this._popup.classList.add('popup-animation');
+    this._popup.classList.add('popup_opened', 'popup-animation');
     this._setEventListeners();
   }
 
   close() {
     this._popup.classList.add('popup-cierre');
     // Espera a que termine la animación antes de eliminar la clase y ocultar el popup
+    const animationDuration = 1000; // Duración de la animación en milisegundos
     setTimeout(() => {
-      this._popup.classList.remove('popup-cierre');
-      this._popup.classList.remove('popup_opened');
-    }, 1000); // Ajusta el tiempo de espera según la duración de la animación en CSS
+      this._popup.classList.remove('popup-cierre', 'popup_opened');
+    }, animationDuration);
+    this._removeEventListeners();
   }
 }
 
