@@ -1,12 +1,13 @@
-import PopupWithImage from './PopupWithImage.js';
 import { initialCards } from '../utils/consts.js';
 import { popupDeleteCard } from '../pages/index.js';
+import { popupImage } from '../pages/index.js';
 class Card {
-  constructor({ name, link, like, display, _id }, cardSelector) {
+  constructor({ name, link, like, display, _id, likes }, cardSelector) {
     this._name = name;
     this._link = link;
     this._alt = name;
     this._like = like;
+    this._likes = likes;
     this._id = _id;
     this._display = display;
     this._cardSelector = cardSelector;
@@ -16,7 +17,6 @@ class Card {
     this._heart = document.querySelector('.card__imagen-corazon');
     this._heart_solid = document.querySelector('.card__imagen-corazon_solid');
   }
-
   updateCardLikeStatus(isLiked) {
     initialCards.forEach((card) => {
       if (card.link === this._link) {
@@ -24,7 +24,6 @@ class Card {
       }
     });
   }
-
   likeCard(e) {
     const heart = e.target;
     const heartSolid = heart.nextElementSibling;
@@ -36,7 +35,6 @@ class Card {
 
     this.updateCardLikeStatus(heart.classList.contains('corazonOff'));
   }
-
   disLikeCard(e) {
     const heartSolid = e.target;
     const heart = heartSolid.previousElementSibling;
@@ -49,22 +47,18 @@ class Card {
 
     this.updateCardLikeStatus(heartSolid.classList.contains('corazonOn'));
   }
-
   deleteCard() {
     this._element.remove();
   }
-
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
       .content.querySelector('.card')
       .cloneNode(true);
-
-    /* console.log('cardElement', cardElement); */
     return cardElement;
   }
-
   _listeners() {
+    
     const likeHeartElement = this._element.querySelector(
       '.card__imagen-corazon'
     );
@@ -115,16 +109,21 @@ class Card {
       .removeEventListener('click', this.disLikeCard);
     // this._trash.removeEventListener('click', this.deleteCard);
   }
-
-  generateCard(display) {
+  generateCard(display, likes) {
     this._display = display;
     this._element = this._getTemplate();
+    this._likesContainer = this._element.querySelector('.card__like-counter');
+    this._likesContainer.textContent = this._likes > 0? this._likes : "";
+    this._heart = this._element.querySelector('.card__imagen-corazon');
+    this._heart_solid = this._element.querySelector('.card__imagen-corazon_solid');
     this._element.querySelector('.card__imagen').src = this._link;
     this._element.querySelector('.card__imagen').alt = this._alt;
     this._element.querySelector('.card__title').textContent = this._name;
+    this._cardImage = this._element.querySelector('.card__imagen');
     this._listeners();
     this._trash.style.display = this._display ? 'block' : 'none';
     this._element.dataset.id = this._id;
+    console.log(this._likesContainer)
     return this._element;
   }
 }

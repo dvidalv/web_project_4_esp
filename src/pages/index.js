@@ -17,10 +17,10 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
-
+  let card_Id;
+  let cardToErase;
 //Instanciamos la clase Api
 const api = new Api();
-
 export const popupDeleteCard = new PopupWithForm(async (inputValues,deleteCallback,cardId) => {
 
   await api.deleteCard('cards/' + cardId)
@@ -44,7 +44,7 @@ try {
       renderer: (item) => {
         // console.log(item);
         const card = new Card(item, '.template-card');
-        const cardElement = card.generateCard(item.owner._id === userInfo._id);
+        const cardElement = card.generateCard(item.owner._id === userInfo._id, item.likes);
         cardsList.addItem(cardElement);
       },
     },
@@ -119,10 +119,6 @@ try {
   btnUpdateAvatar.addEventListener('click', (e) => {
     updatePerfil.open();
   });
-
-  let card_Id;
-  let cardToErase;
-  
 
   /* document.addEventListener('click', (e) => {
     if (e.target.classList.contains('card__trash')) {
