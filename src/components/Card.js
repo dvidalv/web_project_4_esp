@@ -17,39 +17,7 @@ class Card {
     // this._heart = document.querySelector('.card__imagen-corazon');
     // this._heart_solid = document.querySelector('.card__imagen-corazon_solid');
   }
-  updateCardLikeStatus(isLiked) {
-    initialCards.forEach((card) => {
-      if (card.link === this._link) {
-        card.like = isLiked;
-      }
-    });
-  }
-  likeCard(e) {
-    const heart = e.target;
-    const heartSolid = heart.nextElementSibling;
-    heartSolid.style.animation = 'megusta 1s 2';
-    heart.classList.add('corazonOff');
-    heart.classList.remove('corazonOn');
-    heartSolid.classList.add('corazonOn');
-    heartSolid.classList.remove('corazonOff');
 
-    this.updateCardLikeStatus(heart.classList.contains('corazonOff'));
-
-  }
-
-
-  disLikeCard(e) {
-    const heartSolid = e.target;
-    const heart = heartSolid.previousElementSibling;
-    heartSolid.classList.add('corazonOff');
-    heartSolid.classList.remove('corazonOn');
-    heart.classList.remove('corazonOff');
-    heart.classList.remove('corazonOn');
-
-    this._like = heart.classList.contains('corazonOn');
-
-    this.updateCardLikeStatus(heartSolid.classList.contains('corazonOn'));
-  }
   deleteCard() {
     this._element.remove();
   }
@@ -61,8 +29,8 @@ class Card {
     return cardElement;
   }
   _listeners() {
+    
     this._heart.addEventListener('click', (e) => {
-      this._heart.classList.toggle('card__imagen-corazon')
       this._heart.classList.toggle('card__imagen-corazon_solid')
     });
 
