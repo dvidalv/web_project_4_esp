@@ -33,8 +33,7 @@
 @import './blocks/cards/__card__info/__card__info.css';
 @import './blocks/cards/__card__like-counter/card__like-counter.css';
 @import './blocks/cards/__card__title/__card__title.css';
-@import './blocks/cards/__card__imagen-corazon/__card__imagen-corazon.css';
-@import './blocks/cards/__me-gusta/__me-gusta.css';
+@import './blocks/cards/__card__imagen-corazon/__like.css';
 @import './blocks/cards/__card__trash/__card__trash.css';
 @import './blocks/overlay/overlay.css';
 @import './blocks/overlay/__overlay__divTemp/__overlaydivtemp.css';
