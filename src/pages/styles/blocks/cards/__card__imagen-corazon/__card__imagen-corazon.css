@@ -1,24 +1,47 @@
 .card__imagen-corazon {
-  width: 20px;
+  width: 25px;
+  height: 25px;
+  background-image: url(../../../../../images/me_gusta.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
+}
+.card__imagen-corazon_solid {
+  width: 25px;
+  height: 25px;
+  background-image: url(../../../../../images/me_gusta_negro.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px 20px;
 }
 .card__imagen-corazon:hover {
   cursor: pointer;
   transform: scale(1.2);
+  transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  -o-transition: all 0.8s;
   -webkit-transform: scale(1.2);
   -moz-transform: scale(1.2);
   -ms-transform: scale(1.2);
   -o-transform: scale(1.2);
-  transition: all 0.3s;
-  -webkit-transition: all 0.3s;
-  -moz-transition: all 0.3s;
-  -ms-transition: all 0.3s;
-  -o-transition: all 0.3s;
 }
-.card__imagen-corazon_solid {
-  display: none;
+.card__imagen-corazon_solid:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
 }
 
-.card__imagen-corazo,
+.card__imagen-corazon,
 .card__imagen-corazon_solid:hover {
   opacity: 0.6;
   overflow: hidden;
@@ -27,12 +50,4 @@
   -moz-transition: 0.8s all;
   -ms-transition: 0.8s all;
   -o-transition: 0.8s all;
-}
-
-.corazonOff {
-  animation: fadeOut 1s;
-  display: none;
-}
-.corazonOn {
-  display: block;
 }

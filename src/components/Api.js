@@ -17,7 +17,7 @@ class Api {
     if (result.ok) {
       return await result.json();
     }
-    
+
     return await Promise.reject(`Error: ${result.status}`);
   }
 
@@ -43,5 +43,19 @@ class Api {
     return await this.fetchData(`${this._url}${resouce}`, 'DELETE');
   }
 
+  async likeCard(resouce, card_Id) {
+    return await this.fetchData(
+      `${this._url}${resouce}/likes/${card_Id}`,
+      'PUT'
+    );
+  }
+
+  async dislikeCard(resouce, card_Id) {
+    return await this.fetchData(
+      `${this._url}${resouce}/likes/${card_Id}`,
+      'DELETE'
+    );
+  }
 }
+
 export default Api;

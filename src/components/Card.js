@@ -1,6 +1,7 @@
 import PopupWithImage from './PopupWithImage.js';
 import { initialCards } from '../utils/consts.js';
 import { popupDeleteCard } from '../pages/index.js';
+
 class Card {
   constructor({ name, link, like, display, _id }, cardSelector) {
     this._name = name;
@@ -10,11 +11,11 @@ class Card {
     this._id = _id;
     this._display = display;
     this._cardSelector = cardSelector;
-    this.likeCard = this.likeCard.bind(this);
-    this.disLikeCard = this.disLikeCard.bind(this);
+    // this.likeCard = this.likeCard.bind(this);
+    // this.disLikeCard = this.disLikeCard.bind(this);
     this.deleteCard = this.deleteCard.bind(this);
-    this._heart = document.querySelector('.card__imagen-corazon');
-    this._heart_solid = document.querySelector('.card__imagen-corazon_solid');
+    // this._heart = document.querySelector('.card__imagen-corazon');
+    // this._heart_solid = document.querySelector('.card__imagen-corazon_solid');
   }
 
   updateCardLikeStatus(isLiked) {
@@ -35,7 +36,9 @@ class Card {
     heartSolid.classList.remove('corazonOff');
 
     this.updateCardLikeStatus(heart.classList.contains('corazonOff'));
+
   }
+
 
   disLikeCard(e) {
     const heartSolid = e.target;
@@ -65,31 +68,14 @@ class Card {
   }
 
   _listeners() {
-    const likeHeartElement = this._element.querySelector(
-      '.card__imagen-corazon'
-    );
-    const disLikeHeartElement = this._element.querySelector(
-      '.card__imagen-corazon_solid'
-    );
-
-    if (likeHeartElement) {
-      this.likeHeart = likeHeartElement.addEventListener(
-        'click',
-        this.likeCard
-      );
-    }
-
-    if (disLikeHeartElement) {
-      this.disLikeHeart = disLikeHeartElement.addEventListener(
-        'click',
-        this.disLikeCard
-      );
-    }
+    this._heart.addEventListener('click', (e) => {
+      this._heart.classList.toggle('card__imagen-corazon')
+      this._heart.classList.toggle('card__imagen-corazon_solid')
+    });
 
     const trashElement = this._element.querySelector('.card__trash');
     if (trashElement) {
       this._trash = trashElement;
-      // this._trash.addEventListener('click', this.deleteCard);
 
       this._trash.addEventListener('mouseenter', () => {
         this._trash.style.color = 'rgba(255, 255, 255, 0.60)';
@@ -119,12 +105,15 @@ class Card {
   generateCard(display) {
     this._display = display;
     this._element = this._getTemplate();
+    this._heart = this._element.querySelector('.card__imagen-corazon');
+    this._heart_solid = this._heart.nextElementSibling;
     this._element.querySelector('.card__imagen').src = this._link;
     this._element.querySelector('.card__imagen').alt = this._alt;
     this._element.querySelector('.card__title').textContent = this._name;
     this._listeners();
     this._trash.style.display = this._display ? 'block' : 'none';
     this._element.dataset.id = this._id;
+    // console.log(this._heart)
     return this._element;
   }
 }

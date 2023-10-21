@@ -20,8 +20,7 @@ import Api from '../components/Api.js';
 
 //Instanciamos la clase Api
 const api = new Api();
-
-export const popupDeleteCard = new PopupWithForm(async (inputValues,deleteCallback,cardId) => {
+export const popupDeleteCard = new PopupWithForm(async (inputValues, deleteCallback, cardId) => {
 
   await api.deleteCard('cards/' + cardId)
   deleteCallback()
@@ -120,18 +119,6 @@ try {
     updatePerfil.open();
   });
 
-  let card_Id;
-  let cardToErase;
-  
-
-  /* document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('card__trash')) {
-      card_Id = e.target.parentElement.dataset.id;
-      cardToErase = e.target.parentElement;
-
-      popupDeleteCard.open(cardToErase);
-    }
-  }); */
 } catch (error) {
   console.log(error);
 }
