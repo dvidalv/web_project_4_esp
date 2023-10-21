@@ -5,6 +5,11 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px 20px;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
 }
 .card__imagen-corazon_solid {
   width: 25px;
@@ -13,6 +18,11 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px 20px;
+  transition: all 1s;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
 }
 .card__imagen-corazon:hover {
   cursor: pointer;
@@ -51,3 +61,5 @@
   -ms-transition: 0.8s all;
   -o-transition: 0.8s all;
 }
+
+
