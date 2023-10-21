@@ -1,4 +1,4 @@
-.card__imagen-corazon {
+.card_dislike {
   width: 20px;
   height: 20px;
   background-image: url(../../../../../images/me_gusta.svg);
@@ -11,11 +11,11 @@
   -ms-transition: all 1s;
   -o-transition: all 1s;
 }
-.card__imagen-corazon_solid {
+.card_like {
   background-image: url(../../../../../images/me_gusta_negro.svg);
 }
-.card__imagen-corazon:hover,
-.card__imagen-corazon_solid:hover {
+.card_dislike:hover,
+.card_like:hover {
   cursor: pointer;
   transform: scale(1.2);
   transition: all 0.8s;
@@ -29,8 +29,8 @@
   -o-transform: scale(1.2);
 }
 
-.card__imagen-corazon:hover,
-.card__imagen-corazon_solid:hover {
+.card_dislike:hover,
+.card_like:hover {
   opacity: 0.6;
   overflow: hidden;
   transition: 0.8s all;
