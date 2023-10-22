@@ -30,7 +30,7 @@ export const popupDeleteCard = new PopupWithForm(
   },
   '.popup_delete-card'
 );
-
+(async function() {
 try {
   //Instanciamos la clase User
   const userInfo = new UserInfo(userSelectors);
@@ -82,13 +82,21 @@ try {
   });
   // console.log(user._id);
   const newPlace = new PopupWithForm(async (obj) => {
-    await api.addCard('cards', obj);
+    const rest =  await api.addCard('cards', obj);
+    const _id= rest._id
+    const { link, name, display = true } = obj;
 
-    const { link, name } = obj;
+    const newCard = new Card(
+      { name, link, like: false, display, _id },
+      '.template-card'
+    );
 
-    const newCard = new Card({ name, link, like: false }, '.template-card');
+    cardsList.addItem(newCard.generateCard(display), 'prepend');
+    const cards = await api.getInitialCards('cards');
+    // cardsList.renderItems();
 
-    cardsList.addItem(newCard.generateCard(), 'prepend');
+    newPlace.close();
+  
   }, '.popup_Element');
 
   addButton.addEventListener('click', () => {
@@ -126,3 +134,4 @@ try {
 } catch (error) {
   console.log(error);
 }
+})();

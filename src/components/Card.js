@@ -14,7 +14,7 @@ class Card {
     this._display = display;
     this._cardSelector = cardSelector;
     this.deleteCard = this.deleteCard.bind(this);
-    // console.log(_iLikeCard)
+    // console.log(display)
   }
 
   _getTemplate() {
@@ -73,6 +73,7 @@ class Card {
     const trashElement = this._element.querySelector('.card__trash');
     if (trashElement) {
       this._trash = trashElement;
+      // this._trash.style.display = this._display ? 'block' : 'none';
 
       this._trash.addEventListener('mouseenter', () => {
         this._trash.style.color = 'rgba(255, 255, 255, 0.60)';
@@ -111,7 +112,7 @@ class Card {
     this._iLikeCard();
     this._listeners();
     this._trash.style.display = this._display ? 'block' : 'none';
-    // this._element.dataset.id = this._id;
+    this._element.dataset.id = this._id;
     // console.log(this._element)
     return this._element;
   }
