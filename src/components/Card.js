@@ -4,21 +4,21 @@ import { api } from '../pages/index.js';
 
 class Card {
   constructor(
-    { name, link, display, _id, likes, owner: { name: ownerName } },
+    { name, link, display, _id, likes, owner},
     cardSelector
   ) {
     this._name = name;
     this._link = link;
     this._alt = name;
     this._likes = likes;
-    this._ownerName = ownerName;
-    this.isLiked = this._likes.some((user) => (user = this._ownerName));
+    this._ownerName = owner.name;
+    this.isLiked = this._likes && this._likes.some((user) => (user = this._ownerName));
     this._id = _id;
     this._display = display;
     this._cardSelector = cardSelector;
     this.deleteCard = this.deleteCard.bind(this);
     // console.log(_iLikeCard)
-    console.log( this.isLiked)
+    // console.log( owner._id)
   }
 
   deleteCard() {
@@ -61,14 +61,17 @@ class Card {
   }
 
   _getLikes() {
-    return (this._element.querySelector('.card__likes').textContent =
-      this._likes.length > 0 ? this._likes.length : '');
+    if (this._likes) {
+      return (this._element.querySelector('.card__likes').textContent =
+        this._likes.length > 0 ? this._likes.length : '');
+      
+    }
   }
 
   _listeners() {
     this._heart.addEventListener('click', (e) => {
       this.like();
-      // console.log(this._isLiked)
+      console.log(this._isLiked)
       this.updateLikes();
     });
 

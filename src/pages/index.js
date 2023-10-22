@@ -42,7 +42,7 @@ try {
     {
       data: cards,
       renderer: (item) => {
-        // console.log(item);
+        console.log(item);
         const card = new Card(item, '.template-card');
         const cardElement = card.generateCard(item.owner._id === userInfo._id, item.likes);
         cardsList.addItem(cardElement);
@@ -120,18 +120,7 @@ try {
     updatePerfil.open();
   });
 
-  // let card_Id;
-  // let cardToErase;
-  
 
-  /* document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('card__trash')) {
-      card_Id = e.target.parentElement.dataset.id;
-      cardToErase = e.target.parentElement;
-
-      popupDeleteCard.open(cardToErase);
-    }
-  }); */
 } catch (error) {
   console.log(error);
 }
