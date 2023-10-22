@@ -45,17 +45,20 @@ class Api {
 
   async likeCard(resouce, card_Id) {
     return await this.fetchData(
-      `${this._url}${resouce}/likes/${card_Id}`,
+      `${this._url}${resouce}/${card_Id}`,
       'PUT'
     );
   }
 
   async dislikeCard(resouce, card_Id) {
     return await this.fetchData(
-      `${this._url}${resouce}/likes/${card_Id}`,
+      `${this._url}${resouce}/${card_Id}`,
       'DELETE'
     );
   }
+  // async getCard(resourse, card_Id) {
+  //   return await this.fetchData(`${this._url}${resourse}/${card_Id}`, 'GET');
+  // }
 }
 
 export default Api;

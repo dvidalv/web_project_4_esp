@@ -20,7 +20,7 @@ import Api from '../components/Api.js';
   let card_Id;
   let cardToErase;
 //Instanciamos la clase Api
-const api = new Api();
+export const api = new Api();
 export const popupDeleteCard = new PopupWithForm(async (inputValues, deleteCallback, cardId) => {
 
   await api.deleteCard('cards/' + cardId)
@@ -38,7 +38,7 @@ try {
 
   const cards = await api.getInitialCards('cards');
   // console.log(cards);
-  const cardsList = new Section(
+   const cardsList = new Section(
     {
       data: cards,
       renderer: (item) => {
@@ -120,8 +120,8 @@ try {
     updatePerfil.open();
   });
 
-  let card_Id;
-  let cardToErase;
+  // let card_Id;
+  // let cardToErase;
   
 
   /* document.addEventListener('click', (e) => {
