@@ -17,19 +17,21 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
-  let card_Id;
-  let cardToErase;
+
+let card_Id;
+let cardToErase;
+
 //Instanciamos la clase Api
 export const api = new Api();
-export const popupDeleteCard = new PopupWithForm(async (inputValues, deleteCallback, cardId) => {
-
-  await api.deleteCard('cards/' + cardId)
-  deleteCallback()
-
-}, '.popup_delete-card');
+export const popupDeleteCard = new PopupWithForm(
+  async (inputValues, deleteCallback, cardId) => {
+    await api.deleteCard('cards/' + cardId);
+    deleteCallback();
+  },
+  '.popup_delete-card'
+);
 
 try {
-
   //Instanciamos la clase User
   const userInfo = new UserInfo(userSelectors);
 
@@ -38,13 +40,16 @@ try {
 
   const cards = await api.getInitialCards('cards');
   // console.log(cards);
-   const cardsList = new Section(
+  const cardsList = new Section(
     {
       data: cards,
       renderer: (item) => {
-        console.log(item);
+        // console.log(item);
         const card = new Card(item, '.template-card');
-        const cardElement = card.generateCard(item.owner._id === userInfo._id, item.likes);
+        const cardElement = card.generateCard(
+          item.owner._id === userInfo._id,
+          item.likes
+        );
         cardsList.addItem(cardElement);
       },
     },
@@ -75,7 +80,7 @@ try {
     const validate = new FormValidator(objConfig, popup__form);
     validate.enableValidation();
   });
-
+  // console.log(user._id);
   const newPlace = new PopupWithForm(async (obj) => {
     await api.addCard('cards', obj);
 
@@ -84,7 +89,6 @@ try {
     const newCard = new Card({ name, link, like: false }, '.template-card');
 
     cardsList.addItem(newCard.generateCard(), 'prepend');
-
   }, '.popup_Element');
 
   addButton.addEventListener('click', () => {
@@ -119,8 +123,6 @@ try {
   btnUpdateAvatar.addEventListener('click', (e) => {
     updatePerfil.open();
   });
-
-
 } catch (error) {
   console.log(error);
 }

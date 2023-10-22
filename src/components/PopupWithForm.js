@@ -57,6 +57,7 @@ class PopupWithForm extends Popup {
       this._cardId = cardId;
     }
   }
+ 
 
   close() {
     super.close();

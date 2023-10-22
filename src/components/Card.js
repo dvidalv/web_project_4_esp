@@ -1,28 +1,20 @@
-import { initialCards } from '../utils/consts.js';
 import { popupDeleteCard } from '../pages/index.js';
 import { api } from '../pages/index.js';
 
 class Card {
-  constructor(
-    { name, link, display, _id, likes, owner},
-    cardSelector
-  ) {
+  constructor({ name, link, display, _id, likes, owner={} }, cardSelector) {
     this._name = name;
     this._link = link;
     this._alt = name;
-    this._likes = likes;
-    this._ownerName = owner.name;
-    this.isLiked = this._likes && this._likes.some((user) => (user = this._ownerName));
+    this._ownerName = owner.name?owner.name:{};
+    this._likes = likes ? likes : [];
+    // this._isLiked = this._likes.some((like) => like._id === this._userId);
+    this._isLiked = this._likes.some((user) => (user = this._ownerName));
     this._id = _id;
     this._display = display;
     this._cardSelector = cardSelector;
     this.deleteCard = this.deleteCard.bind(this);
     // console.log(_iLikeCard)
-    // console.log( owner._id)
-  }
-
-  deleteCard() {
-    this._element.remove();
   }
 
   _getTemplate() {
@@ -32,26 +24,25 @@ class Card {
       .cloneNode(true);
     return cardElement;
   }
-  like(){
-   return this._isLiked = !this._isLiked
+  like() {
+    return (this._isLiked = !this._isLiked);
   }
 
   async updateLikes() {
-    console.log(this._isLiked)
+    console.log(this._isLiked);
     try {
       if (this._isLiked) {
-        console.log(this._isLiked)
-        const res = await api.dislikeCard('cards/likes', this._id);
-        console.log(res)
-        this._likes = res.likes; 
+        console.log(this._isLiked);
+        const res = await api.likeCard('cards/likes', this._id);
+        console.log(res);
+        this._likes = res.likes;
         this._getLikes();
         this._heart.classList.toggle('card_like');
-        
       } else {
-        console.log(this._isLiked)
-        console.log(res)
-        const res = await api.likeCard('cards/likes', this._id);
-        this._likes = res.likes; 
+        console.log(this._isLiked);
+        const res = await api.dislikeCard('cards/likes', this._id);
+        console.log(res);
+        this._likes = res.likes;
         this._getLikes();
         this._heart.classList.toggle('card_like');
       }
@@ -59,19 +50,23 @@ class Card {
       console.error(error);
     }
   }
-
+  
   _getLikes() {
     if (this._likes) {
       return (this._element.querySelector('.card__likes').textContent =
         this._likes.length > 0 ? this._likes.length : '');
-      
     }
   }
+
+  deleteCard() {
+    this._element.remove();
+  }
+  
 
   _listeners() {
     this._heart.addEventListener('click', (e) => {
       this.like();
-      console.log(this._isLiked)
+      // console.log(this._isLiked);
       this.updateLikes();
     });
 
@@ -102,7 +97,7 @@ class Card {
     // this._trash.removeEventListener('click', this.deleteCard);
   }
   _iLikeCard() {
-    this.isLiked ? this._heart.classList.add('card_like') : '';
+    this._isLiked ? this._heart.classList.add('card_like') : '';
   }
   generateCard(display, likes) {
     this._display = display;
