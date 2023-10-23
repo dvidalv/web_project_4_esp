@@ -46,7 +46,7 @@ const objConfig = {
   errorClass: 'popup__error_visible',
 };
 const btnUpdateAvatar = document.querySelector('.profile__edit-icon');
-const eraseBtn = document.querySelectorAll('.card__trash')
+const eraseBtn = document.querySelectorAll('.card__trash');
 const popup__form = document.querySelector('.popup__form'); //formulario
 const cardContainer = document.querySelector('.elements'); //contenedor de tarjetas
 const title = '.profile__title';
@@ -58,8 +58,12 @@ const overlay = document.querySelector('.overlay-image');
 const popupPerfil = document.querySelector('.popup_perfil');
 const popupAddImage = document.querySelector('.popup__formElement'); //formulario agregar nueva tarjeta
 const FormPerfil = document.querySelector('.popup__formPerfil');
+const FormPerfilBtn = document.querySelector('.popup__submit_perfil');
 const editButton = document.querySelector('.edit-button');
 const updateformPerfil = document.querySelector('.popup__form-update-perfil');
+const addButtonElement = document.querySelector('.popup__submit_Element');
+const updatePerfilBtn = document.querySelector('.popup__submit_update-perfil');
+const deleteButtonElement = document.querySelector('.popup__submit_deleteCard');
 const buttonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
@@ -70,6 +74,10 @@ const userSelectors = {
 const addButton = document.querySelector('.add-button');
 
 export {
+  updatePerfilBtn,
+  deleteButtonElement,
+  addButtonElement,
+  FormPerfilBtn,
   updateformPerfil,
   btnUpdateAvatar,
   userSelectors,

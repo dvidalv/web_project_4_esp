@@ -1,4 +1,5 @@
 import Popup from './Popup.js';
+import { FormPerfilBtn } from '../utils/consts.js';
 
 class PopupWithForm extends Popup {
   constructor(callBack, popupSelector) {
@@ -6,7 +7,6 @@ class PopupWithForm extends Popup {
     this._submitCallback = callBack;
     this._handleFormSubmit = this._handleFormSubmit.bind(this);
   }
-
   _getInputValues() {
     //recopila datos de todos los campos de entrada.
     // Obtiene los elementos de todos los campos
@@ -25,14 +25,12 @@ class PopupWithForm extends Popup {
   }
 
   _newValues() {
-   return  this._getInputValues()
+    return this._getInputValues();
   }
-  
+
   _handleFormSubmit = (e) => {
     e.preventDefault();
     this._submitCallback(this._newValues(), this._deleteCallback, this._cardId);
-    this.close();
-    this._popup.classList.remove('popup_opened');
   };
 
   _setEventListeners() {
@@ -48,16 +46,16 @@ class PopupWithForm extends Popup {
   }
 
   open(deleteCallback, cardId) {
+    // console.log(FormPerfilBtn.value)
     super.open();
     document.querySelector('body').classList.add('fix');
-    if(deleteCallback){
+    if (deleteCallback) {
       this._deleteCallback = deleteCallback;
     }
-    if(cardId){
+    if (cardId) {
       this._cardId = cardId;
     }
   }
- 
 
   close() {
     super.close();

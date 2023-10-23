@@ -1,18 +1,24 @@
 import { popupDeleteCard } from '../pages/index.js';
+import { deleteButtonElement } from '../utils/consts.js';
 import { api } from '../pages/index.js';
 class Card {
-  constructor({ name, link, display, _id, likes, owner={} }, cardSelector) {
+  constructor(
+    { name, link, display, _id, likes, owner = {} },
+    cardSelector,
+    user
+  ) {
     this._name = name;
+    this._user = user ? user.name : undefined;
     this._link = link;
     this._alt = name;
-    this._ownerName = owner.name?owner.name:{};
+    this._ownerName = owner.name ? owner.name : {};
     this._likes = likes ? likes : [];
-    this._isLiked = this._likes.some((user) => (user = this._ownerName));
+    this._isLiked = this._likes.some((user) => (user.name = this._user));
     this._id = _id;
     this._display = display;
     this._cardSelector = cardSelector;
     this.deleteCard = this.deleteCard.bind(this);
-    // console.log(display)
+    console.log(this._name);
   }
 
   _getTemplate() {
@@ -27,19 +33,19 @@ class Card {
   }
 
   async updateLikes() {
-    console.log(this._isLiked);
+    // console.log(this._isLiked);
     try {
       if (this._isLiked) {
-        console.log(this._isLiked);
+        // console.log(this._isLiked);
         const res = await api.likeCard('cards/likes', this._id);
-        console.log(res);
+        // console.log(res);
         this._likes = res.likes;
         this._getLikes();
         this._heart.classList.toggle('card_like');
       } else {
-        console.log(this._isLiked);
+        // console.log(this._isLiked);
         const res = await api.dislikeCard('cards/likes', this._id);
-        console.log(res);
+        // console.log(res);
         this._likes = res.likes;
         this._getLikes();
         this._heart.classList.toggle('card_like');
@@ -48,7 +54,7 @@ class Card {
       console.error(error);
     }
   }
-  
+
   _getLikes() {
     if (this._likes) {
       return (this._element.querySelector('.card__likes').textContent =
@@ -59,7 +65,6 @@ class Card {
   deleteCard() {
     this._element.remove();
   }
-  
 
   _listeners() {
     this._heart.addEventListener('click', (e) => {
@@ -81,6 +86,7 @@ class Card {
       });
 
       this._trash.addEventListener('click', () => {
+        deleteButtonElement.value = 'Si';
         //primero open del popup
         popupDeleteCard.open(this.deleteCard, this._id);
         //luego delete
@@ -96,7 +102,7 @@ class Card {
     // this._trash.removeEventListener('click', this.deleteCard);
   }
   _iLikeCard() {
-    this._isLiked ? this._heart.classList.add('card_like') : '';
+    return this._isLiked ? this._heart.classList.add('card_like') : '';
   }
   generateCard(display, likes) {
     this._display = display;
@@ -111,7 +117,7 @@ class Card {
     this._listeners();
     this._trash.style.display = this._display ? 'block' : 'none';
     this._element.dataset.id = this._id;
-    // console.log(this._element)
+    // console.log(this._iLikeCard())
     return this._element;
   }
 }

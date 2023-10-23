@@ -1,4 +1,4 @@
-import { data } from "autoprefixer";
+import { data } from 'autoprefixer';
 
 class UserInfo {
   constructor({ nombre, job }) {
