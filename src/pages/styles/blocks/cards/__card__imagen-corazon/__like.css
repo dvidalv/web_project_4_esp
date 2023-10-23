@@ -19,6 +19,8 @@
   cursor: pointer;
   transform: scale(1.2);
   transition: all 0.8s;
+  opacity: 0.6;
+  overflow: hidden;
   -webkit-transition: all 0.8s;
   -moz-transition: all 0.8s;
   -ms-transition: all 0.8s;
@@ -29,15 +31,5 @@
   -o-transform: scale(1.2);
 }
 
-.card_dislike:hover,
-.card_like:hover {
-  opacity: 0.6;
-  overflow: hidden;
-  transition: 0.8s all;
-  -webkit-transition: 0.8s all;
-  -moz-transition: 0.8s all;
-  -ms-transition: 0.8s all;
-  -o-transition: 0.8s all;
-}
 
 
