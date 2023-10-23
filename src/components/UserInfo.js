@@ -1,3 +1,5 @@
+import { data } from "autoprefixer";
+
 class UserInfo {
   constructor({ nombre, job }) {
     this._nombre = document.querySelector(nombre);
@@ -13,8 +15,9 @@ class UserInfo {
     };
     return data;
   }
-  updateAvatar(avatar) {
+  updateAvatar(avatar, name) {
     this._avatar.src = avatar;
+    this._avatar.alt = name;
   }
 
   setUserInfo({ name, about, _id }) {

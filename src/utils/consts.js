@@ -59,6 +59,7 @@ const popupPerfil = document.querySelector('.popup_perfil');
 const popupAddImage = document.querySelector('.popup__formElement'); //formulario agregar nueva tarjeta
 const FormPerfil = document.querySelector('.popup__formPerfil');
 const editButton = document.querySelector('.edit-button');
+const updateformPerfil = document.querySelector('.popup__form-update-perfil');
 const buttonPopupButtonCerrarPlaces = document.querySelector(
   '.popup__button-cerrar-places'
 );
@@ -69,6 +70,7 @@ const userSelectors = {
 const addButton = document.querySelector('.add-button');
 
 export {
+  updateformPerfil,
   btnUpdateAvatar,
   userSelectors,
   initialCards,

@@ -1,6 +1,5 @@
 import { popupDeleteCard } from '../pages/index.js';
 import { api } from '../pages/index.js';
-
 class Card {
   constructor({ name, link, display, _id, likes, owner={} }, cardSelector) {
     this._name = name;

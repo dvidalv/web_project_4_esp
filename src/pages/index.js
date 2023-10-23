@@ -8,7 +8,7 @@ import {
   objConfig,
   popup__form,
   popupAddImage,
-  eraseBtn,
+  updateformPerfil,
 } from '../utils/consts.js';
 import Section from '../components/Section.js';
 import Card from '../components/Card.js';
@@ -116,20 +116,24 @@ try {
     }
   });
 
-  api.getUserAvatar('users/me').then((avatar) => {
-    userInfo.updateAvatar(avatar.avatar);
+  api.getUserAvatar('users/me').then((user) => {
+    console.log(user)
+    userInfo.updateAvatar(user.avatar, user.name);
   });
 
   const updatePerfil = new PopupWithForm(async ({ link }) => {
     // éste método Recibe un objeto con la propiedad de avatar
     const data = await api.patchUserInfo('users/me/avatar', { avatar: link });
-
+    const { avatar, name} = data;
+    console.log(avatar, name)
     // Actualizar la imagen del usuario en la interfaz
-    userInfo.updateAvatar(data.avatar);
+    userInfo.updateAvatar(avatar, name);
     updatePerfil.close();
   }, '.popup_update-perfil');
   btnUpdateAvatar.addEventListener('click', (e) => {
     updatePerfil.open();
+    const validate = new FormValidator(objConfig, updateformPerfil);
+    validate.enableValidation();
   });
 } catch (error) {
   console.log(error);
