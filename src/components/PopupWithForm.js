@@ -49,7 +49,7 @@ class PopupWithForm extends Popup {
 
   open(deleteCallback, cardId) {
     super.open();
-    // document.querySelector('body').classList.add('fix');
+    document.querySelector('body').classList.add('fix');
     if(deleteCallback){
       this._deleteCallback = deleteCallback;
     }

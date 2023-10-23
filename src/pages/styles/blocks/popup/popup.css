@@ -1,9 +1,9 @@
 .popup {
+  position: fixed;
   font-family: 'Inter', Arial, sans-serif;
   font-size: 24px;
   font-weight: 900;
   font-style: normal;
-  position: absolute;
   top: 0;
   left: 0;
   z-index: 1;
@@ -13,6 +13,7 @@
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
+  overflow: hidden;
 }
 
 .popup__formDeleteCard {

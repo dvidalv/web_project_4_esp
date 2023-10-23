@@ -8,7 +8,6 @@ class Card {
     this._alt = name;
     this._ownerName = owner.name?owner.name:{};
     this._likes = likes ? likes : [];
-    // this._isLiked = this._likes.some((like) => like._id === this._userId);
     this._isLiked = this._likes.some((user) => (user = this._ownerName));
     this._id = _id;
     this._display = display;
