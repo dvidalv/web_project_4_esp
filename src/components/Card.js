@@ -18,7 +18,6 @@ class Card {
     this._display = display;
     this._cardSelector = cardSelector;
     this.deleteCard = this.deleteCard.bind(this);
-    console.log(this._name);
   }
 
   _getTemplate() {
@@ -33,19 +32,14 @@ class Card {
   }
 
   async updateLikes() {
-    // console.log(this._isLiked);
     try {
       if (this._isLiked) {
-        // console.log(this._isLiked);
         const res = await api.likeCard('cards/likes', this._id);
-        // console.log(res);
         this._likes = res.likes;
         this._getLikes();
         this._heart.classList.toggle('card_like');
       } else {
-        // console.log(this._isLiked);
         const res = await api.dislikeCard('cards/likes', this._id);
-        // console.log(res);
         this._likes = res.likes;
         this._getLikes();
         this._heart.classList.toggle('card_like');
@@ -69,14 +63,12 @@ class Card {
   _listeners() {
     this._heart.addEventListener('click', (e) => {
       this.like();
-      // console.log(this._isLiked);
       this.updateLikes();
     });
 
     const trashElement = this._element.querySelector('.card__trash');
     if (trashElement) {
       this._trash = trashElement;
-      // this._trash.style.display = this._display ? 'block' : 'none';
 
       this._trash.addEventListener('mouseenter', () => {
         this._trash.style.color = 'rgba(255, 255, 255, 0.60)';
@@ -87,10 +79,7 @@ class Card {
 
       this._trash.addEventListener('click', () => {
         deleteButtonElement.value = 'Si';
-        //primero open del popup
         popupDeleteCard.open(this.deleteCard, this._id);
-        //luego delete
-        //this.deleteCard()
       });
     }
   }
@@ -99,7 +88,6 @@ class Card {
     this._element
       .querySelector('.like')
       .removeEventListener('click', this._likeCard);
-    // this._trash.removeEventListener('click', this.deleteCard);
   }
   _iLikeCard() {
     return this._isLiked ? this._heart.classList.add('card_like') : '';
@@ -117,7 +105,6 @@ class Card {
     this._listeners();
     this._trash.style.display = this._display ? 'block' : 'none';
     this._element.dataset.id = this._id;
-    // console.log(this._iLikeCard())
     return this._element;
   }
 }

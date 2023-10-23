@@ -11,11 +11,12 @@
     <div class="page">
       <header class="header">
         <img
-          class="logo"
-          src="<%=require('../src/images/logo.svg')%>"
-          alt="Logo around the US"
+        class="logo"
+        src="<%=require('../src/images/logo.svg')%>"
+        alt="Logo around the US"
         />
       </header>
+      <div class="error"></div>
       <main class="content">
         <section class="profile">
           <section class="popup popup_perfil">
@@ -107,15 +108,16 @@
               <p class="profile__subtitle"></p>
             </div>
           </div>
-
+          
           <div class="profile__button">
             <img
-              class="add-button"
-              src="<%=require('../src/images/Add Button.png')%>"
-              alt="icono boton agregar"
+            class="add-button"
+            src="<%=require('../src/images/Add Button.png')%>"
+            alt="icono boton agregar"
             />
           </div>
         </section>
+
 
         <section>
           <section class="popup popup_Element">
@@ -152,7 +154,9 @@
             </form>
           </section>
 
-          <ul class="elements"></ul>
+          <ul class="elements">
+
+          </ul>
 
           <template class="template-card">
             <li class="card">

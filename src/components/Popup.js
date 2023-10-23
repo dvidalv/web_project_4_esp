@@ -30,8 +30,6 @@ class Popup {
 
   _getPopup() {
     this._popup = document.querySelector(this._popupSelector);
-    // this._popup.animation = 'zoomOut 1s 2';
-
     return this._popup;
   }
 

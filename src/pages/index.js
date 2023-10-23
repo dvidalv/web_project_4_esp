@@ -22,9 +22,6 @@ import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
 
-// let card_Id;
-// let cardToErase;
-
 //Instanciamos la clase Api
 export const api = new Api();
 export const popupDeleteCard = new PopupWithForm(
@@ -46,12 +43,10 @@ export const popupDeleteCard = new PopupWithForm(
     userInfo.setUserInfo(user);
 
     const cards = await api.getInitialCards('cards');
-    // console.log(cards);
     const cardsList = new Section(
       {
         data: cards,
         renderer: (item) => {
-          // console.log(item);
           const card = new Card(item, '.template-card', user);
           const cardElement = card.generateCard(
             item.owner._id === userInfo._id,
@@ -91,7 +86,6 @@ export const popupDeleteCard = new PopupWithForm(
       const validate = new FormValidator(objConfig, popup__form);
       validate.enableValidation();
     });
-    // console.log(user._id);
     const newPlace = new PopupWithForm(async (obj) => {
       addButtonElement.value = 'Guardando...';
       const rest = await api.addCard('cards', obj);
@@ -106,7 +100,6 @@ export const popupDeleteCard = new PopupWithForm(
 
       cardsList.addItem(newCard.generateCard(display), 'prepend');
       const cards = await api.getInitialCards('cards');
-      // cardsList.renderItems();
     }, '.popup_Element');
 
     addButton.addEventListener('click', () => {
@@ -128,11 +121,8 @@ export const popupDeleteCard = new PopupWithForm(
     });
 
     api.getUserAvatar('users/me').then((user) => {
-      // console.log(user.name)
-
       userInfo.updateAvatar(user.avatar, user.name);
     });
-    // console.log(user);
 
     const updatePerfil = new PopupWithForm(async ({ link }) => {
       // éste método Recibe un objeto con la propiedad de avatar
@@ -150,6 +140,14 @@ export const popupDeleteCard = new PopupWithForm(
       validate.enableValidation();
     });
   } catch (error) {
-    console.log(error);
+    if (error) {
+      const errorContainer = document.querySelector('.error');
+      errorContainer.style.display = 'block';
+      errorContainer.innerHTML = `Ha ocurrido un error: ${error}`;
+      setTimeout(() => {
+        document.querySelector('.error').innerHTML = '';
+        errorContainer.style.display = 'none';
+      }, 3000);
+    }
   }
 })();

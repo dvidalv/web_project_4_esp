@@ -2,6 +2,7 @@
 @import './blocks/globales/globales.css';
 @import '../../fonts/Inter/inter.css';
 @import './blocks/globales/animaciones.css';
+@import './blocks/error/error.css';
 @import './blocks/buttons/buttons.css';
 @import './blocks/buttons/add-button/add-button.css';
 @import './blocks/buttons/edit-button/edit-button.css';
@@ -39,3 +40,5 @@
 @import './blocks/overlay/__overlay__divTemp/__overlaydivtemp.css';
 @import './blocks/overlay/__overlay__divTemp/__overlay-image__image.css';
 @import './blocks/footer/footer.css';
+
+
