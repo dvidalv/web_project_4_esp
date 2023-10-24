@@ -120,9 +120,8 @@ export const popupDeleteCard = new PopupWithForm(
       }
     });
 
-    api.getUserAvatar('users/me').then((user) => {
-      userInfo.updateAvatar(user.avatar, user.name);
-    });
+    const avatar = await api.getUserAvatar('users/me');
+    userInfo.updateAvatar(avatar.avatar, avatar.name);
 
     const updatePerfil = new PopupWithForm(async ({ link }) => {
       // éste método Recibe un objeto con la propiedad de avatar

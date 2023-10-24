@@ -13,7 +13,7 @@ class Card {
     this._alt = name;
     this._ownerName = owner.name ? owner.name : {};
     this._likes = likes ? likes : [];
-    this._isLiked = this._likes.some((user) => (user.name = this._user));
+    this._isLiked = this._likes.some((user) => (user.name === this._user));
     this._id = _id;
     this._display = display;
     this._cardSelector = cardSelector;
