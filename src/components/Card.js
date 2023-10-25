@@ -1,24 +1,20 @@
 import { popupDeleteCard, popupImage } from '../pages/index.js';
 import { deleteButtonElement } from '../utils/consts.js';
 import { api } from '../pages/index.js';
+
 class Card {
-  constructor(
-    { name, link, display, _id, likes, owner = {} },
-    cardSelector,
-    user
-  ) {
+  constructor({ name, link, display, _id, likes, owner = {} }, cardSelector, user) {
     this._name = name;
     this._user = user ? user.name : undefined;
     this._link = link;
     this._alt = name;
-    this._ownerName = owner.name ? owner.name : {};
-    this._likes = likes ? likes : [];
+    this._ownerName = owner.name || {};
+    this._likes = likes || [];
     this._isLiked = this._likes.some((user) => user.name === this._user);
     this._id = _id;
     this._display = display;
     this._cardSelector = cardSelector;
     this.deleteCard = this.deleteCard.bind(this);
-
   }
 
   _getTemplate() {
@@ -28,23 +24,17 @@ class Card {
       .cloneNode(true);
     return cardElement;
   }
-  like() {
-    return (this._isLiked = !this._isLiked);
+
+  toggleLike() {
+    this._isLiked = !this._isLiked;
+    this._heart.classList.toggle('card_like');
   }
 
   async updateLikes() {
     try {
-      if (this._isLiked) {
-        const res = await api.likeCard('cards/likes', this._id);
-        this._likes = res.likes;
-        this._getLikes();
-        this._heart.classList.toggle('card_like');
-      } else {
-        const res = await api.dislikeCard('cards/likes', this._id);
-        this._likes = res.likes;
-        this._getLikes();
-        this._heart.classList.toggle('card_like');
-      }
+      const res = this._isLiked ? await api.likeCard('cards/likes', this._id) : await api.dislikeCard('cards/likes', this._id);
+      this._likes = res.likes;
+      this._getLikes();
     } catch (error) {
       console.error(error);
     }
@@ -52,8 +42,8 @@ class Card {
 
   _getLikes() {
     if (this._likes) {
-      return (this._element.querySelector('.card__likes').textContent =
-        this._likes.length > 0 ? this._likes.length : '');
+      this._element.querySelector('.card__likes').textContent =
+        this._likes.length > 0 ? this._likes.length : '';
     }
   }
 
@@ -62,22 +52,16 @@ class Card {
   }
 
   _listeners() {
-    this._heart.addEventListener('click', (e) => {
-      this.like();
+    this._heart.addEventListener('click', () => {
+      this.toggleLike();
       this.updateLikes();
     });
 
     const trashElement = this._element.querySelector('.card__trash');
     if (trashElement) {
       this._trash = trashElement;
-
-      this._trash.addEventListener('mouseenter', () => {
-        this._trash.style.color = 'rgba(255, 255, 255, 0.60)';
-      });
-      this._trash.addEventListener('mouseout', () => {
-        this._trash.style.color = 'currentColor';
-      });
-
+      this._trash.addEventListener('mouseenter', () => this._trash.style.color = 'rgba(255, 255, 255, 0.60)');
+      this._trash.addEventListener('mouseout', () => this._trash.style.color = 'currentColor');
       this._trash.addEventListener('click', () => {
         deleteButtonElement.value = 'Si';
         popupDeleteCard.open(this.deleteCard, this._id);
@@ -99,15 +83,15 @@ class Card {
   }
 
   _removeListeners() {
-    this._element.querySelector('').removeEventListener('click', this.likeCard);
-    this._element
-      .querySelector('.like')
-      .removeEventListener('click', this._likeCard);
+    this._element.querySelector('').removeEventListener('click', this.toggleLike);
+    this._element.querySelector('.like').removeEventListener('click', this.toggleLike);
     this._getImageInfo.removeEventListener('click', this._getImageInfo);
   }
+
   _iLikeCard() {
-    return this._isLiked ? this._heart.classList.add('card_like') : '';
+    if (this._isLiked) this._heart.classList.add('card_like');
   }
+
   generateCard(display, likes) {
     this._display = display;
     this._element = this._getTemplate();
@@ -125,4 +109,5 @@ class Card {
     return this._element;
   }
 }
+
 export default Card;
