@@ -7,7 +7,8 @@ class Api {
     this._url = `https://around.nomoreparties.co/v1/${this.groupId}/`;
   }
   async fetchData(url, method, data) {
-    const result = await fetch(`${url}`, {
+    try {
+      const result = await fetch(`${url}`, {
       method,
       headers: {
         authorization: this._token,
@@ -17,10 +18,15 @@ class Api {
     });
 
     if (result.ok) {
+      console.log(result)
       return await result.json();
     }
 
     return await Promise.reject(`Error: ${result.status}`);
+    } catch (error) {
+      throw error;
+    }
+    
   }
 
   async getInitialCards(resouce) {

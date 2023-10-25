@@ -9,10 +9,10 @@ const OVERLAY_CLASS = 'overlay';
 const FIX_CLASS = 'fix';
 
 class PopupWithImage extends Popup {
-  constructor({ src, alt }, popupSelector) {
+  constructor(popupSelector) {
     super(popupSelector);
-    this._src = src;
-    this._alt = alt;
+    // this._src = src;
+    // this._alt = alt;
   }
   _createImageElement(src, alt, classes) {
     const img = document.createElement('img');
@@ -86,8 +86,14 @@ class PopupWithImage extends Popup {
 
   _removeEventListeners = () => {
     super._removeEventListeners();
+    document.removeEventListener('click', this._closeImageByClick);
   };
-  open() {
+
+  open(callBack) {
+    const imageIngo = callBack();
+    const { src, alt } = imageIngo;
+    this._src = src;
+    this._alt = alt;
     super.open();
     this._selectImagen();
   }

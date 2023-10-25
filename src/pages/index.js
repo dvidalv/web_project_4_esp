@@ -22,6 +22,7 @@ import UserInfo from '../components/UserInfo.js';
 import FormValidator from '../components/FormValidator.js';
 import Api from '../components/Api.js';
 
+export const popupImage = new PopupWithImage('.overlay-image');
 //Instanciamos la clase Api
 export const api = new Api();
 export const popupDeleteCard = new PopupWithForm(
@@ -86,21 +87,28 @@ export const popupDeleteCard = new PopupWithForm(
       const validate = new FormValidator(objConfig, popup__form);
       validate.enableValidation();
     });
-    const newPlace = new PopupWithForm(async (obj) => {
-      addButtonElement.value = 'Guardando...';
-      const rest = await api.addCard('cards', obj);
-      newPlace.close();
-      const _id = rest._id;
-      const { link, name, display = true } = obj;
-
-      const newCard = new Card(
-        { name, link, like: false, display, _id },
-        '.template-card'
-      );
-
-      cardsList.addItem(newCard.generateCard(display), 'prepend');
-      const cards = await api.getInitialCards('cards');
-    }, '.popup_Element');
+    
+    const newPlace = new PopupWithForm(
+      async (obj) => {
+        try {
+          addButtonElement.value = 'Guardando...';
+          const rest = await api.addCard('cards', obj);
+          newPlace.close();
+          const _id = rest._id;
+          const { link, name, display = true } = obj;
+    
+          const newCard = new Card(
+            { name, link, like: false, display, _id },
+            '.template-card'
+          );
+    
+          cardsList.addItem(newCard.generateCard(display), 'prepend');
+          const cards = await api.getInitialCards('cards');
+        } catch (error) {
+          printError('El link no es valido');
+          newPlace.close();
+        }
+      }, '.popup_Element');
 
     addButton.addEventListener('click', () => {
       addButtonElement.value = 'Nuevo';
@@ -109,16 +117,6 @@ export const popupDeleteCard = new PopupWithForm(
       validate.enableValidation();
     });
 
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('card__imagen')) {
-        const imageInfo = {
-          src: e.target.src,
-          alt: e.target.alt,
-        };
-        const popupImage = new PopupWithImage(imageInfo, '.overlay-image');
-        popupImage.open();
-      }
-    });
 
     const avatar = await api.getUserAvatar('users/me');
     userInfo.updateAvatar(avatar.avatar, avatar.name);
@@ -139,14 +137,22 @@ export const popupDeleteCard = new PopupWithForm(
       validate.enableValidation();
     });
   } catch (error) {
-    if (error) {
-      const errorContainer = document.querySelector('.error');
+    printError(error);
+  }
+  function printError(errorMesaje) {
+    const errorContainer = document.querySelector('.error');
+    if (errorMesaje && errorContainer) {
       errorContainer.style.display = 'block';
-      errorContainer.innerHTML = `Ha ocurrido un error: ${error}`;
+      errorContainer.innerHTML = errorMesaje;
+      errorContainer.style.transition = 'all .9s';
+      errorContainer.style.opacity = '1';
       setTimeout(() => {
-        document.querySelector('.error').innerHTML = '';
-        errorContainer.style.display = 'none';
-      }, 3000);
+        errorContainer.style.opacity = '0';
+        setTimeout(() => {
+          errorContainer.style.display = 'none';
+          errorContainer.innerHTML = '';
+        }, 500);
+      }, 5000);
     }
   }
 })();
