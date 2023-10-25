@@ -72,8 +72,10 @@ const userSelectors = {
   job: subtitle,
 };
 const addButton = document.querySelector('.add-button');
+const token = '9d080c9f-32ec-43d7-9e8d-be1fdad6fe1b';
 
 export {
+  token,
   updatePerfilBtn,
   deleteButtonElement,
   addButtonElement,

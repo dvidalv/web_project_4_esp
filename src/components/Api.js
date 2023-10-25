@@ -1,7 +1,9 @@
+import { token } from '../utils/consts';
+
 class Api {
   constructor() {
     this.groupId = 'web_es_09';
-    this._token = '9d080c9f-32ec-43d7-9e8d-be1fdad6fe1b';
+    this._token = token;
     this._url = `https://around.nomoreparties.co/v1/${this.groupId}/`;
   }
   async fetchData(url, method, data) {
