@@ -1,4 +1,4 @@
-import { popupDeleteCard } from '../pages/index.js';
+import { popupDeleteCard, popupImage } from '../pages/index.js';
 import { deleteButtonElement } from '../utils/consts.js';
 import { api } from '../pages/index.js';
 class Card {
@@ -13,11 +13,12 @@ class Card {
     this._alt = name;
     this._ownerName = owner.name ? owner.name : {};
     this._likes = likes ? likes : [];
-    this._isLiked = this._likes.some((user) => (user.name === this._user));
+    this._isLiked = this._likes.some((user) => user.name === this._user);
     this._id = _id;
     this._display = display;
     this._cardSelector = cardSelector;
     this.deleteCard = this.deleteCard.bind(this);
+
   }
 
   _getTemplate() {
@@ -82,12 +83,27 @@ class Card {
         popupDeleteCard.open(this.deleteCard, this._id);
       });
     }
+
+    this._image.addEventListener('click', this._getImageInfo.bind(this));
   }
+
+  _imageInfo() {
+    return {
+      src: this._link,
+      alt: this._alt,
+    };
+  }
+
+  _getImageInfo() {
+    popupImage.open(this._imageInfo.bind(this));
+  }
+
   _removeListeners() {
     this._element.querySelector('').removeEventListener('click', this.likeCard);
     this._element
       .querySelector('.like')
       .removeEventListener('click', this._likeCard);
+    this._getImageInfo.removeEventListener('click', this._getImageInfo);
   }
   _iLikeCard() {
     return this._isLiked ? this._heart.classList.add('card_like') : '';
@@ -95,6 +111,7 @@ class Card {
   generateCard(display, likes) {
     this._display = display;
     this._element = this._getTemplate();
+    this._image = this._element.querySelector('.card__imagen');
     this._heart = this._element.querySelector('.card_dislike');
     this._element.querySelector('.card__imagen').src = this._link;
     this._element.querySelector('.card__imagen').alt = this._alt;
