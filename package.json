@@ -7,7 +7,7 @@
     "build": "rm -rf dist && webpack --mode production",
     "dev": "webpack serve --mode development && webpack serve --live-reload",
     "predeploy": "npm run build",
-   "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +28,7 @@
     "webpack-dev-server": "^4.15.1"
   },
   "dependencies": {
-    "core-js": "^3.32.2"
+    "core-js": "^3.32.2",
+    "jsdom": "^22.1.0"
   }
 }

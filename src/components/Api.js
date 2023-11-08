@@ -9,24 +9,22 @@ class Api {
   async fetchData(url, method, data) {
     try {
       const result = await fetch(`${url}`, {
-      method,
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
+        method,
+        headers: {
+          authorization: this._token,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-    if (result.ok) {
-      console.log(result)
-      return await result.json();
-    }
+      if (result.ok) {
+        return await result.json();
+      }
 
-    return await Promise.reject(`Error: ${result.status}`);
+      return await Promise.reject(`Error: ${result.status}`);
     } catch (error) {
       throw error;
     }
-    
   }
 
   async getInitialCards(resouce) {

@@ -3,7 +3,11 @@ import { deleteButtonElement } from '../utils/consts.js';
 import { api } from '../pages/index.js';
 
 class Card {
-  constructor({ name, link, display, _id, likes, owner = {} }, cardSelector, user) {
+  constructor(
+    { name, link, display, _id, likes, owner = {} },
+    cardSelector,
+    user
+  ) {
     this._name = name;
     this._user = user ? user.name : undefined;
     this._link = link;
@@ -16,7 +20,6 @@ class Card {
     this._cardSelector = cardSelector;
     this.deleteCard = this.deleteCard.bind(this);
   }
-
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
@@ -32,7 +35,9 @@ class Card {
 
   async updateLikes() {
     try {
-      const res = this._isLiked ? await api.likeCard('cards/likes', this._id) : await api.dislikeCard('cards/likes', this._id);
+      const res = this._isLiked
+        ? await api.likeCard('cards/likes', this._id)
+        : await api.dislikeCard('cards/likes', this._id);
       this._likes = res.likes;
       this._getLikes();
     } catch (error) {
@@ -58,10 +63,17 @@ class Card {
     });
 
     const trashElement = this._element.querySelector('.card__trash');
+
     if (trashElement) {
       this._trash = trashElement;
-      this._trash.addEventListener('mouseenter', () => this._trash.style.color = 'rgba(255, 255, 255, 0.60)');
-      this._trash.addEventListener('mouseout', () => this._trash.style.color = 'currentColor');
+      this._trash.addEventListener(
+        'mouseenter',
+        () => (this._trash.style.color = 'rgba(255, 255, 255, 0.60)')
+      );
+      this._trash.addEventListener(
+        'mouseout',
+        () => (this._trash.style.color = 'currentColor')
+      );
       this._trash.addEventListener('click', () => {
         deleteButtonElement.value = 'Si';
         popupDeleteCard.open(this.deleteCard, this._id);
@@ -83,8 +95,12 @@ class Card {
   }
 
   _removeListeners() {
-    this._element.querySelector('').removeEventListener('click', this.toggleLike);
-    this._element.querySelector('.like').removeEventListener('click', this.toggleLike);
+    this._element
+      .querySelector('')
+      .removeEventListener('click', this.toggleLike);
+    this._element
+      .querySelector('.like')
+      .removeEventListener('click', this.toggleLike);
     this._getImageInfo.removeEventListener('click', this._getImageInfo);
   }
 
